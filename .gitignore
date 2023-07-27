@@ -1,0 +1,6 @@
+*.o
+Cub
+key
+.vscode
+*.a
+mlx-test
