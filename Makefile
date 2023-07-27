@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
+#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/07/26 07:23:10 by gfranque         ###   ########.fr        #
+#    Updated: 2023/07/27 11:51:42 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,7 +127,9 @@ fclean:	clean
 	$(UNCOLOR)
 	@echo "\033[33mFclean done\033[0m"
 
-re: fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) -j all
 
 bonus:	$(OBJS_BONUS)
 	@echo "\033[46m\033[37m Fil De Fer \033[0m"
