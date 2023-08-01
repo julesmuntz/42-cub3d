@@ -6,19 +6,19 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/07/27 11:51:42 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/01 14:48:27 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub
+NAME = cub3D
 
-NAME_BONUS = Cub
+NAME_BONUS = cub3D
 
 ###############
 ###	ALIAS	###
 ###############
 
-SRC = test.c
+SRC = main.c
 
 SRC_BONUS = 
 
