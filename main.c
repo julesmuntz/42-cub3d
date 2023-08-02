@@ -210,6 +210,26 @@ int	ft_key_release(int keysym)
 	return (0);
 }
 
+int	ft_mouse_move(int x, int y, t_mlx *mlx)
+{
+	int		last_x;
+	int		last_y;
+	float	delta_x;
+	float	delta_y;
+
+	last_x = ScreenWidth / 2;
+	last_y = ScreenHeight / 2;
+	delta_x = x - last_x;
+	delta_y = y - last_y;
+	PlayerA += delta_x * 0.0025f;
+	PlayerPitch = fmax(fmin(PlayerPitch - delta_y * 0.005f, 10.0f), -10.0);
+	last_x = x;
+	last_y = y;
+	mlx_mouse_move(mlx->ptr_mlx, mlx->ptr_window, ScreenWidth / 2, ScreenHeight
+			/ 2);
+	return (0);
+}
+
 void	update_camera_position(void)
 {
 	if (keys[XK_Left])
@@ -217,9 +237,9 @@ void	update_camera_position(void)
 	if (keys[XK_Right])
 		PlayerA += 0.05f;
 	if (keys[XK_Up])
-		PlayerPitch += 0.05;
+		PlayerPitch = fmin(PlayerPitch + 0.1f, 10.0f);
 	if (keys[XK_Down])
-		PlayerPitch -= 0.05;
+		PlayerPitch = fmax(PlayerPitch - 0.1f, -10.0f);
 	if (keys[XK_w])
 		go_front(0.1f);
 	if (keys[XK_a])
@@ -273,6 +293,7 @@ int	main(void)
 	mlx_loop_hook(mlx.ptr_mlx, &ft_loop, &mlx);
 	mlx_hook(mlx.ptr_window, 2, (1L << 0), ft_key_press, &mlx);
 	mlx_hook(mlx.ptr_window, 3, (1L << 1), ft_key_release, &mlx);
+	mlx_hook(mlx.ptr_window, 6, (1L << 6), ft_mouse_move, &mlx);
 	mlx_loop(mlx.ptr_mlx);
 	mlx_destroy_image(mlx.ptr_mlx, mlx.img.mlx_img);
 	mlx_destroy_window(mlx.ptr_mlx, mlx.ptr_window);
