@@ -1,0 +1,14 @@
+Hello Jules
+
+Tu trouveras sur cette branche la version que connais avec les textures et la version dda avec les textures ainsi qu'une hit boxe.
+
+Tu peux tester en faisant make la version upgraded et en faisant make bonus la version dda.
+
+La prochaine etape pour moi est de commencer le parsing et de coder tout ca de facon plus lisible.
+Je vais aussi voir pour faire une lib graphique pour creer des menus, une minimap, etc...
+
+Si tu as des idees n'hesite pas !
+
+Et si tu veux te pencher sur des designs de maps pour faire un portal like n'hesite pas ! J'ai deja une bonne idee de comment teleporter le personnage d'un point a un autre
+
+A plus !

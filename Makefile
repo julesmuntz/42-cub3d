@@ -3,24 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
+#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/01 14:48:27 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/08 16:29:15 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
+NAME = Cub
 
-NAME_BONUS = cub3D
+NAME_BONUS = Cubb
 
 ###############
 ###	ALIAS	###
 ###############
 
-SRC = main.c
+SRC = test.c
 
-SRC_BONUS = 
+SRC_BONUS = test2.c
 
 INCLUDES = -I ./inc/ -I ./minilibx/
 
@@ -36,7 +36,7 @@ LIBRARY = -lX11 -lXext -lm
 
 SRC_DIR = .
 
-SRC_BONUS_DIR = src_bonus
+SRC_BONUS_DIR = .
 
 OBJ_DIR = obj
 
@@ -127,12 +127,10 @@ fclean:	clean
 	$(UNCOLOR)
 	@echo "\033[33mFclean done\033[0m"
 
-re:
-	$(MAKE) fclean
-	$(MAKE) -j all
+re: fclean all
 
 bonus:	$(OBJS_BONUS)
-	@echo "\033[46m\033[37m Fil De Fer \033[0m"
+	@echo "\033[46m\033[37m Cub3D \033[0m"
 	$(COLORGREEN)
 	make -C ./libft
 	$(UNCOLOR)

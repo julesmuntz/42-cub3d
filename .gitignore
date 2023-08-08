@@ -1,5 +1,6 @@
 *.o
 Cub
+Cubb
 key
 .vscode
 *.a
