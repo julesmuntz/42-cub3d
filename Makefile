@@ -3,30 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
+#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/08 16:29:15 by gfranque         ###   ########.fr        #
+#    Updated: 2023/08/10 17:08:15 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub
+NAME = cub3D
 
-NAME_BONUS = Cubb
+NAME_BONUS = cub3D-bonus
 
 ###############
 ###	ALIAS	###
 ###############
 
-SRC = test.c
+SRC = 	main.c		\
+		mapping.c	\
 
-SRC_BONUS = test2.c
+SRC_BONUS = main.c
 
-INCLUDES = -I ./inc/ -I ./minilibx/
+INCLUDES = -I headers/ -I ./minilibx/
 
-INCBONUS = -I ./inc_bonus/ -I ./minilibx/
+INCBONUS = -I headers_bonus/ -I ./minilibx/
 
-LIBFTINC = -I ./libft/
+LIBFTINC = -I ./../libft/
 
 LIBFT = ./libft/libft.a
 
@@ -34,9 +35,9 @@ MLX = ./minilibx/libmlx_Linux.a
 
 LIBRARY = -lX11 -lXext -lm
 
-SRC_DIR = .
+SRC_DIR = source
 
-SRC_BONUS_DIR = .
+SRC_BONUS_DIR = source_bonus
 
 OBJ_DIR = obj
 
@@ -61,7 +62,6 @@ MKDIR = mkdir -p
 ###############
 ### COLORS	###
 ###############
-
 
 COLORGREEN = @echo -n "\033[92m"
 
@@ -88,15 +88,15 @@ BLACK = \033[100m
 all:	$(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(MKDIR) $(OBJ_DIR)
+	@$(MKDIR) $(@D)
 	$(COLORCYAN)
 	$(GCC) $(FLAGS) $(INCLUDES) $(LIBFTINC) -c $< -o $@
 	$(UNCOLOR)
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
-	@$(MKDIR) $(OBJ_BONUS_DIR)
+	@$(MKDIR) $(@D)
 	$(COLORCYAN)
-	$(GCC) $(FLAGS) $(INCLUDES) $(LIBFTINC) -c $< -o $@
+	$(GCC) $(FLAGS) $(INCBONUS) $(LIBFTINC) -c $< -o $@
 	$(UNCOLOR)
 
 $(NAME):	$(OBJS)
@@ -127,7 +127,9 @@ fclean:	clean
 	$(UNCOLOR)
 	@echo "\033[33mFclean done\033[0m"
 
-re: fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) -j all
 
 bonus:	$(OBJS_BONUS)
 	@echo "\033[46m\033[37m Cub3D \033[0m"
