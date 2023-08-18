@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
+#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 14:01:56 by gfranque          #+#    #+#              #
-#    Updated: 2022/11/28 11:37:48 by gfranque         ###   ########.fr        #
+#    Updated: 2023/08/17 14:45:33 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ ft_calloc.c ft_isdigit.c ft_memcmp.c ft_putchar_fd.c ft_split.c ft_strjoin.c\
 ft_strmapi.c ft_strtrim.c ft_isalnum.c ft_isprint.c ft_memcpy.c ft_putendl_fd.c\
 ft_strchr.c ft_strlcat.c ft_strncmp.c ft_substr.c\
 ft_printf.c ft_putnbr_base.c ft_var2.c ft_putchar.c ft_putnbr.c ft_var.c\
-get_next_line_bonus.c get_next_line_utils_bonus.c
+get_next_line_bonus.c get_next_line_utils_bonus.c ft_isspace.c
 
 SRCSBONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c\
 ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c\

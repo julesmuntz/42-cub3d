@@ -6,27 +6,33 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/01 14:48:27 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/19 13:22:00 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-NAME_BONUS = cub3D
+NAME_BONUS = cub3D-bonus
 
 ###############
 ###	ALIAS	###
 ###############
 
-SRC = main.c
+SRC = 	main.c		\
+		mapping.c	\
+		rendering.c	\
+		colors.c	\
+		colors2.c	\
+		movement.c	\
+		movement2.c	\
 
-SRC_BONUS = 
+SRC_BONUS = main.c
 
-INCLUDES = -I ./inc/ -I ./minilibx/
+INCLUDES = -I headers/ -I ./minilibx/
 
-INCBONUS = -I ./inc_bonus/ -I ./minilibx/
+INCBONUS = -I headers_bonus/ -I ./minilibx/
 
-LIBFTINC = -I ./libft/
+LIBFTINC = -I ./../libft/
 
 LIBFT = ./libft/libft.a
 
@@ -34,9 +40,9 @@ MLX = ./minilibx/libmlx_Linux.a
 
 LIBRARY = -lX11 -lXext -lm
 
-SRC_DIR = .
+SRC_DIR = source
 
-SRC_BONUS_DIR = src_bonus
+SRC_BONUS_DIR = source_bonus
 
 OBJ_DIR = obj
 
@@ -61,7 +67,6 @@ MKDIR = mkdir -p
 ###############
 ### COLORS	###
 ###############
-
 
 COLORGREEN = @echo -n "\033[92m"
 
@@ -88,15 +93,15 @@ BLACK = \033[100m
 all:	$(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(MKDIR) $(OBJ_DIR)
+	@$(MKDIR) $(@D)
 	$(COLORCYAN)
 	$(GCC) $(FLAGS) $(INCLUDES) $(LIBFTINC) -c $< -o $@
 	$(UNCOLOR)
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
-	@$(MKDIR) $(OBJ_BONUS_DIR)
+	@$(MKDIR) $(@D)
 	$(COLORCYAN)
-	$(GCC) $(FLAGS) $(INCLUDES) $(LIBFTINC) -c $< -o $@
+	$(GCC) $(FLAGS) $(INCBONUS) $(LIBFTINC) -c $< -o $@
 	$(UNCOLOR)
 
 $(NAME):	$(OBJS)
@@ -132,7 +137,7 @@ re:
 	$(MAKE) -j all
 
 bonus:	$(OBJS_BONUS)
-	@echo "\033[46m\033[37m Fil De Fer \033[0m"
+	@echo "\033[46m\033[37m Cub3D \033[0m"
 	$(COLORGREEN)
 	make -C ./libft
 	$(UNCOLOR)
