@@ -11,14 +11,11 @@ static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
 	*map_height = 0;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Failed to open file");
-		return ;
-	}
+		return perror("Failed to open file");
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		space_count = 0;
-		while (line[space_count] == ' ')
+		while (ft_isspace(line[space_count]))
 			space_count++;
 		if (line[space_count] == '1')
 		{
@@ -94,17 +91,12 @@ int	init_map(char *arg)
 		MDepth = map_height;
 	map = (char **)malloc(sizeof(char *) * (map_height + 1));
 	if (!map)
-	{
-		perror("Failed to allocate memory for map");
-		map = NULL;
-		return (1);
-	}
+		return (perror("Failed to allocate memory for map"), 1);
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Failed to reopen file");
 		free(map);
-		map = NULL;
 		return (1);
 	}
 	map = get_map(fd);

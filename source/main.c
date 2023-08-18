@@ -15,6 +15,7 @@ bool		goright = false;
 bool		lookleft = false;
 bool		lookright = false;
 int			Pixls = 0;
+char		*file_path = NULL;
 
 void	img_pix_put(t_im *img, int x, int y, long color)
 {
@@ -164,24 +165,93 @@ float	side_ray(float distanceToWall, float PlayerX, float PlayerY, float eyeX,
 				* distanceToWall)));
 }
 
+static int	*get_color(char letter, char *arg)
+{
+	int		fd;
+	int		*rgb;
+	char	*line;
+	bool	color_found;
+	int		i;
+	char	**s_rgb;
+	int		y;
+
+	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+		return (perror("Failed to open file"), NULL);
+	i = 0;
+	rgb = (int *)malloc(sizeof(int) * 3);
+	if (!rgb)
+		return (perror("malloc failed"), NULL);
+	color_found = false;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		if (color_found == true)
+		{
+			free(line);
+			break ;
+		}
+		if (line[0] == letter && line[1] == ' ' && ft_isdigit(line[2]))
+		{
+			color_found = true;
+			while (line[i])
+			{
+				s_rgb = ft_split(line + 2, ',');
+				rgb[R] = ft_atoi(s_rgb[R]);
+				rgb[G] = ft_atoi(s_rgb[G]);
+				rgb[B] = ft_atoi(s_rgb[B]);
+				y = 0;
+				while (s_rgb[y])
+				{
+					free(s_rgb[y]);
+					y++;
+				}
+				free(s_rgb);
+				i++;
+			}
+		}
+		free(line);
+	}
+	close(fd);
+	return (rgb);
+}
+
+int	init_colors(t_config *config, char *arg)
+{
+	config->ceiling_color = get_color('C', arg);
+	config->floor_color = get_color('F', arg);
+	// printf("Ceiling color\nR %d\nG %d\nB %d\n\n", config->ceiling_color[R],
+	// 		config->ceiling_color[G], config->ceiling_color[B]);
+	// printf("Floor color\nR %d\nG %d\nB %d\n\n", config->floor_color[R],
+	// 		config->floor_color[G], config->floor_color[B]);
+	return (0);
+}
+
+int	rgb_to_hex(int *rgb)
+{
+	return ((rgb[R] & 0xff) << 16) + ((rgb[G] & 0xff) << 8) + (rgb[B] & 0xff);
+}
+
 int	trace_into_image(t_mlx *mlx, char **map)
 {
-	float	rayangle;
-	float	distanceToWall;
-	float	eyeX;
-	float	eyeY;
-	int		testX;
-	int		testY;
-	int		ceiling;
-	int		floor;
-	float	texturevalue;
-	float	b;
+	float		rayangle;
+	float		distanceToWall;
+	float		eyeX;
+	float		eyeY;
+	int			testX;
+	int			testY;
+	int			ceiling;
+	int			floor;
+	float		texturevalue;
+	float		b;
+	t_config	config;
+	int			HitWall;
 
+	init_colors(&config, file_path);
 	for (int x = Pixls; x < ScreenWidth; x += 2)
 	{
 		rayangle = (PlayerA - FOV / 2) + ((float)x / (float)ScreenWidth) * FOV;
 		distanceToWall = 0.0f;
-		int HitWall = false;
+		HitWall = false;
 		eyeX = sinf(rayangle);
 		eyeY = cosf(rayangle);
 		while (HitWall == 0)
@@ -211,8 +281,9 @@ int	trace_into_image(t_mlx *mlx, char **map)
 			if (y < ceiling)
 			{
 				b = 1.0f - (y - ScreenHeight / 2.0f) / (ScreenHeight / 2.0f);
-				img_pix_put(&mlx->img, x, y, color_interpolation_rgb(0x3764EB,
-							0x3EBDF5, (b / 3.0f) * MDepth));
+				img_pix_put(&mlx->img, x, y,
+						color_interpolation_rgb(rgb_to_hex(config.ceiling_color),
+							0x000000, (b / 3.0f) * MDepth));
 			}
 			else if (y <= floor)
 				img_pix_put(&mlx->img, x, y,
@@ -222,11 +293,14 @@ int	trace_into_image(t_mlx *mlx, char **map)
 			else
 			{
 				b = 1.0f - (y - ScreenHeight / 2.0f) / (ScreenHeight / 2.0f);
-				img_pix_put(&mlx->img, x, y, color_interpolation_rgb(0xF59126,
+				img_pix_put(&mlx->img, x, y,
+						color_interpolation_rgb(rgb_to_hex(config.floor_color),
 							0x000000, b * MDepth));
 			}
 		}
 	}
+	free(config.ceiling_color);
+	free(config.floor_color);
 	if (Pixls == 0)
 		Pixls = 1;
 	else
@@ -251,8 +325,8 @@ int	ft_loop(t_mlx *mlx)
 	trace_into_image(mlx, map);
 	mlx_put_image_to_window(mlx->ptr_mlx, mlx->ptr_window, mlx->img.mlx_img, 0,
 			0);
-	printf("Player Angle:	%f	Player X:	%f	Player Y:	%f\n", PlayerA,
-								PlayerX, PlayerY);
+	// printf("Player Angle:	%f	Player X:	%f	Player Y:	%f\n", PlayerA,
+	// PlayerX, PlayerY);
 	return (0);
 }
 
@@ -279,8 +353,8 @@ int	ft_key_press(int keysym, t_mlx *mlx)
 		goback = true;
 	else if (keysym == 'd')
 		goright = true;
-	else
-		ft_printf("Key: %d\n", keysym);
+	// else
+		// ft_printf("Key: %d\n", keysym);
 	return (0);
 }
 
@@ -303,70 +377,15 @@ int	ft_key_release(int keysym, t_mlx *mlx)
 	return (0);
 }
 
-static int	*get_color(int fd, char letter)
-{
-	int		*rgb;
-	char	*line;
-	bool	color_found;
-	int i;
-
-	i = 0;
-	rgb = (int *)malloc(sizeof(int) * 3);
-	color_found = false;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		if (color_found == true)
-			break ;
-		if (line[0] == letter)
-		{
-			while (line[i])
-			{
-				color_found = true;
-				char **s_rgb = ft_split(line + 2, ',');
-				rgb[R] = ft_atoi(s_rgb[R]);
-				rgb[G] = ft_atoi(s_rgb[G]);
-				rgb[B] = ft_atoi(s_rgb[B]);
-				int y = 0;
-				while (s_rgb[y])
-				{
-					free(s_rgb[y]);
-					y++;
-				}
-				free(s_rgb);
-				i++;
-			}
-			printf("R %d\nG %d\nB %d\n", rgb[R], rgb[G], rgb[B]);
-		}
-	}
-	close(fd);
-	return (rgb);
-}
-
-int	init_colors(t_config *config, char *arg)
-{
-	int	fd;
-
-	fd = open(arg, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Failed to open file");
-		return (1);
-	}
-	config->ceiling_color = get_color(fd, 'C');
-	config->floor_color = get_color(fd, 'F');
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
-	t_mlx		mlx;
-	t_config	config;
+	t_mlx	mlx;
 
 	if (ac < 2)
 		return (printf("Usage: %s <file>.cub\n", av[0]), 0);
-	init_colors(&config, av[1]);
-	init_map(av[1]);
-	printf("%f %f %f\n", PlayerX, PlayerY, PlayerA);
+	file_path = av[1];
+	init_map(file_path);
+	// printf("%f %f %f\n", PlayerX, PlayerY, PlayerA);
 	for (int i = 0; map[i]; i++)
 		printf("%d:	%ld:	%s\n", i, ft_strlen(map[i]), map[i]);
 	mlx.ptr_mlx = mlx_init();

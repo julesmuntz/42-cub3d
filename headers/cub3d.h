@@ -49,6 +49,7 @@ extern bool		goright;
 extern bool		lookleft;
 extern bool		lookright;
 extern int		Pixls;
+extern char		*file_path;
 
 typedef struct s_config
 {
