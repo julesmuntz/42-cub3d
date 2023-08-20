@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:25:37 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/19 12:39:50 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:38:03 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ static int	*get_color(char letter, char *arg)
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return (perror("Failed to open file"), NULL);
+		return (NULL);
 	i = 0;
 	rgb = (int *)malloc(sizeof(int) * 3);
 	if (!rgb)
-		return (perror("malloc failed"), NULL);
+		return (NULL);
 	color_found = false;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (color_found == true)
 		{
@@ -69,6 +70,7 @@ static int	*get_color(char letter, char *arg)
 			}
 		}
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (rgb);
@@ -83,5 +85,5 @@ int	init_colors(t_config *config, char *arg)
 
 int	rgb_to_hex(int *rgb)
 {
-	return ((rgb[R] & 0xff) << 16) + ((rgb[G] & 0xff) << 8) + (rgb[B] & 0xff);
+	return (((rgb[R] & 0xff) << 16) + ((rgb[G] & 0xff) << 8) + (rgb[B] & 0xff));
 }

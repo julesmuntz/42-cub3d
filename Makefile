@@ -6,7 +6,7 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/19 13:22:00 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/20 17:41:24 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = 	main.c		\
 		colors2.c	\
 		movement.c	\
 		movement2.c	\
+		textures.c	\
 
 SRC_BONUS = main.c
 

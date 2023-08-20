@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:39:58 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/19 12:53:16 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:42:05 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	color_interpolation(float color1, float color2, float dist)
 
 	if (dist >= g_map_depth)
 		return (color2);
-	color3 = (int)(color1 * ((g_map_depth - dist) / (g_map_depth - 0.1f)) + color2
-			* ((dist - 0.1f) / (g_map_depth - 0.1f)));
+	color3 = (int)(color1 * ((g_map_depth - dist) / (g_map_depth - 0.1f))
+			+ color2 * ((dist - 0.1f) / (g_map_depth - 0.1f)));
 	return (color3);
 }
 

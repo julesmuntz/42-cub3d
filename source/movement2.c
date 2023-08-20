@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:43:12 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/19 12:56:50 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:23:43 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_loop(t_mlx *mlx)
 	if (g_goback == 1)
 		go_back(0.08f);
 	trace_into_image(mlx, g_map);
-	mlx_put_image_to_window(mlx->ptr_mlx, mlx->ptr_window, mlx->img.mlx_img, 0,
-			0);
+	mlx_put_image_to_window(mlx->ptr_mlx, mlx->ptr_window,
+		mlx->img.mlx_img, 0, 0);
 	return (0);
 }
 
@@ -40,6 +40,7 @@ int	ft_key_press(int keysym, t_mlx *mlx)
 		mlx_destroy_image(mlx->ptr_mlx, mlx->wall.mlx_img);
 		mlx_destroy_window(mlx->ptr_mlx, mlx->ptr_window);
 		mlx_destroy_display(mlx->ptr_mlx);
+		ft_free_lines(g_map);
 		free(mlx->ptr_mlx);
 		exit(0);
 	}

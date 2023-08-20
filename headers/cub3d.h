@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/19 13:43:46 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:41:01 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define R 0
 # define G 1
 # define B 2
+# define RED "\033[0;31m"
+# define NONE "\033[0;0m"
 
 /* Rendering Datastruct */
 typedef struct s_im
@@ -99,6 +101,10 @@ int				ft_key_release(int keysym, t_mlx *mlx);
 /* Map Related Functions */
 int				init_map(char *arg);
 
+/* Textures Related Functions */
+int				init_textures(t_mlx *mlx, t_config *config, char *arg);
+int				set_texture_to_walls(char *tex_path, t_mlx *mlx, t_config *config);
+
 /* Colors Related Functions */
 int				xpm_color(t_mlx *mlx, float x, float y);
 int				init_colors(t_config *config, char *arg);
@@ -107,6 +113,6 @@ int				color_interpolation(float color1, float color2, float dist);
 int				color_interpolation_rgb(int color1, int color2, float dist);
 
 /* Rendering Related Functions */
-int				trace_into_image(t_mlx *mlx, char **g_map);
+int				trace_into_image(t_mlx *mlx, char **map);
 
 #endif

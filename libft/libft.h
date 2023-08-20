@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:16:23 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/17 14:48:37 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:49:42 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ char	*ft_strjoinfree(char *start, char *end, int n);
 void	ft_strcut(char *sent, char *stat);
 void	ft_strcat(char *str, char *start, char *end);
 int		ft_isspace(int c);
+void	ft_free_lines(char **lines);
+char	*ft_strndup(const char *s, size_t n);
 
 #endif

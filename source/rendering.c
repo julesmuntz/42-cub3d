@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:45:43 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/19 13:51:22 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:40:01 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ float	side_ray(float distance_to_wall, float eye_x, float eye_y)
 				+ eye_x * distance_to_wall)));
 }
 
-int	trace_into_image(t_mlx *mlx, char **g_map)
+int	trace_into_image(t_mlx *mlx, char **map)
 {
 	float		rayangle;
 	float		distance_to_wall;
@@ -80,7 +80,7 @@ int	trace_into_image(t_mlx *mlx, char **g_map)
 			}
 			else
 			{
-				if (g_map[testY][testX] == '1')
+				if (map[testY][testX] == '1')
 					hit_wall = true;
 			}
 		}

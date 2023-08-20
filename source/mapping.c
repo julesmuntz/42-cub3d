@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/19 12:53:16 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:39:13 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
 	*map_height = 0;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return perror("Failed to open file");
-	while ((line = get_next_line(fd)) != NULL)
+		return ;
+	line = get_next_line(fd);
+	while (line)
 	{
 		space_count = 0;
 		while (ft_isspace(line[space_count]))
@@ -39,6 +40,7 @@ static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
 			(*map_height)++;
 		}
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 }
@@ -53,7 +55,8 @@ static char	**get_map(int fd)
 
 	row_index = 0;
 	map_found = false;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (!map_found && line[0] == ' ')
 		{
@@ -84,6 +87,7 @@ static char	**get_map(int fd)
 		}
 		else
 			free(line);
+		line = get_next_line(fd);
 	}
 	g_map[row_index] = NULL;
 	close(fd);
@@ -103,11 +107,10 @@ int	init_map(char *arg)
 		g_map_depth = map_height;
 	g_map = (char **)malloc(sizeof(char *) * (map_height + 1));
 	if (!g_map)
-		return (perror("Failed to allocate memory for g_map"), 1);
+		return (1);
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Failed to reopen file");
 		free(g_map);
 		return (1);
 	}

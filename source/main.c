@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:23:05 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/19 14:00:47 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:36:37 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,13 @@ char	*g_file_path = NULL;
 
 int	main(int ac, char **av)
 {
-	t_mlx	mlx;
-	int		i;
+	t_mlx		mlx;
+	t_config	config;
 
 	if (ac < 2)
 		return (printf("Usage: %s <file>.cub\n", av[0]), 0);
 	g_file_path = av[1];
 	init_map(g_file_path);
-	i = -1;
-	while (g_map[++i])
-		printf("%d:	%ld:	%s\n", i, ft_strlen(g_map[i]), g_map[i]);
 	mlx.ptr_mlx = mlx_init();
 	mlx.ptr_window = mlx_new_window(mlx.ptr_mlx, g_screen_width,
 			g_screen_height, "cub");
@@ -48,17 +45,11 @@ int	main(int ac, char **av)
 			g_screen_height);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.mlx_img, &mlx.img.bpp,
 			&mlx.img.line_len, &mlx.img.endian);
-	mlx.wall.mlx_img = mlx_xpm_file_to_image(mlx.ptr_mlx,
-			"./assets/cobblestone.xpm", &mlx.wall.width, &mlx.wall.height);
-	if (mlx.wall.mlx_img == NULL)
-	{
-		mlx_destroy_image(mlx.ptr_mlx, mlx.img.mlx_img);
-		mlx_destroy_window(mlx.ptr_mlx, mlx.ptr_window);
-		mlx_destroy_display(mlx.ptr_mlx);
-		free(g_map);
-		free(mlx.ptr_mlx);
-		exit(0);
-	}
+	init_textures(&mlx, &config, g_file_path);
+	set_texture_to_walls(config.north_texture, &mlx, &config);
+	// set_texture_to_walls(config.south_texture, &mlx, &config);
+	// set_texture_to_walls(config.west_texture, &mlx, &config);
+	// set_texture_to_walls(config.east_texture, &mlx, &config);
 	mlx.wall.addr = mlx_get_data_addr(mlx.wall.mlx_img, &mlx.wall.bpp,
 			&mlx.wall.line_len, &mlx.wall.endian);
 	trace_into_image(&mlx, g_map);
@@ -68,7 +59,7 @@ int	main(int ac, char **av)
 	mlx_hook(mlx.ptr_window, KeyRelease, KeyReleaseMask, &ft_key_release, &mlx);
 	mlx_loop(mlx.ptr_mlx);
 	mlx_destroy_display(mlx.ptr_mlx);
-	free(g_map);
+	ft_free_lines(g_map);
 	free(mlx.ptr_mlx);
 	return (0);
 }
