@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:16:08 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/20 17:35:30 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:34:25 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static char	*get_texture_path(char str[2], char *arg)
 	return (NULL);
 }
 
-static void	exit_program(t_mlx *mlx, t_config *config)
+static void	exit_program(t_mlx *mlx, t_cub *cub)
 {
 	mlx_destroy_image(mlx->ptr_mlx, mlx->img.mlx_img);
 	mlx_destroy_window(mlx->ptr_mlx, mlx->ptr_window);
 	mlx_destroy_display(mlx->ptr_mlx);
 	ft_free_lines(g_map);
-	free(config->north_texture);
-	free(config->south_texture);
-	free(config->west_texture);
-	free(config->east_texture);
+	free(cub->north_texture);
+	free(cub->south_texture);
+	free(cub->west_texture);
+	free(cub->east_texture);
 	free(mlx->ptr_mlx);
 	exit(0);
 }
@@ -62,36 +62,36 @@ static bool	valid_texture(char *tex_path)
 	return (true);
 }
 
-int	init_textures(t_mlx *mlx, t_config *config, char *arg)
+int	init_textures(t_mlx *mlx, t_cub *cub, char *arg)
 {
 	bool	failure;
 
 	failure = false;
-	config->north_texture = get_texture_path("NO", arg);
-	if (!valid_texture(config->north_texture))
+	cub->north_texture = get_texture_path("NO", arg);
+	if (!valid_texture(cub->north_texture))
 		failure = true;
-	config->south_texture = get_texture_path("SO", arg);
-	if (!valid_texture(config->south_texture))
+	cub->south_texture = get_texture_path("SO", arg);
+	if (!valid_texture(cub->south_texture))
 		failure = true;
-	config->west_texture = get_texture_path("WE", arg);
-	if (!valid_texture(config->west_texture))
+	cub->west_texture = get_texture_path("WE", arg);
+	if (!valid_texture(cub->west_texture))
 		failure = true;
-	config->east_texture = get_texture_path("EA", arg);
-	if (!valid_texture(config->east_texture))
+	cub->east_texture = get_texture_path("EA", arg);
+	if (!valid_texture(cub->east_texture))
 		failure = true;
 	if (failure == true)
-		exit_program(mlx, config);
+		exit_program(mlx, cub);
 	return (0);
 }
 
-int	set_texture_to_walls(char *tex_path, t_mlx *mlx, t_config *config)
+int	set_texture_to_walls(char *tex_path, t_mlx *mlx, t_cub *cub)
 {
 	mlx->wall.mlx_img = mlx_xpm_file_to_image(mlx->ptr_mlx, tex_path,
 			&mlx->wall.width, &mlx->wall.height);
-	free(config->north_texture);
-	free(config->south_texture);
-	free(config->west_texture);
-	free(config->east_texture);
+	free(cub->north_texture);
+	free(cub->south_texture);
+	free(cub->west_texture);
+	free(cub->east_texture);
 	if (mlx->wall.mlx_img == NULL)
 	{
 		mlx_destroy_image(mlx->ptr_mlx, mlx->img.mlx_img);

@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:45:43 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/20 17:40:01 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:35:04 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ float	side_ray(float distance_to_wall, float eye_x, float eye_y)
 
 int	trace_into_image(t_mlx *mlx, char **map)
 {
-	float		rayangle;
-	float		distance_to_wall;
-	float		eye_x;
-	float		eye_y;
-	int			testX;
-	int			testY;
-	int			ceiling;
-	int			floor;
-	float		texturevalue;
-	float		b;
-	bool		hit_wall;
-	t_config	config;
+	float	rayangle;
+	float	distance_to_wall;
+	float	eye_x;
+	float	eye_y;
+	int		testX;
+	int		testY;
+	int		ceiling;
+	int		floor;
+	float	texturevalue;
+	float	b;
+	bool	hit_wall;
+	t_cub	cub;
 
-	init_colors(&config, g_file_path);
+	init_colors(&cub, g_file_path);
 	for (int x = g_pixels; x < g_screen_width; x += 2)
 	{
 		rayangle = (g_player_a - g_fov / 2) + ((float)x / (float)g_screen_width)
@@ -95,7 +95,7 @@ int	trace_into_image(t_mlx *mlx, char **map)
 				b = 1.0f - (y - g_screen_height / 2.0f) / (g_screen_height
 						/ 2.0f);
 				img_pix_put(&mlx->img, x, y,
-						color_interpolation_rgb(rgb_to_hex(config.ceiling_color),
+						color_interpolation_rgb(rgb_to_hex(cub.ceiling_color),
 							0x000000, (b / 3.0f) * g_map_depth));
 			}
 			else if (y <= floor)
@@ -108,13 +108,13 @@ int	trace_into_image(t_mlx *mlx, char **map)
 				b = 1.0f - (y - g_screen_height / 2.0f) / (g_screen_height
 						/ 2.0f);
 				img_pix_put(&mlx->img, x, y,
-						color_interpolation_rgb(rgb_to_hex(config.floor_color),
+						color_interpolation_rgb(rgb_to_hex(cub.floor_color),
 							0x000000, b * g_map_depth));
 			}
 		}
 	}
-	free(config.ceiling_color);
-	free(config.floor_color);
+	free(cub.ceiling_color);
+	free(cub.floor_color);
 	if (g_pixels == 0)
 		g_pixels = 1;
 	else

@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:25:37 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/20 17:38:03 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:29:27 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	*get_color(char letter, char *arg)
 	bool	color_found;
 	int		i;
 	char	**s_rgb;
-	int		y;
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -56,16 +55,17 @@ static int	*get_color(char letter, char *arg)
 			while (line[i])
 			{
 				s_rgb = ft_split(line + 2, ',');
+				if (!s_rgb[R] || !s_rgb[G] || !s_rgb[B] || s_rgb[3])
+					return (printf("%sError\nInvalid color format (%c)\n%s", RED, letter, NONE),
+						free(rgb), ft_free_lines(s_rgb), free(line), close(fd), NULL);
 				rgb[R] = ft_atoi(s_rgb[R]);
 				rgb[G] = ft_atoi(s_rgb[G]);
 				rgb[B] = ft_atoi(s_rgb[B]);
-				y = 0;
-				while (s_rgb[y])
-				{
-					free(s_rgb[y]);
-					y++;
-				}
-				free(s_rgb);
+				ft_free_lines(s_rgb);
+				if (rgb[R] < 0 || rgb[R] > 255 || rgb[G] < 0 || rgb[G] > 255
+					|| rgb[B] < 0 || rgb[B] > 255)
+					return (printf("%sError\nInvalid color range (%c)\n0-255 is valid\n%s", RED, letter, NONE),
+						free(rgb), free(line), close(fd), NULL);
 				i++;
 			}
 		}
@@ -76,10 +76,14 @@ static int	*get_color(char letter, char *arg)
 	return (rgb);
 }
 
-int	init_colors(t_config *config, char *arg)
+int	init_colors(t_cub *cub, char *arg)
 {
-	config->ceiling_color = get_color('C', arg);
-	config->floor_color = get_color('F', arg);
+	cub->ceiling_color = get_color('C', arg);
+	if (!cub->ceiling_color)
+		return (1);
+	cub->floor_color = get_color('F', arg);
+	if (!cub->floor_color)
+		return (1);
 	return (0);
 }
 

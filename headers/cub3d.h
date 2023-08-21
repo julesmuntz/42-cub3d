@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/20 17:41:01 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:03:20 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_xpm
 	int			height;
 }				t_xpm;
 
-/* .cub Config Datastruct */
-typedef struct s_config
+/* .cub File Datastruct */
+typedef struct s_cub
 {
 	char		*north_texture;
 	char		*south_texture;
@@ -59,7 +59,15 @@ typedef struct s_config
 	char		*east_texture;
 	int			*floor_color;
 	int			*ceiling_color;
-}				t_config;
+
+	bool		north_found;
+	bool		south_found;
+	bool		west_found;
+	bool		east_found;
+	bool		ceiling_found;
+	bool		floor_found;
+	bool		map_found;
+}				t_cub;
 
 /* MLX Datastruct */
 typedef struct s_mlx
@@ -68,7 +76,7 @@ typedef struct s_mlx
 	void		*ptr_window;
 	t_im		img;
 	t_xpm		wall;
-	t_config	config;
+	t_cub		cub;
 }				t_mlx;
 
 /* Global Variables (To Be Removed) */
@@ -102,17 +110,20 @@ int				ft_key_release(int keysym, t_mlx *mlx);
 int				init_map(char *arg);
 
 /* Textures Related Functions */
-int				init_textures(t_mlx *mlx, t_config *config, char *arg);
-int				set_texture_to_walls(char *tex_path, t_mlx *mlx, t_config *config);
+int				init_textures(t_mlx *mlx, t_cub *cub, char *arg);
+int				set_texture_to_walls(char *tex_path, t_mlx *mlx, t_cub *cub);
 
 /* Colors Related Functions */
 int				xpm_color(t_mlx *mlx, float x, float y);
-int				init_colors(t_config *config, char *arg);
+int				init_colors(t_cub *cub, char *arg);
 int				rgb_to_hex(int *rgb);
 int				color_interpolation(float color1, float color2, float dist);
 int				color_interpolation_rgb(int color1, int color2, float dist);
 
 /* Rendering Related Functions */
 int				trace_into_image(t_mlx *mlx, char **map);
+
+/* Errors Handling Functions */
+int				check_file(t_cub *cub, char *arg);
 
 #endif

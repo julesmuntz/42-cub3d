@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 16:23:05 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/20 17:36:37 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:33:03 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,29 @@ char	*g_file_path = NULL;
 
 int	main(int ac, char **av)
 {
-	t_mlx		mlx;
-	t_config	config;
+	t_mlx	mlx;
+	t_cub	cub;
 
 	if (ac < 2)
 		return (printf("Usage: %s <file>.cub\n", av[0]), 0);
 	g_file_path = av[1];
-	init_map(g_file_path);
+	if (check_file(&cub, av[1]) || init_colors(&cub, av[1]))
+		return (0);
+	free(cub.ceiling_color);
+	free(cub.floor_color);
+	init_map(av[1]);
 	mlx.ptr_mlx = mlx_init();
 	mlx.ptr_window = mlx_new_window(mlx.ptr_mlx, g_screen_width,
-			g_screen_height, "cub");
+			g_screen_height, "cub3D");
 	mlx.img.mlx_img = mlx_new_image(mlx.ptr_mlx, g_screen_width,
 			g_screen_height);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.mlx_img, &mlx.img.bpp,
 			&mlx.img.line_len, &mlx.img.endian);
-	init_textures(&mlx, &config, g_file_path);
-	set_texture_to_walls(config.north_texture, &mlx, &config);
-	// set_texture_to_walls(config.south_texture, &mlx, &config);
-	// set_texture_to_walls(config.west_texture, &mlx, &config);
-	// set_texture_to_walls(config.east_texture, &mlx, &config);
+	init_textures(&mlx, &cub, g_file_path);
+	set_texture_to_walls(cub.north_texture, &mlx, &cub);
+	// set_texture_to_walls(cub.south_texture, &mlx, &cub);
+	// set_texture_to_walls(cub.west_texture, &mlx, &cub);
+	// set_texture_to_walls(cub.east_texture, &mlx, &cub);
 	mlx.wall.addr = mlx_get_data_addr(mlx.wall.mlx_img, &mlx.wall.bpp,
 			&mlx.wall.line_len, &mlx.wall.endian);
 	trace_into_image(&mlx, g_map);
