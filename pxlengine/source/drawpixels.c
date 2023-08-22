@@ -6,16 +6,16 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:08 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 16:40:27 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:45:16 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
 
-void	draw_strait_line(t_vector const *xy, t_vector const *v, t_pge *game,
+void	draw_strait_line(t_vi const *xy, t_vi const *v, t_pge *game,
 			t_pxl *pxl)
 {
-	t_vector	xyp;
+	t_vi	xyp;
 	short int	i;
 
 	xyp = copy_vector(xy);
@@ -40,10 +40,10 @@ void	draw_strait_line(t_vector const *xy, t_vector const *v, t_pge *game,
 	return ;
 }
 
-void	draw_diagonal(t_vector const *xy, t_vector const *v, t_pge *game,
+void	draw_diagonal(t_vi const *xy, t_vi const *v, t_pge *game,
 			t_pxl *pxl)
 {
-	t_vector	xyp;
+	t_vi	xyp;
 	short int	i;
 	short int	j;
 
@@ -63,7 +63,7 @@ void	draw_diagonal(t_vector const *xy, t_vector const *v, t_pge *game,
 	return ;
 }
 
-void	draw_line_x(t_vector xy, t_vector *v, t_pge *game, t_pxl *pxl)
+void	draw_line_x(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 {
 	short int		i;
 	short int		p;
@@ -88,7 +88,7 @@ void	draw_line_x(t_vector xy, t_vector *v, t_pge *game, t_pxl *pxl)
 	return ;
 }
 
-void	draw_line_y(t_vector xy, t_vector *v, t_pge *game, t_pxl *pxl)
+void	draw_line_y(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 {
 	short int		i;
 	short int		p;
@@ -113,7 +113,7 @@ void	draw_line_y(t_vector xy, t_vector *v, t_pge *game, t_pxl *pxl)
 	return ;
 }
 
-void	draw_line(t_vector *xy, t_vector *v, t_pge *game,
+void	draw_line(t_vi *xy, t_vi *v, t_pge *game,
 			t_pxl *pxl)
 {
 	if (v->x == 0 && v->y == 0)

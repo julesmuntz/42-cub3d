@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:58 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 16:57:05 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:45:16 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	set_pxl_hex(unsigned int const color, t_pxl *pxl)
 	return ;
 }
 
-short int	draw_pixel(t_vector *xy, t_pge *game, t_im *img, t_pxl *pxl)
+short int	draw_pixel(t_vi *xy, t_pge *game, t_im *img, t_pxl *pxl)
 {
 	unsigned int	*pixel;
 

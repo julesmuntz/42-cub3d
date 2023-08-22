@@ -6,16 +6,16 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:09 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 16:58:14 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:45:31 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
 
-void	print_sprite(t_xpm *xpm, t_vector coor, t_vector v, t_pge *game)
+void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 {
-	t_vector	xy;
-	t_vector	p;
+	t_vi	xy;
+	t_vi	p;
 	t_pxl		pxl;
 
 	set_pxl_hex(0, &pxl);

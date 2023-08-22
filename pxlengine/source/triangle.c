@@ -6,17 +6,17 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:15 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 17:09:19 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:45:31 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
 
-void	draw_triangle_seg(t_vector const *x, t_vector const *y, t_pge *game,
+void	draw_triangle_seg(t_vi const *x, t_vi const *y, t_pge *game,
 	t_pxl *pxl)
 {
-	t_vector	a;
-	t_vector	v;
+	t_vi	a;
+	t_vi	v;
 
 	v = set_vector_by_points(x, y);
 	a = copy_vector(x);

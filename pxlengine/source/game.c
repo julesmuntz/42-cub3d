@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 16:47:20 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:45:16 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static short int	game_set(t_pge *game, char const *name)
 	return (1);
 }
 
-t_pge	*game_init(t_vector *screensize, t_vector *pxlsize, char const *name)
+t_pge	*game_init(t_vi *screensize, t_vi *pxlsize, char const *name)
 {
 	t_pge	*game;
 	int		i;
@@ -98,7 +98,7 @@ void	game_clear(t_pge *game)
 
 void	game_refresh(t_pge *game)
 {
-	t_vector	x;
+	t_vi	x;
 	t_pxl		pxl;
 
 	x.x = 0;

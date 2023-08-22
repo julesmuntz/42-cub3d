@@ -6,18 +6,18 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:03 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 16:37:04 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:45:31 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
 
-void	draw_rectangle(t_vector *coor, t_vector *v, t_pge *game, t_pxl *pxl)
+void	draw_rectangle(t_vi *coor, t_vi *v, t_pge *game, t_pxl *pxl)
 {
-	t_vector	vvrtl;
-	t_vector	vhrzt;
-	t_vector	p1;
-	t_vector	p2;
+	t_vi	vvrtl;
+	t_vi	vhrzt;
+	t_vi	p1;
+	t_vi	p2;
 
 	if (v->x == 0 || v->y == 0)
 		draw_line(coor, v, game, pxl);
@@ -32,11 +32,11 @@ void	draw_rectangle(t_vector *coor, t_vector *v, t_pge *game, t_pxl *pxl)
 	return ;
 }
 
-void	fill_rectangle(t_vector *coor, t_vector *v, t_pge *game, t_pxl *pxl)
+void	fill_rectangle(t_vi *coor, t_vi *v, t_pge *game, t_pxl *pxl)
 {
 	short int	i;
 	short int	y;
-	t_vector	vhrzt;
+	t_vi	vhrzt;
 
 	if (v->x == 0 || v->y == 0)
 		return (draw_line(coor, v, game, pxl));
