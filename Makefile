@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
+#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/21 16:00:26 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/22 18:15:42 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,26 @@ SRC = 	main.c			\
 		textures.c		\
 		check_file.c	\
 
-SRC_BONUS = main.c
+SRC_BONUS = cub3d.c			\
+			../pxlengine/source/circle.c		\
+			../pxlengine/source/game.c			\
+			../pxlengine/source/local_xpm.c		\
+			../pxlengine/source/pixels.c		\
+			../pxlengine/source/sprite.c		\
+			../pxlengine/source/utils.c			\
+			../pxlengine/source/xpm.c			\
+			../pxlengine/source/drawpixels.c	\
+			../pxlengine/source/key.c			\
+			../pxlengine/source/loop.c			\
+			../pxlengine/source/rectangle.c		\
+			../pxlengine/source/triangle.c		\
+			../pxlengine/source/vector.c		\
 
 INCLUDES = -I headers/ -I ./minilibx/
 
 INCBONUS = -I headers_bonus/ -I ./minilibx/
 
-LIBFTINC = -I ./../libft/
+LIBFTINC = -I ./libft/ -I pxlengine/header
 
 LIBFT = ./libft/libft.a
 
@@ -44,7 +57,7 @@ LIBRARY = -lX11 -lXext -lm
 
 SRC_DIR = source
 
-SRC_BONUS_DIR = source_bonus
+SRC_BONUS_DIR = source
 
 OBJ_DIR = obj
 

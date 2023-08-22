@@ -6,16 +6,16 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/22 17:40:04 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:11:00 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	PIXELGAMEENGINE_H
 # define PIXELGAMEENGINE_H
 
-# include "./mlx.h"
-# include "./mlx_int.h"
-# include "./libft.h"
+# include "libft.h"
+# include "mlx.h"
+# include "mlx_int.h"
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
