@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:16:23 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/20 15:49:42 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/22 16:35:03 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void	ft_strcat(char *str, char *start, char *end);
 int		ft_isspace(int c);
 void	ft_free_lines(char **lines);
 char	*ft_strndup(const char *s, size_t n);
+int		ft_str_is(int (*f)(int), char *str);
 
 #endif

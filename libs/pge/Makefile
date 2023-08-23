@@ -6,59 +6,51 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/23 14:18:35 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/23 14:20:00 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
-
-NAME_BONUS = cub3D-bonus
+NAME = pixelgameengine.a
 
 ###############
 ###	ALIAS	###
 ###############
 
-SRC = 	main.c			\
-		mapping.c		\
-		rendering.c		\
-		colors.c		\
-		colors2.c		\
-		movement.c		\
-		movement2.c		\
-		textures.c		\
-		check_file.c	\
+SRC = 	circle.c		\
+		game.c			\
+		local_xpm.c		\
+		pixels.c		\
+		sprite.c		\
+		utils.c			\
+		xpm.c			\
+		drawpixels.c	\
+		key.c			\
+		loop.c			\
+		rectangle.c		\
+		triangle.c		\
+		vector.c		\
 
-SRC_BONUS = cub3d.c		\
+INCLUDES = -I ../../headers/ -I ../mlx/
 
-INCLUDES = -I ./headers/ -I ./libs/mlx/
+LIBFT = ../libft/libft.a
 
-LIBFT = ./libs/libft/libft.a
-
-PGE = ./libs/pge/pixelgameengine.a
-
-MLX = ./libs/mlx/libmlx_Linux.a
+MLX = ../mlx/libmlx_Linux.a
 
 LIBRARY = -lX11 -lXext -lm
 
 SRC_DIR = source
 
-SRC_BONUS_DIR = source
-
-OBJ_DIR = obj
-
-OBJ_BONUS_DIR = obj
+OBJ_DIR = ../../obj
 
 SRCS = $(SRC:%=$(SRC_DIR)/%)
 
-SRCS_BONUS = $(SRC_BONUS:%=$(SRC_BONUS_DIR)/%)
-
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-
-OBJS_BONUS = $(SRCS_BONUS:$(SRC_BONUS_DIR)/%.c=$(OBJ_BONUS_DIR)/%.o)
 
 GCC = cc
 
 FLAGS = -g3 -Wall -Wextra -Werror 
+
+AR = ar rcs
 
 RM = rm -rf
 
@@ -98,39 +90,30 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(GCC) $(FLAGS) $(INCLUDES) -c $< -o $@
 	$(UNCOLOR)
 
-$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
-	@$(MKDIR) $(@D)
-	$(COLORCYAN)
-	$(GCC) $(FLAGS) $(INCLUDES) -c $< -o $@
-	$(UNCOLOR)
-
 $(NAME):	$(OBJS)
-	@echo "\033[46m\033[37m Cub3D \033[0m"
+	@echo "\033[46m\033[37m PixelGameEngine \033[0m"
 	$(COLORGREEN)
-	make -C ./libs/libft
-	make -C ./libs/pge
+	make -C ../libft
 	$(UNCOLOR)
-	make -C ./libs/mlx
+	make -C ../mlx
 	$(COLORCYAN)
-	$(GCC) $(FLAGS) -o $(NAME) $(INCLUDES) $(OBJS) $(PGE) $(LIBFT) $(MLX) $(LIBRARY)
+	$(AR) $(NAME) $(OBJS)
 	$(UNCOLOR)
 	@echo "\033[46m\033[37m Compilation completed \033[0m"
 
 clean:
 	$(COLORYELLOW)
 	$(RM) $(OBJ_DIR)
-	$(RM) $(OBJ_BONUS_DIR)
 	$(UNCOLOR)
 	@echo "\033[33mClean done\033[0m"
 
 fclean:	clean
 	$(COLORYELLOW)
-	@make fclean -C ./libs/libft
-	@make fclean -C ./libs/pge
+	@make fclean -C ../libft
 	$(UNCOLOR)
-	@make clean -C ./libs/mlx
+	@make clean -C ../mlx
 	$(COLORYELLOW)
-	$(RM) $(NAME) $(NAME_BONUS)
+	$(RM) $(NAME)
 	$(UNCOLOR)
 	@echo "\033[33mFclean done\033[0m"
 
@@ -138,18 +121,6 @@ re:
 	$(MAKE) fclean
 	$(MAKE) -j all
 
-bonus:	$(OBJS_BONUS)
-	@echo "\033[46m\033[37m Cub3D \033[0m"
-	$(COLORGREEN)
-	make -C ./libs/libft
-	make -C ./libs/pge
-	$(UNCOLOR)
-	make -C ./libs/mlx
-	$(COLORCYAN)
-	$(GCC) $(FLAGS) -o $(NAME_BONUS) $(INCLUDES) $(OBJS_BONUS) $(PGE) $(LIBFT) $(MLX) $(LIBRARY)
-	$(UNCOLOR)
-	@echo "\033[46m\033[37m Compilation completed \033[0m"
-
 m: all clean
 
-.PHONY: all clean fclean re m bonus
+.PHONY: all clean fclean re m

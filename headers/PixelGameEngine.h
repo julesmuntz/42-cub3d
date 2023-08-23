@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/22 18:11:00 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:10:33 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_vector
 {
@@ -66,6 +67,25 @@ typedef struct s_xpm
 	int				width;
 	int				height;
 }					t_xpm;
+
+typedef struct s_cub
+{
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	int			*floor_color;
+	int			*ceiling_color;
+	char		**map;
+
+	bool		north_found;
+	bool		south_found;
+	bool		west_found;
+	bool		east_found;
+	bool		ceiling_found;
+	bool		floor_found;
+	bool		map_found;
+}				t_cub;
 
 typedef struct s_pge
 {

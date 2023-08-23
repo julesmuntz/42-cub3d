@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_var2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:32:55 by gfranque          #+#    #+#             */
-/*   Updated: 2022/09/06 12:55:04 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:39:57 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	ft_printfmx(va_list ap)
 
 int	ft_printfpourcent(va_list ap)
 {
-	ap = ap;
+	ap = NULL;
 	return (ft_putchar('%'));
 }

@@ -6,14 +6,14 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/21 16:03:20 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:05:18 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "./../libft/libft.h"
+# include "libft.h"
 # include "mlx.h"
 # include "mlx_int.h"
 # include <X11/keysym.h>
