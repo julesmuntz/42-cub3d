@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 16:30:38 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:55:43 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ typedef struct s_xpm
 
 typedef struct s_cub
 {
-	char			*north_texture;
-	char			*south_texture;
-	char			*west_texture;
-	char			*east_texture;
+	char			*arg;
+
+	char			*north_tex_path;
+	char			*south_tex_path;
+	char			*west_tex_path;
+	char			*east_tex_path;
 	int				*floor_color;
 	int				*ceiling_color;
 	char			**map;
@@ -95,10 +97,13 @@ typedef struct s_cub
 	bool			ceiling_found;
 	bool			floor_found;
 	bool			map_found;
+	bool			player_found;
+	bool			multiple_players;
 
 	float			map_depth;
 	t_vi			player_pos;
 	float			player_angle;
+
 }					t_cub;
 
 typedef struct s_raycast

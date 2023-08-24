@@ -6,7 +6,7 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/24 14:35:43 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/24 19:09:42 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,20 +18,15 @@ NAME_BONUS = cub3D-bonus
 ###	ALIAS	###
 ###############
 
-SRC = 	main.c			\
+SRC = 	cub3d.c			\
 		mapping.c		\
-		rendering.c		\
+		utilities.c		\
+		player.c		\
 		colors.c		\
-		colors2.c		\
-		movement.c		\
-		movement2.c		\
-		textures.c		\
 		check_file.c	\
+		textures.c		\
 
-SRC_BONUS = cub3d.c		\
-			mapping.c	\
-			errors.c	\
-			player.c	\
+# SRC_BONUS =	cub3d.c			\
 
 INCLUDES = -I ./headers/ -I ./libs/mlx/
 

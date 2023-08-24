@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 16:23:29 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:12:59 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,43 +45,12 @@ static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
 	close(fd);
 }
 
-static bool	get_map2(t_pge *game, char *line, int *rowindex)
-{
-	int	col_index;
-	int row_index;
-
-	col_index = 0;
-	row_index = *rowindex;
-	while (line[col_index] != '\0')
-	{
-		if (line[col_index] == 'N' || line[col_index] == 'S'
-			|| line[col_index] == 'E' || line[col_index] == 'W')
-		{
-			game->cub->player_pos.x = col_index;
-			game->cub->player_pos.y = row_index;
-			if (line[col_index] == 'N')
-				game->cub->player_angle = 0.0f;
-			else if (line[col_index] == 'S')
-				game->cub->player_angle = 0.0f;
-			else if (line[col_index] == 'E')
-				game->cub->player_angle = 0.0f;
-			else if (line[col_index] == 'W')
-				game->cub->player_angle = 0.0f;
-			return (true);
-		}
-		col_index++;
-	}
-	game->cub->map[row_index] = line;
-	row_index++;
-	*rowindex = row_index;
-	return (false);
-}
-
 static char	**get_map(t_pge *game, int fd)
 {
 	char	*line;
 	bool	map_found;
 	int		row_index;
+	int		col_index;
 	int		space_count;
 
 	row_index = 0;
@@ -97,15 +66,37 @@ static char	**get_map(t_pge *game, int fd)
 			if (line[space_count] == '1')
 				map_found = true;
 		}
-		else if (line[0] == '1')
+		else if (!map_found && line[0] == '1')
 			map_found = true;
-		if (map_found && get_map2(game, line, &row_index) == true)
-			break ;
-		// else
-		// 	free(line);
+		if (map_found)
+		{
+			col_index = 0;
+			while (line[col_index] != '\0')
+			{
+				if (line[col_index] == 'N' || line[col_index] == 'S'
+					|| line[col_index] == 'E' || line[col_index] == 'W')
+				{
+					game->cub->player_pos.x = col_index;
+					game->cub->player_pos.y = row_index;
+					if (line[col_index] == 'N')
+						game->cub->player_angle = 0.0f;
+					else if (line[col_index] == 'S')
+						game->cub->player_angle = 0.0f;
+					else if (line[col_index] == 'E')
+						game->cub->player_angle = 0.0f;
+					else if (line[col_index] == 'W')
+						game->cub->player_angle = 0.0f;
+					break;
+				}
+				col_index++;
+			}
+			game->cub->map[row_index] = line;
+			row_index++;
+		}
+		else
+			free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 	game->cub->map[row_index] = NULL;
 	close(fd);
 	return (game->cub->map);

@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/21 17:09:34 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:08:10 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +32,68 @@ static int	find_color(char *line, char letter, bool *color_found)
 	return (0);
 }
 
-int	check_file(t_cub *cub, char *arg)
+static int	find_map(char *line, int fd, bool *map_found)
+{
+	(void)line;
+	(void)map_found;
+	(void)fd;
+	//T.B.C.
+	return (0);
+}
+
+int	check_file(t_pge *game, char *arg)
 {
 	int		fd;
 	char	*line;
+	bool	searching_for_map;
 
-	cub->north_found = false;
-	cub->south_found = false;
-	cub->west_found = false;
-	cub->east_found = false;
-	cub->ceiling_found = false;
-	cub->floor_found = false;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		return (1);
 	line = get_next_line(fd);
+	searching_for_map = false;
 	while (line)
 	{
-		if (find_texture(line, "NO", &cub->north_found) || find_texture(line,
-				"SO", &cub->south_found) || find_texture(line, "WE",
-				&cub->west_found) || find_texture(line, "EA", &cub->east_found))
-		return (printf("%sError\nDuplicates texture(s)\n%s", RED, NONE),
-			free(line), close(fd), 1);
-		if (find_color(line, 'C', &cub->ceiling_found)
-			|| find_color(line, 'F', &cub->floor_found))
-		return (printf("%sError\nDuplicates color(s)\n%s", RED, NONE),
-			free(line), close(fd), 1);
+		if (find_texture(line, "NO", &game->cub->north_found)
+			|| find_texture(line, "SO", &game->cub->south_found)
+			|| find_texture(line, "WE", &game->cub->west_found)
+			|| find_texture(line, "EA", &game->cub->east_found))
+			return (print_error("Duplicates texture(s)"), free(line), close(fd),
+				1);
+		if (find_color(line, 'C', &game->cub->ceiling_found) || find_color(line,
+				'F', &game->cub->floor_found))
+			return (print_error("Duplicates color(s)"), free(line), close(fd),
+				1);
+		if (game->cub->north_found && game->cub->south_found
+			&& game->cub->west_found && game->cub->east_found
+			&& game->cub->ceiling_found && game->cub->floor_found)
+		{
+			searching_for_map = true;
+			free(line);
+			break ;
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (searching_for_map)
+		find_map(line, fd, &game->cub->map_found);
 	close(fd);
-	if (!cub->north_found || !cub->south_found || !cub->west_found
-		|| !cub->east_found)
-		return (printf("%sError\nMissing texture(s)\n%s", RED, NONE), 1);
-	if (!cub->ceiling_found || !cub->floor_found)
-		return (printf("%sError\nMissing color(s)\n%s", RED, NONE), 1);
+	if (!game->cub->north_found || !game->cub->south_found
+		|| !game->cub->west_found || !game->cub->east_found)
+		return (print_error("Missing texture(s)"), 1);
+	if (!game->cub->ceiling_found || !game->cub->floor_found)
+		return (print_error("Missing color(s)"), 1);
+	// if (game->cub->map_found == false)
+	// 	return (print_error("Missing map"), 1);
+	// if (game->cub->multiple_players == true)
+	// 	return (print_error("Multiple players"), 1);
+	// if (game->cub->player_found == false)
+	// 	return (print_error("Player not found"), 1);
+	if (init_colors(game, arg))
+		return (1);
+	if (init_map(game, arg))
+		return (1);
+	if (init_textures(game, arg))
+		return (1);
 	return (0);
 }
