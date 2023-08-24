@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 16:25:37 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:33:01 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_xpm	*find_xpm(t_xpm **array, char *name)
 	len = ft_strlen(name);
 	while (array[i])
 	{
-		if (ft_strlen(array[i]->name) == len
+		if ((int)ft_strlen(array[i]->name) == len
 				&& ft_strncmp(name, array[i]->name, len) == 0)
 			return (array[i]);
 		i++;

@@ -6,7 +6,7 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/23 14:18:35 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/24 14:35:43 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SRC = 	main.c			\
 		check_file.c	\
 
 SRC_BONUS = cub3d.c		\
+			mapping.c	\
+			errors.c	\
+			player.c	\
 
 INCLUDES = -I ./headers/ -I ./libs/mlx/
 

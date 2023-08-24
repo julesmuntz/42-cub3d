@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/22 16:45:16 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:26:45 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ void	game_clear(t_pge *game)
 	{
 		mlx_destroy_display(game->ptr_mlx);
 		free(game->ptr_mlx);
+	}
+	if (game->cub)
+	{
+		ft_free_lines(game->cub->map);
+		free(game->cub);
 	}
 	if (game)
 		free(game);

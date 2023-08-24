@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/20 17:39:13 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:23:29 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,43 @@ static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
 	close(fd);
 }
 
-static char	**get_map(int fd)
+static bool	get_map2(t_pge *game, char *line, int *rowindex)
+{
+	int	col_index;
+	int row_index;
+
+	col_index = 0;
+	row_index = *rowindex;
+	while (line[col_index] != '\0')
+	{
+		if (line[col_index] == 'N' || line[col_index] == 'S'
+			|| line[col_index] == 'E' || line[col_index] == 'W')
+		{
+			game->cub->player_pos.x = col_index;
+			game->cub->player_pos.y = row_index;
+			if (line[col_index] == 'N')
+				game->cub->player_angle = 0.0f;
+			else if (line[col_index] == 'S')
+				game->cub->player_angle = 0.0f;
+			else if (line[col_index] == 'E')
+				game->cub->player_angle = 0.0f;
+			else if (line[col_index] == 'W')
+				game->cub->player_angle = 0.0f;
+			return (true);
+		}
+		col_index++;
+	}
+	game->cub->map[row_index] = line;
+	row_index++;
+	*rowindex = row_index;
+	return (false);
+}
+
+static char	**get_map(t_pge *game, int fd)
 {
 	char	*line;
 	bool	map_found;
 	int		row_index;
-	int		col_index;
 	int		space_count;
 
 	row_index = 0;
@@ -68,33 +99,19 @@ static char	**get_map(int fd)
 		}
 		else if (line[0] == '1')
 			map_found = true;
-		if (map_found)
-		{
-			col_index = 0;
-			while (line[col_index] != '\0')
-			{
-				if (line[col_index] == 'N' || line[col_index] == 'S'
-					|| line[col_index] == 'E' || line[col_index] == 'W')
-				{
-					g_player_x = (float)col_index;
-					g_player_y = (float)row_index;
-					break ;
-				}
-				col_index++;
-			}
-			g_map[row_index] = line;
-			row_index++;
-		}
-		else
-			free(line);
+		if (map_found && get_map2(game, line, &row_index) == true)
+			break ;
+		// else
+		// 	free(line);
 		line = get_next_line(fd);
 	}
-	g_map[row_index] = NULL;
+	free(line);
+	game->cub->map[row_index] = NULL;
 	close(fd);
-	return (g_map);
+	return (game->cub->map);
 }
 
-int	init_map(char *arg)
+int	init_map(t_pge *game, char *arg)
 {
 	int	map_width;
 	int	map_height;
@@ -102,18 +119,15 @@ int	init_map(char *arg)
 
 	calculate_map_dimensions(arg, &map_width, &map_height);
 	if (map_width > map_height)
-		g_map_depth = map_width;
+		game->cub->map_depth = map_width;
 	else
-		g_map_depth = map_height;
-	g_map = (char **)malloc(sizeof(char *) * (map_height + 1));
-	if (!g_map)
+		game->cub->map_depth = map_height;
+	game->cub->map = (char **)malloc(sizeof(char *) * (map_height + 1));
+	if (!game->cub->map)
 		return (1);
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-	{
-		free(g_map);
-		return (1);
-	}
-	g_map = get_map(fd);
+		return (free(game->cub->map), 1);
+	game->cub->map = get_map(game, fd);
 	return (0);
 }
