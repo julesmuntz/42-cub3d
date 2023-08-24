@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 14:10:58 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:29:23 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,7 @@ int				check_file(t_cub *cub, char *arg);
 void			set_fov(float const fov, t_player *player);
 t_player		*set_player(t_vi const *pos, float const playera,
 					float const fov);
+t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game);
+
 
 #endif

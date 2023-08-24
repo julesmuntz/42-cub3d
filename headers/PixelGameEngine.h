@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 14:00:10 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:21:51 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void				free_xpm(t_xpm **xpm, t_pge *game);
 short int			check_xpm(t_xpm **xpm);
 void				print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game);
 t_xpm				**new_xpm_array(t_xpm **xpm);
+t_xpm				*find_xpm(t_xpm **array, char *name);
 size_t				ft_xpmlen(t_xpm **xpm);
 int					ft_key_press(int keysym, void *game);
 int					ft_key_release(int keysym, void *game);

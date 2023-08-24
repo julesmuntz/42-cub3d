@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 17:10:53 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:25:37 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,22 @@ t_xpm	**new_xpm_array(t_xpm **xpm)
 	free(xpm);
 	return (new);
 }
-/*retourne un void * de la taille du sizeof envoie*/
+
+t_xpm	*find_xpm(t_xpm **array, char *name)
+{
+	int	i;
+	int	len;
+
+	if (!array || !name)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(name);
+	while (array[i])
+	{
+		if (ft_strlen(array[i]->name) == len
+				&& ft_strncmp(name, array[i]->name, len) == 0)
+			return (array[i]);
+		i++;
+	}
+	return (NULL);
+}
