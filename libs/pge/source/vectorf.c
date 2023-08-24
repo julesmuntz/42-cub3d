@@ -1,54 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   vectorf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 16:37:27 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/23 16:08:00 by gfranque         ###   ########.fr       */
+/*   Created: 2023/08/23 16:09:13 by gfranque          #+#    #+#             */
+/*   Updated: 2023/08/23 16:10:45 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
 
-t_vi	set_vector(short int const x, short int const y)
+t_vf	set_vectorf(float const x, float const y)
 {
-	t_vi	v;
+	t_vf	v;
 
 	v.x = x;
 	v.y = y;
 	return (v);
 }
 
-t_vi	set_vector_by_points(t_vi const *a, t_vi const *b)
+t_vf	set_vectorf_by_points(t_vf const *a, t_vf const *b)
 {
-	t_vi	v;
+	t_vf	v;
 
 	v.x = b->x - a->x;
 	v.y = b->y - a->y;
 	return (v);
 }
 
-short int	compare_vector(t_vi const *a, t_vi const *b)
+short int	compare_vectorf(t_vf const *a, t_vf const *b)
 {
 	if (a->x == b->x && a->y == b->y)
 		return (1);
 	return (0);
 }
 
-t_vi	copy_vector(t_vi const *a)
+t_vf	copy_vectorf(t_vf const *a)
 {
-	t_vi	v;
+	t_vf	v;
 
 	v.x = a->x;
 	v.y = a->y;
 	return (v);
 }
 
-void	vector_rotation(t_vi *v, float angle)
+void	vectorf_rotation(t_vf *v, float angle)
 {
-	t_vi	w;
+	t_vf	w;
 
 	w.x = v->x * cosf(angle) - v->y * sinf(angle);
 	w.y = v->x * sin(angle) + v->y * cosf(angle);

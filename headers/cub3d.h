@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/23 14:05:18 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:10:58 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,10 @@ int				trace_into_image(t_mlx *mlx, char **map);
 
 /* Errors Handling Functions */
 int				check_file(t_cub *cub, char *arg);
+
+/*player*/
+void			set_fov(float const fov, t_player *player);
+t_player		*set_player(t_vi const *pos, float const playera,
+					float const fov);
 
 #endif
