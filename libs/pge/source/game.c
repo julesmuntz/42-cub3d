@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 15:26:45 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/25 14:58:16 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ void	game_clear(t_pge *game)
 	}
 	if (game->cub)
 	{
+		free(game->cub->north_tex_path);
+		free(game->cub->south_tex_path);
+		free(game->cub->west_tex_path);
+		free(game->cub->east_tex_path);
+		free(game->cub->floor_color);
+		free(game->cub->ceiling_color);
 		ft_free_lines(game->cub->map);
 		free(game->cub);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/25 15:10:08 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:48:15 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,12 @@ typedef struct s_cub
 	bool			ceiling_found;
 	bool			floor_found;
 	bool			map_found;
+	bool			valid_map;
 	bool			player_found;
 	bool			multiple_players;
 
+	int				map_width;
+	int				map_height;
 	float			map_depth;
 	t_vi			player_pos;
 	float			player_angle;

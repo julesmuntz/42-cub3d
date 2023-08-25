@@ -6,7 +6,7 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 14:01:56 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/23 14:20:00 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/25 15:49:49 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ft_strchr.c ft_strlcat.c ft_strncmp.c ft_substr.c\
 ft_printf.c ft_putnbr_base.c ft_var2.c ft_putchar.c ft_putnbr.c ft_var.c\
 get_next_line_bonus.c get_next_line_utils_bonus.c ft_isspace.c ft_free_lines.c\
 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
-ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_str_is.c
+ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_str_is.c ft_ismap.c
 
 INCLUDES = -I ../../headers/
 

@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:09:13 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 18:59:50 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:49:42 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_cub	*init_cub(void)
 	cub->player_pos.x = 0;
 	cub->player_pos.y = 0;
 	cub->player_angle = 0.0f;
+	cub->map_width = 0;
+	cub->map_height = 0;
 	return (cub);
 }
 
@@ -47,4 +49,16 @@ void	print_error(char *str)
 	write(STDERR_FILENO, "\033[0;31mError\n", 13);
 	write(STDERR_FILENO, str, ft_strlen(str));
 	write(STDERR_FILENO, "\n\033[0;0m", 7);
+}
+
+bool	invalid_extension(char *filename)
+{
+	char	*cub;
+
+	if (!filename)
+		return (true);
+	cub = ft_strrchr(filename, '.');
+	if (!cub || ft_strncmp(cub, ".cub\0", 5))
+		return (true);
+	return (false);
 }

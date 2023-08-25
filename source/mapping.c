@@ -6,21 +6,19 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 18:12:59 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:25:24 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
+static void	calculate_map_dimensions(t_pge *game, char *arg)
 {
 	int		fd;
 	char	*line;
 	int		row_length;
 	int		space_count;
 
-	*map_width = 0;
-	*map_height = 0;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		return ;
@@ -35,9 +33,9 @@ static void	calculate_map_dimensions(char *arg, int *map_width, int *map_height)
 			row_length = space_count;
 			while (line[row_length] != '\0')
 				row_length++;
-			if (row_length > *map_width)
-				*map_width = row_length;
-			(*map_height)++;
+			if (row_length > game->cub->map_width)
+				game->cub->map_width = row_length;
+			(game->cub->map_height)++;
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -90,13 +88,15 @@ static char	**get_map(t_pge *game, int fd)
 				}
 				col_index++;
 			}
-			game->cub->map[row_index] = line;
+			game->cub->map[row_index] = ft_strndup(line, ft_strlen(line)-1);
 			row_index++;
+			if (row_index == game->cub->map_height)
+				break;
 		}
-		else
-			free(line);
+		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	game->cub->map[row_index] = NULL;
 	close(fd);
 	return (game->cub->map);
@@ -104,16 +104,14 @@ static char	**get_map(t_pge *game, int fd)
 
 int	init_map(t_pge *game, char *arg)
 {
-	int	map_width;
-	int	map_height;
 	int	fd;
 
-	calculate_map_dimensions(arg, &map_width, &map_height);
-	if (map_width > map_height)
-		game->cub->map_depth = map_width;
+	calculate_map_dimensions(game, arg);
+	if (game->cub->map_width > game->cub->map_height)
+		game->cub->map_depth = game->cub->map_width;
 	else
-		game->cub->map_depth = map_height;
-	game->cub->map = (char **)malloc(sizeof(char *) * (map_height + 1));
+		game->cub->map_depth = game->cub->map_height;
+	game->cub->map = (char **)malloc(sizeof(char *) * (game->cub->map_height + 1));
 	if (!game->cub->map)
 		return (1);
 	fd = open(arg, O_RDONLY);

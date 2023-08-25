@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 21:03:42 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:23:34 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int				init_textures(t_pge *game, char *arg);
 int				check_file(t_pge *game, char *arg);
 void			print_error(char *str);
 t_cub			*init_cub(void);
+bool			invalid_extension(char *filename);
 
 void			set_fov(float const fov, t_player *player);
 t_player		*set_player(t_vi const *pos, float const playera,
