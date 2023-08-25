@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:32 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/21 17:13:07 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/25 15:07:33 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	free_xpm(t_xpm **xpm, t_pge *game)
 		return ;
 	while (xpm[i])
 	{
-		mlx_destroy_image(game->ptr_mlx, xpm[i]->img);
+		if (xpm[i]->img)
+			mlx_destroy_image(game->ptr_mlx, xpm[i]->img);
 		free(xpm[i]);
 		i++;
 	}

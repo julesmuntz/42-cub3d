@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 18:55:43 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/25 15:10:08 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,5 +198,9 @@ size_t				ft_xpmlen(t_xpm **xpm);
 int					ft_key_press(int keysym, void *game);
 int					ft_key_release(int keysym, void *game);
 void				game_loop(t_pge *game);
+int					new_sprite(t_vi const *size, char const *name, t_xpm **xpm,
+						t_pge *game);
+t_xpm				**game_add_sprite(t_vi const *size, char const *name,
+						t_xpm **xpm, t_pge *game);
 
 #endif

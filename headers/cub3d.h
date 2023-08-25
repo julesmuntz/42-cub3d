@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 19:09:09 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:03:42 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_player		*set_player(t_vi const *pos, float const playera,
 					float const fov);
 t_xpm			*texture_choice(int const side, t_vi const *step,
 					t_pge const *game);
+int				add_texture(t_pge *game);
 
 #endif
