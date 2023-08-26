@@ -6,11 +6,11 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 15:28:10 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:28:23 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PixelGameEngine.h"
+#include "cub3d.h"
 
 void	raycast_init(t_pge *game)
 {
@@ -43,7 +43,7 @@ void	raycast_dda(t_pge *game, t_raycast *ray)
 	else
 	{
 		ray->step.x = 1;
-		ray->sideDist.y = ((float)ray->map.x + 1.0f - game->player->pos.x) *
+		ray->sideDist.x = ((float)ray->map.x + 1.0f - game->player->pos.x) *
 			ray->deltaDist.x;
 	}
 	if (ray->rayDir.y < 0)
@@ -104,7 +104,7 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 	ray->wallX = 1.0f - ray->wallX;
 	if ((ray->side == 0 && ray->rayDir.x < 0) || (ray->side == 1 && ray->rayDir.y > 0))
 		ray->wallX = 1.0f - ray->wallX;
-	texture = texture_choice(ray->side, ray->step, game);
+	texture = texture_choice(ray->side, &ray->step, game);
 	raycast_dda_trace(game, ray, texture);
 }
 

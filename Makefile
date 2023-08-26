@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
+#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/24 19:09:42 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/26 18:10:35 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,17 @@ NAME_BONUS = cub3D-bonus
 ###	ALIAS	###
 ###############
 
-SRC = 	cub3d.c			\
-		mapping.c		\
-		utilities.c		\
-		player.c		\
-		colors.c		\
-		check_file.c	\
-		textures.c		\
+SRC = 	cub3d.c				\
+		mapping.c			\
+		utilities.c			\
+		player.c			\
+		colors.c			\
+		check_file.c		\
+		textures.c			\
+		raycast.c			\
+		raycast_texture.c	\
+		movement.c			\
+		movement2.c			\
 
 # SRC_BONUS =	cub3d.c			\
 

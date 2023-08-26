@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 16:33:01 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:57:15 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_xpm	**new_xpm_array(t_xpm **xpm)
 	}
 	new[i] = NULL;
 	new[i + 1] = NULL;
-	printf("xpm dans new array %p\n", xpm);
 	free(xpm);
 	return (new);
 }

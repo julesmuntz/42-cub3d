@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/25 18:23:34 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/26 18:08:51 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,13 @@ t_player		*set_player(t_vi const *pos, float const playera,
 t_xpm			*texture_choice(int const side, t_vi const *step,
 					t_pge const *game);
 int				add_texture(t_pge *game);
+void			raycast_init(t_pge *game);
+void			raycast_dda(t_pge *game, t_raycast *ray);
+void			raycast_dda_collision(t_pge *game, t_raycast *ray);
+void			raycast_dda_setup(t_pge *game, t_raycast *ray);
+void			raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture);
+void			check_movements(t_pge *game);
+int				cub_launch(void *g);
+void			look_direction(t_pge *game, float n);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/25 14:58:16 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:22:37 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,6 @@ void	game_clear(t_pge *game)
 	{
 		mlx_destroy_display(game->ptr_mlx);
 		free(game->ptr_mlx);
-	}
-	if (game->cub)
-	{
-		free(game->cub->north_tex_path);
-		free(game->cub->south_tex_path);
-		free(game->cub->west_tex_path);
-		free(game->cub->east_tex_path);
-		free(game->cub->floor_color);
-		free(game->cub->ceiling_color);
-		ft_free_lines(game->cub->map);
-		free(game->cub);
 	}
 	if (game)
 		free(game);

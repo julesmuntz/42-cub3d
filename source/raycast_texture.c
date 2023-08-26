@@ -6,11 +6,11 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/24 21:08:52 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:47:53 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PixelGameEngine.h"
+#include "cub3d.h"
 
 t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
 {
