@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
+#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/26 18:10:35 by gfranque         ###   ########.fr        #
+#    Updated: 2023/08/27 16:08:30 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = 	cub3d.c				\
 		raycast_texture.c	\
 		movement.c			\
 		movement2.c			\
+		check_map.c			\
 
 # SRC_BONUS =	cub3d.c			\
 

@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:32:55 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/22 14:39:57 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:16:20 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	ft_printfmx(va_list ap)
 
 int	ft_printfpourcent(va_list ap)
 {
-	ap = NULL;
+	ap = ap;
 	return (ft_putchar('%'));
 }

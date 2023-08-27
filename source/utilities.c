@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:09:13 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/26 14:34:29 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/27 23:03:48 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
+
+static void	init_cub2(t_cub *cub)
+{
+	cub->map_depth = 0.0f;
+	cub->player_pos.x = 0;
+	cub->player_pos.y = 0;
+	cub->player_angle = 0.0f;
+	cub->map_width = 0;
+	cub->map_height = 0;
+	cub->valid_map = false;
+	cub->searching_for_map = false;
+	cub->unreachable_areas = false;
+}
 
 t_cub	*init_cub(void)
 {
@@ -35,12 +48,7 @@ t_cub	*init_cub(void)
 	cub->map_found = false;
 	cub->player_found = false;
 	cub->multiple_players = false;
-	cub->map_depth = 0.0f;
-	cub->player_pos.x = 0;
-	cub->player_pos.y = 0;
-	cub->player_angle = 0.0f;
-	cub->map_width = 0;
-	cub->map_height = 0;
+	init_cub2(cub);
 	return (cub);
 }
 

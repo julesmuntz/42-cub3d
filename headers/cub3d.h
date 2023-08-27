@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/26 18:08:51 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:10:45 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@
 # include <math.h>
 # include <stdbool.h>
 # include <stdlib.h>
-
-# define PI 3.1415926535897932384626433832795028841971693993751058
-# define R 0
-# define G 1
-# define B 2
 
 /* Global Variables (To Be Removed) */
 extern int		g_screen_width;
@@ -46,7 +41,7 @@ int				check_file(t_pge *game, char *arg);
 void			print_error(char *str);
 t_cub			*init_cub(void);
 bool			invalid_extension(char *filename);
-
+int				check_map(t_pge *game, char *arg);
 void			set_fov(float const fov, t_player *player);
 t_player		*set_player(t_vi const *pos, float const playera,
 					float const fov);

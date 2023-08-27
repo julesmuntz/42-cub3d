@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/26 18:22:52 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:12:50 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,8 @@ int	main(int ac, char **av)
 	if (check_file(game, av[1]))
 		return (1);
 	game->player = set_player(&game->cub->player_pos, game->cub->player_angle, M_PI_4);
-	// printf("Player position: (x %d) (y %d)\n", game->cub->player_pos.x, game->cub->player_pos.y);
-	// printf("Player angle:    %f\n", game->cub->player_angle);
 	if (add_texture(game) == 0)
-	{
-		cub_clear(game);
-		game_clear(game);
-		return (3);
-	}
-	for (int i = 0; game->cub->map[i]; i++)
-		printf("%s\n", game->cub->map[i]);
+		return (cub_clear(game), game_clear(game), 3);
 	printf("player x %f player y %f\n", game->player->pos.x, game->player->pos.y);
 	printf("map width %d map height %d\n", game->cub->map_width, game->cub->map_height);
 	game_loop(game, &cub_launch);
