@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/27 22:52:38 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:05:47 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,12 @@ static int	end(t_pge *game, char *arg)
 	if (!game->cub->north_found || !game->cub->south_found
 		|| !game->cub->west_found || !game->cub->east_found)
 		return (print_error("Missing texture(s)"), 1);
+	if (init_textures(game, arg))
+		return (1);
 	if (!game->cub->ceiling_found || !game->cub->floor_found)
 		return (print_error("Missing color(s)"), 1);
+	if (init_colors(game, arg))
+		return (1);
 	if (game->cub->map_found == false)
 		return (print_error("Missing map"), 1);
 	if (game->cub->multiple_players == true)
@@ -72,11 +76,7 @@ static int	end(t_pge *game, char *arg)
 		return (print_error("Player not found"), 1);
 	if (game->cub->unreachable_areas == true)
 		return (print_error("Unreachable area(s)"), 1);
-	if (init_colors(game, arg))
-		return (1);
 	if (init_map(game, arg))
-		return (1);
-	if (init_textures(game, arg))
 		return (1);
 	return (0);
 }

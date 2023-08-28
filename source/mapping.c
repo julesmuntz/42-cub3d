@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/27 22:41:37 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:53:39 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static char	**get_map(t_pge *game, int fd)
 
 	row_index = 0;
 	game->cub->map_found = false;
+	line = get_next_line(fd);
 	if (game->cub->searching_for_map == true)
 	{
-		line = get_next_line(fd);
 		count = 0;
 		while (count != 6)
 		{

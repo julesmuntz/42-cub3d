@@ -6,42 +6,66 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:25:37 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/27 15:51:30 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:10:50 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	strarr_to_intarr(char **s_rgb, int *rgb)
+static void	strarr_to_intarr(char **s, int *rgb)
 {
-	rgb[R] = ft_atoi(s_rgb[R]);
-	free(s_rgb[R]);
-	rgb[G] = ft_atoi(s_rgb[G]);
-	free(s_rgb[G]);
-	rgb[B] = ft_atoi(s_rgb[B]);
-	free(s_rgb[B]);
-	free(s_rgb);
+	rgb[R] = ft_atoi(s[R]);
+	free(s[R]);
+	rgb[G] = ft_atoi(s[G]);
+	free(s[G]);
+	rgb[B] = ft_atoi(s[B]);
+	free(s[B]);
+	free(s);
+}
+
+static char	**rgb_split(char *line)
+{
+	int		i;
+	int		comma[2];
+	char	**s;
+
+	i = 0;
+	comma[0] = -1;
+	comma[1] = -1;
+	while (line[i])
+	{
+		if (line[i] == ',' && comma[0] == -1 && comma[1] == -1)
+			comma[0] = i;
+		else if (line[i] == ',' && comma[1] == -1 && comma[0] != -1)
+			comma[1] = i;
+		i++;
+	}
+	s = (char **)malloc(sizeof(char *) * 4);
+	s[R] = ft_strndup(line + 2, comma[0] - 2);
+	s[G] = ft_strndup(line + comma[0] + 1, comma[1] - comma[0] - 1);
+	s[B] = ft_strndup(line + comma[1] + 1, (ft_strlen(line) - 2) - comma[1]);
+	s[3] = NULL;
+	return (s);
 }
 
 static int	*get_color2(char *line, int *rgb)
 {
 	int		i;
-	char	**s_rgb;
+	char	**s;
 
 	i = -1;
 	while (line[++i])
 	{
-		s_rgb = ft_split(line + 2, ',');
-		if (!s_rgb[R] || !s_rgb[G] || !s_rgb[B] || s_rgb[3]
+		s = rgb_split(line);
+		if (!s[R] || !s[G] || !s[B] || s[3]
 			|| ft_strnstr(line, ",,", ft_strlen(line)))
 			return (print_error("Invalid color format"), free(rgb),
-				ft_free_lines(s_rgb), NULL);
-		s_rgb[B] = ft_strtrim(s_rgb[B], "\n");
-		if (!ft_str_is(ft_isdigit, s_rgb[R]) || !ft_str_is(ft_isdigit, s_rgb[G])
-			|| !ft_str_is(ft_isdigit, s_rgb[B]))
+				ft_free_lines(s), NULL);
+		if (!ft_str_is(ft_isdigit, s[R]) || !ft_str_is(ft_isdigit, s[G])
+			|| !ft_str_is(ft_isdigit, s[B]))
 			return (print_error("Invalid color value"), free(rgb),
-				ft_free_lines(s_rgb), NULL);
-		strarr_to_intarr(s_rgb, rgb);
+				ft_free_lines(s), NULL);
+		strarr_to_intarr(s, rgb);
 		if (rgb[R] < 0 || rgb[R] > 255 || rgb[G] < 0 || rgb[G] > 255
 			|| rgb[B] < 0 || rgb[B] > 255)
 			return (print_error("Invalid color range\n0-255 is valid"),
@@ -87,9 +111,4 @@ int	init_colors(t_pge *game, char *arg)
 	if (!game->cub->floor_color)
 		return (1);
 	return (0);
-}
-
-int	rgb_to_hex(int *rgb)
-{
-	return (((rgb[R] & 0xff) << 16) + ((rgb[G] & 0xff) << 8) + (rgb[B] & 0xff));
 }
