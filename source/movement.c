@@ -6,13 +6,13 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:36:57 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/26 18:13:44 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:11:32 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	go_front(t_pge *game, float n)
+void	go_right(t_pge *game, float n)
 {
 	game->player->pos.x += cosf(game->player->angle) * n;
 	game->player->pos.y -= sinf(game->player->angle) * n;
@@ -24,7 +24,7 @@ void	go_front(t_pge *game, float n)
 	}
 }
 
-void	go_back(t_pge *game, float n)
+void	go_left(t_pge *game, float n)
 {
 	game->player->pos.x -= cosf(game->player->angle) * n;
 	game->player->pos.y += sinf(game->player->angle) * n;
@@ -36,7 +36,7 @@ void	go_back(t_pge *game, float n)
 	}
 }
 
-void	go_left(t_pge *game, float n)
+void	go_front(t_pge *game, float n)
 {
 	game->player->pos.x -= sinf(game->player->angle) * n;
 	game->player->pos.y -= cosf(game->player->angle) * n;
@@ -48,7 +48,7 @@ void	go_left(t_pge *game, float n)
 	}
 }
 
-void	go_right(t_pge *game, float n)
+void	go_back(t_pge *game, float n)
 {
 	game->player->pos.x += sinf(game->player->angle) * n;
 	game->player->pos.y += cosf(game->player->angle) * n;
@@ -65,8 +65,8 @@ void	check_movements(t_pge *game)
 	float	speed;
 	float	look;
 
-	speed = 0.02f;
-	look = 0.03f;
+	speed = 0.1f;
+	look = 0.06f;
 	if (game->key['w'] == 1)
 		go_front(game, speed);
 	if (game->key['s'] == 1)

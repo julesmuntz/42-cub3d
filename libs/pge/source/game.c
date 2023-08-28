@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/26 14:22:37 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:10:18 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ t_pge	*game_init(t_vi *screensize, t_vi *pxlsize, char const *name)
 	if (!game)
 		return (NULL);
 	i = -1;
+	game->ray = malloc(sizeof(t_raycast));
+	if (!game->ray)
+		return (free(game), NULL);
 	game->width = screensize->x;
 	game->height = screensize->y;
 	game->pxlwidth = pxlsize->x;
@@ -92,6 +95,8 @@ void	game_clear(t_pge *game)
 		mlx_destroy_display(game->ptr_mlx);
 		free(game->ptr_mlx);
 	}
+	if (game->ray)
+		free(game->ray);
 	if (game)
 		free(game);
 }

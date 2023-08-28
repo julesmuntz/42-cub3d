@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/28 14:36:42 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:14:17 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ int	main(int ac, char **av)
 		return (1);
 	if (check_file(game, av[1]))
 		return (cub_clear(game), game_clear(game), 1);
-	game->player = set_player(&game->cub->player_pos, game->cub->player_angle, M_PI_4);
+	game->player = set_player(&game->cub->player_pos, game->cub->player_angle, M_PI_2);
 	if (add_texture(game) == 0)
 		return (cub_clear(game), game_clear(game), 3);
-	printf("player x %f player y %f\n", game->player->pos.x, game->player->pos.y);
-	printf("map width %d map height %d\n", game->cub->map_width, game->cub->map_height);
 	game_loop(game, &cub_launch);
 	return (0);
 }
