@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/28 11:53:39 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:01:00 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	init_map(t_pge *game, char *arg)
 {
 	int	fd;
 
+	if (game->cub->map)
+		ft_free_lines(game->cub->map);
 	calculate_map_dimensions(game, arg);
 	if (game->cub->map_width > game->cub->map_height)
 		game->cub->map_depth = game->cub->map_width;

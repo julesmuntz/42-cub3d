@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 12:32:27 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/27 22:47:04 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:42:35 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	check_map(t_pge *game, char *arg)
 		b = 0;
 		while (game->cub->map[a][b])
 		{
+			if (game->cub->map[a][b] == '1')
+				game->cub->wall_found = true;
 			if (game->cub->map[a][b] == '0')
 				game->cub->unreachable_areas = true;
 			b++;
@@ -104,6 +106,5 @@ int	check_map(t_pge *game, char *arg)
 	}
 	if (failure == false)
 		game->cub->valid_map = true;
-	ft_free_lines(game->cub->map);
 	return (0);
 }

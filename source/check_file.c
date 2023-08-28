@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/28 12:05:47 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:51:22 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	end(t_pge *game, char *arg)
 		return (print_error("Missing color(s)"), 1);
 	if (init_colors(game, arg))
 		return (1);
-	if (game->cub->map_found == false)
+	if (game->cub->map_found == false || game->cub->wall_found == false)
 		return (print_error("Missing map"), 1);
 	if (game->cub->multiple_players == true)
 		return (print_error("Multiple players"), 1);
@@ -86,6 +86,7 @@ int	check_file(t_pge *game, char *arg)
 	int		fd;
 	char	*line;
 
+	game->player = NULL;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		return (print_error("File not found"), 1);

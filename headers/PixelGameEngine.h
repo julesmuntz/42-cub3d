@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/27 23:02:57 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:22:14 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_cub
 	bool			multiple_players;
 	bool			searching_for_map;
 	bool			unreachable_areas;
+	bool			wall_found;
 
 	int				map_width;
 	int				map_height;
