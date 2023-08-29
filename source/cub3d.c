@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/28 18:14:17 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:35:48 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 	game->player = set_player(&game->cub->player_pos, game->cub->player_angle, M_PI_2);
 	if (add_texture(game) == 0)
 		return (cub_clear(game), game_clear(game), 3);
+	game->cub->map_depth = 16.0f;
 	game_loop(game, &cub_launch);
 	return (0);
 }

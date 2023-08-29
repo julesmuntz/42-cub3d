@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/27 16:10:45 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/29 18:12:51 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ void			raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture);
 void			check_movements(t_pge *game);
 int				cub_launch(void *g);
 void			look_direction(t_pge *game, float n);
+void			fog_generation(t_pxl *pxl, float *dist, t_pge *game);
+bool			check_collision(t_pge *game);
+float			dist_interpolation(t_pge *game);
 
 #endif

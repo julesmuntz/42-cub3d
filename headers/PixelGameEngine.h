@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/28 18:07:03 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:11:08 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,5 +210,7 @@ int					new_sprite(t_vi const *size, char const *name, t_xpm **xpm,
 t_xpm				**game_add_sprite(t_vi const *size, char const *name,
 						t_xpm **xpm, t_pge *game);
 void				cub_clear(t_pge *game);
+t_pxl				pixel_interpolation(t_pxl const *color, t_pxl const *fog,
+						float const dist, float const max);
 
 #endif

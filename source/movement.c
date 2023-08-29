@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:36:57 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/28 17:11:32 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:33:02 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,65 @@
 
 void	go_right(t_pge *game, float n)
 {
-	game->player->pos.x += cosf(game->player->angle) * n;
-	game->player->pos.y -= sinf(game->player->angle) * n;
-	if (game->cub->map[(int)game->player->pos.y][(int)game->player->pos.x]
-			== '1')
+	float	cos;
+	float	sin;
+
+	cos = cosf(game->player->angle) * n;
+	sin = sinf(game->player->angle) * n;
+	game->player->pos.x += cos;
+	game->player->pos.y -= sin;
+	if (check_collision(game) == 1)
 	{
-		game->player->pos.x -= cosf(game->player->angle) * n;
-		game->player->pos.y += sinf(game->player->angle) * n;
+		game->player->pos.x -= cos;
+		game->player->pos.y += sin;
 	}
 }
 
 void	go_left(t_pge *game, float n)
 {
-	game->player->pos.x -= cosf(game->player->angle) * n;
-	game->player->pos.y += sinf(game->player->angle) * n;
-	if (game->cub->map[(int)game->player->pos.y][(int)game->player->pos.x]
-			== '1')
+	float	cos;
+	float	sin;
+
+	cos = cosf(game->player->angle) * n;
+	sin = sinf(game->player->angle) * n;
+	game->player->pos.x -= cos;
+	game->player->pos.y += sin;
+	if (check_collision(game) == 1)
 	{
-		game->player->pos.x += cosf(game->player->angle) * n;
-		game->player->pos.y -= sinf(game->player->angle) * n;
+		game->player->pos.x += cos;
+		game->player->pos.y -= sin;
 	}
 }
 
 void	go_front(t_pge *game, float n)
 {
-	game->player->pos.x -= sinf(game->player->angle) * n;
-	game->player->pos.y -= cosf(game->player->angle) * n;
-	if (game->cub->map[(int)game->player->pos.y][(int)game->player->pos.x]
-			== '1')
+	float	sin;
+	float	cos;
+
+	sin = sinf(game->player->angle) * n;
+	cos = cosf(game->player->angle) * n;
+	game->player->pos.x -= sin;
+	game->player->pos.y -= cos;
+	if (check_collision(game) == 1)
 	{
-		game->player->pos.x += sinf(game->player->angle) * n;
-		game->player->pos.y += cosf(game->player->angle) * n;
+		game->player->pos.x += sin;
+		game->player->pos.y += cos;
 	}
 }
 
 void	go_back(t_pge *game, float n)
 {
-	game->player->pos.x += sinf(game->player->angle) * n;
-	game->player->pos.y += cosf(game->player->angle) * n;
-	if (game->cub->map[(int)game->player->pos.y][(int)game->player->pos.x]
-			== '1')
+	float	sin;
+	float	cos;
+
+	sin = sinf(game->player->angle) * n;
+	cos = cosf(game->player->angle) * n;
+	game->player->pos.x += sin;
+	game->player->pos.y += cos;
+	if (check_collision(game) == 1)
 	{
-		game->player->pos.x -= sinf(game->player->angle) * n;
-		game->player->pos.y -= cosf(game->player->angle) * n;
+		game->player->pos.x -= sin;
+		game->player->pos.y -= cos;
 	}
 }
 
