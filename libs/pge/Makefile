@@ -6,7 +6,7 @@
 #    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/23 16:21:57 by gfranque         ###   ########.fr        #
+#    Updated: 2023/08/30 14:13:33 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRC = 	circle.c		\
 		vector.c		\
 		vectorf.c		\
 		utils_vector.c	\
+		drawlinexpm.c	\
+		drawcirclexpm.c	\
 
 INCLUDES = -I ../../headers/ -I ../mlx/
 

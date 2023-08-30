@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:09 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/25 15:10:18 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/30 13:38:20 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 
 int	new_sprite(t_vi const *size, char const *name, t_xpm **xpm, t_pge *game)
 {
-	int	len;
+	int		len;
+	t_vi	coor;
+	t_pxl	pxl;
 
 	if (!size || !name)
 		return (0);
@@ -58,6 +60,9 @@ int	new_sprite(t_vi const *size, char const *name, t_xpm **xpm, t_pge *game)
 	xpm[len]->addr = mlx_get_data_addr(xpm[len]->img, &xpm[len]->bpp,
 		&xpm[len]->line_len, &xpm[len]->endian);
 	xpm[len]->name = (char *)name;
+	coor = set_vector(0, 0);
+	pxl = set_pxl_argb(0, 0, 0, 255);
+	fill_rectangle_xpm(&coor, size, xpm[len], &pxl);
 	return (1);
 }
 

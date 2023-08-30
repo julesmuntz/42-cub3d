@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:58 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/29 16:29:27 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/30 13:06:47 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,18 @@ t_pxl	pixel_interpolation(t_pxl const *color, t_pxl const *fog,
 		new = set_pxl_argb(red, green, blue, 0);
 	}
 	return (new);
+}
+
+short int	draw_pixel_xpm(t_vi *xy, t_pge *game, t_xpm *xpm, t_pxl *pxl)
+{
+	unsigned int	*pixel;
+
+	(void)game;
+	pixel = (unsigned int *)xpm->addr;
+	if (xy->x >= xpm->width || xy->x < 0 || xy->y >= xpm->height || xy->y < 0
+		|| pxl->alpha == 255)
+		return (1);
+	pixel[xy->y * xpm->width + xy->x] = pxl->red * 65536 + pxl->green * 256
+		+ pxl->blue;
+	return (1);
 }
