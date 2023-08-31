@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
+#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/08/27 16:08:30 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/08/31 16:31:23 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OBJS_BONUS = $(SRCS_BONUS:$(SRC_BONUS_DIR)/%.c=$(OBJ_BONUS_DIR)/%.o)
 
 GCC = cc
 
-FLAGS = -g3 -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 

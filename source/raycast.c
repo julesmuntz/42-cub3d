@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/29 18:24:14 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:20:01 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,11 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 		else
 		{
 			pxl = set_pxl_argb(game->cub->floor_color[R], game->cub->floor_color[G], game->cub->floor_color[B], 0);
-			dist = 0.0f;
+			dist = (float)game->cub->map_depth - (float)(ray->xy.y / 2.f) / (float)(game->drawing_img.height / 2) * (float)game->cub->map_depth;
+			// printf("dist = %f\n", dist);
 		}
 		fog_generation(&pxl, &dist, game);
 		draw_pixel(&ray->xy, game, &game->drawing_img, &pxl);
 		ray->xy.y++;
 	}
 }
-
-/*dist = dist_interpolation(game); pour la ligne 127*/

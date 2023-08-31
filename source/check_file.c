@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/28 16:51:22 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:52:05 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	check_file(t_pge *game, char *arg)
 	int		fd;
 	char	*line;
 
-	game->player = NULL;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		return (print_error("File not found"), 1);

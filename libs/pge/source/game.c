@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/28 18:10:18 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:51:47 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_pge	*game_init(t_vi *screensize, t_vi *pxlsize, char const *name)
 	game->img.mlx_img = NULL;
 	game->drawing_img.mlx_img = NULL;
 	game->xpm = NULL;
+	game->player = NULL;
 	while (++i < 127)
 		game->key[i] = 0;
 	if (game_set(game, name) == 1)
