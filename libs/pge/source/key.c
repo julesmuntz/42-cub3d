@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:20 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/29 18:25:42 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:09:59 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	cub_clear(t_pge *game)
 		free(game->cub->east_tex_path);
 		free(game->cub->floor_color);
 		free(game->cub->ceiling_color);
-		ft_free_lines(game->cub->map);
+		if (game->cub->map)
+			ft_free_lines(game->cub->map);
 		free(game->cub);
 	}
 	if (game->player)
