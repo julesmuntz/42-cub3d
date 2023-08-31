@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/30 14:13:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:36:39 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ short int			draw_pixel_xpm(t_vi *xy, t_xpm *xpm, t_pxl *pxl);
 void				draw_line_xpm(t_vi *coor, t_vi *v, t_xpm *xpm, t_pxl *pxl);
 void				draw_rectangle_xpm(t_vi *coor, t_vi *v, t_xpm *xpm,
 						t_pxl *pxl);
-void				fill_rectangle_xpm(t_vi *coor, t_vi *v, t_xpm *xpm,
+void				fill_rectangle_xpm(t_vi const *coor, t_vi const *v, t_xpm *xpm,
 						t_pxl *pxl);
 void				draw_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl);
 void				fill_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl);
