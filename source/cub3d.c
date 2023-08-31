@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 17:21:21 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:57:41 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,32 @@ int	main(int ac, char **av)
 	game_loop(game, &cub_launch);
 	return (0);
 }
+void	print_visor(t_pge *game)
+{
+	t_pxl	pxl;
+	t_vi	coor;
+
+	coor = set_vector(game->drawing_img.width / 2 - 1, game->drawing_img.height / 2 - 1);
+	pxl = set_pxl_argb(255, 183, 26, 0);
+	draw_circle(&coor, 6, game, &pxl);
+	draw_circle(&coor, 7, game, &pxl);
+	coor = set_vector(game->drawing_img.width / 2 + 1, game->drawing_img.height / 2 + 1);
+	pxl = set_pxl_argb(53, 162, 253, 0);
+	draw_circle(&coor, 6, game, &pxl);
+	draw_circle(&coor, 7, game, &pxl);
+	pxl = set_pxl_argb(255, 255, 255, 0);
+	coor = set_vector(game->drawing_img.width / 2 + 2, game->drawing_img.height / 2);
+	draw_pixel(&coor, game, &game->drawing_img, &pxl);
+	coor = set_vector(game->drawing_img.width / 2 - 2, game->drawing_img.height / 2);
+	draw_pixel(&coor, game, &game->drawing_img, &pxl);
+	coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height / 2 + 2);
+	draw_pixel(&coor, game, &game->drawing_img, &pxl);
+	coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height / 2 - 2);
+	draw_pixel(&coor, game, &game->drawing_img, &pxl);
+	coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height / 2);
+	draw_pixel(&coor, game, &game->drawing_img, &pxl);
+
+}
 
 int	cub_launch(void *g)
 {
@@ -48,6 +74,7 @@ int	cub_launch(void *g)
 	game = (t_pge *)g;
 	raycast_init(game);
 	check_movements(game);
+	print_visor(game);
 	game_refresh(game);
 	return (0);
 }
