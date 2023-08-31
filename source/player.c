@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:55:33 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/28 18:13:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:37:56 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_player	*set_player(t_vi const *pos, float const playera, float const fov)
 	player->pos = set_vectorf((float)pos->x + 0.5f, (float)pos->y + 0.5f);
 	player->dir = set_vectorf(1.0f, 0.0f);
 	player->plan = set_vectorf(0.0f, 1.0f);
-	// player->angle = playera;
 	player->angle = -M_PI_2;
 	(void)playera;
 	set_fov(fov, player);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapping.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:00:51 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/28 16:01:00 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:40:36 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ static char	**get_map(t_pge *game, int fd)
 					game->cub->player_pos.x = col_index;
 					game->cub->player_pos.y = row_index;
 					if (line[col_index] == 'N')
-						game->cub->player_angle = 0.0f;
+						game->cub->player_angle = -M_PI_2;
 					else if (line[col_index] == 'S')
-						game->cub->player_angle = 0.0f;
+						game->cub->player_angle = M_PI_2;
 					else if (line[col_index] == 'E')
 						game->cub->player_angle = 0.0f;
 					else if (line[col_index] == 'W')
-						game->cub->player_angle = 0.0f;
+						game->cub->player_angle = M_PI;
 					break ;
 				}
 				col_index++;
