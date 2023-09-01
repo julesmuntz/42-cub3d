@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 14:02:11 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:09:08 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	raycast_init(t_pge *game)
 	ray->xy.x = 0;
 	while (ray->xy.x < game->drawing_img.width)
 	{
-		ray->cameraX = (float)ray->xy.x / (float)game->drawing_img.width * 2.f - 1.f;
-		ray->rayDir.x = game->player->dir.x + game->player->plan.x * ray->cameraX;
-		ray->rayDir.y = game->player->dir.y + game->player->plan.y * ray->cameraX;
+		ray->cameraX = (float)ray->xy.x / (float)game->drawing_img.width * 2.f
+			- 1.f;
+		ray->rayDir.x = game->player->dir.x + game->player->plan.x
+			* ray->cameraX;
+		ray->rayDir.y = game->player->dir.y + game->player->plan.y
+			* ray->cameraX;
 		ray->map.x = (int)game->player->pos.x;
 		ray->map.y = (int)game->player->pos.y;
 		ray->deltaDist.x = fabsf(1.f / ray->rayDir.x);
@@ -38,22 +41,26 @@ void	raycast_dda(t_pge *game, t_raycast *ray)
 	if (ray->rayDir.x < 0)
 	{
 		ray->step.x = -1;
-		ray->sideDist.x = (game->player->pos.x - (float)ray->map.x) * ray->deltaDist.x;
+		ray->sideDist.x = (game->player->pos.x - (float)ray->map.x)
+			* ray->deltaDist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->sideDist.x = ((float)ray->map.x + 1.0f - game->player->pos.x) * ray->deltaDist.x;
+		ray->sideDist.x = ((float)ray->map.x + 1.0f - game->player->pos.x)
+			* ray->deltaDist.x;
 	}
 	if (ray->rayDir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->sideDist.y = (game->player->pos.y - (float)ray->map.y) * ray->deltaDist.y;
+		ray->sideDist.y = (game->player->pos.y - (float)ray->map.y)
+			* ray->deltaDist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->sideDist.y = ((float)ray->map.y + 1.0f - game->player->pos.y) * ray->deltaDist.y;
+		ray->sideDist.y = ((float)ray->map.y + 1.0f - game->player->pos.y)
+			* ray->deltaDist.y;
 	}
 	raycast_dda_collision(game, ray);
 }
@@ -89,7 +96,8 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 	t_xpm	*texture;
 
 	ray->wallSize = (float)game->drawing_img.height / ray->wallDist;
-	ray->ceiling = (float)(game->drawing_img.height) / 2.f - ray->wallSize / 2.f;
+	ray->ceiling = (float)(game->drawing_img.height) / 2.f - ray->wallSize / 2.f
+		+ game->player->pitch * 25;
 	ray->floor = ray->ceiling + ray->wallSize;
 	if (ray->side == 0)
 		ray->wallX = game->player->pos.y + ray->wallDist * ray->rayDir.y;
@@ -97,7 +105,8 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 		ray->wallX = game->player->pos.x + ray->wallDist * ray->rayDir.x;
 	ray->wallX -= (int)(ray->wallX);
 	ray->wallX = 1.0f - ray->wallX;
-	if ((ray->side == 0 && ray->rayDir.x < 0) || (ray->side == 1 && ray->rayDir.y > 0))
+	if ((ray->side == 0 && ray->rayDir.x < 0) || (ray->side == 1
+			&& ray->rayDir.y > 0))
 		ray->wallX = 1.0f - ray->wallX;
 	texture = texture_choice(ray->side, &ray->step, game);
 	raycast_dda_trace(game, ray, texture);
@@ -107,29 +116,30 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 {
 	t_pxl	pxl;
 	float	dist;
-	int		pitch_ceiling;
-	int		pitch_floor;
 
 	ray->xy.y = 0;
-	pitch_ceiling = ray->ceiling + game->player->pitch * 25;
-	pitch_floor = ray->floor + game->player->pitch * 25;
 	while (ray->xy.y < game->drawing_img.height)
 	{
-		if (ray->xy.y < pitch_ceiling)
+		if (ray->xy.y < ray->ceiling)
 		{
-			pxl = set_pxl_argb(game->cub->ceiling_color[R], game->cub->ceiling_color[G], game->cub->ceiling_color[B], 0);
+			pxl = set_pxl_argb(game->cub->ceiling_color[R],
+				game->cub->ceiling_color[G], game->cub->ceiling_color[B], 0);
 			dist = dist_interpolation(game);
 		}
-		else if (ray->xy.y < pitch_floor)
+		else if (ray->xy.y < ray->floor)
 		{
-			get_pixel_from_xpm(texture, (int)(ray->wallX * texture->width), (int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor - ray->ceiling) * texture->height), &pxl);
+			get_pixel_from_xpm(texture, (int)(ray->wallX * texture->width),
+				(int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor
+						- ray->ceiling) * texture->height), &pxl);
 			dist = ray->wallDist;
 		}
 		else
 		{
-			pxl = set_pxl_argb(game->cub->floor_color[R], game->cub->floor_color[G], game->cub->floor_color[B], 0);
-			dist = (float)game->cub->map_depth - (float)(ray->xy.y / 2.f) / (float)(game->drawing_img.height / 2) * (float)game->cub->map_depth;
-			// printf("dist = %f\n", dist);
+			pxl = set_pxl_argb(game->cub->floor_color[R],
+				game->cub->floor_color[G], game->cub->floor_color[B], 0);
+			dist = (float)game->cub->map_depth - (float)(ray->xy.y / 2.f)
+				/ (float)(ray->ceiling + ray->wallSize / 2.f)
+				* (float)game->cub->map_depth;
 		}
 		fog_generation(&pxl, &dist, game);
 		draw_pixel(&ray->xy, game, &game->drawing_img, &pxl);

@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:09 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/30 13:38:20 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:44:44 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 	t_vi	p;
 	t_pxl	pxl;
 
+	if (!xpm)
+		return ;
 	set_pxl_hex(0, &pxl);
 	p = set_vector(1, 1);
 	if (v.x < 0)
