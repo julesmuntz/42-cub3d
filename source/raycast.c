@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 17:09:08 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 18:03:54 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 		{
 			pxl = set_pxl_argb(game->cub->ceiling_color[R],
 				game->cub->ceiling_color[G], game->cub->ceiling_color[B], 0);
-			dist = dist_interpolation(game);
+			dist = ray->wallDist;
 		}
 		else if (ray->xy.y < ray->floor)
 		{
@@ -137,12 +137,13 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 		{
 			pxl = set_pxl_argb(game->cub->floor_color[R],
 				game->cub->floor_color[G], game->cub->floor_color[B], 0);
-			dist = (float)game->cub->map_depth - (float)(ray->xy.y / 2.f)
-				/ (float)(ray->ceiling + ray->wallSize / 2.f)
-				* (float)game->cub->map_depth;
+			dist = (float)(game->drawing_img.height - ray->xy.y) / (float)game->drawing_img.height * (float)(game->cub->map_depth / 2);
 		}
 		fog_generation(&pxl, &dist, game);
 		draw_pixel(&ray->xy, game, &game->drawing_img, &pxl);
 		ray->xy.y++;
 	}
 }
+
+/*pour la dist du floor set avec le premier mur un rapport de distance par rapport a la fenetre pour que tout soit utilier comme il faut
+bref good luck*/

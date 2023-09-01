@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 17:09:13 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:52:07 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,40 +47,13 @@ void	print_visor(t_pge *game)
 	t_vi	coor;
 	t_vi	size;
 
-	// t_pxl	pxl;
 	coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height
 		/ 2);
 	size = copy_vector(&coor);
 	print_sprite(find_xpm(game->xpm, "gun"), coor, size, game);
-	coor = set_vector(game->drawing_img.width / 2 - 16, game->drawing_img.height / 2 - 16);
-	size = set_vector(32 , 32);
+	coor = set_vector(game->drawing_img.width / 2 - game->drawing_img.width / 28, game->drawing_img.height / 2 - game->drawing_img.width / 28);
+	size = set_vector(game->drawing_img.width / 14 , game->drawing_img.width / 14);
 	print_sprite(find_xpm(game->xpm, "crosshair"), coor, size, game);
-	// coor = set_vector(game->drawing_img.width / 2 - 1,
-		// game->drawing_img.height / 2 - 1);
-	// pxl = set_pxl_argb(255, 183, 26, 0);
-	// draw_circle(&coor, 6, game, &pxl);
-	// draw_circle(&coor, 7, game, &pxl);
-	// coor = set_vector(game->drawing_img.width / 2 + 1,
-		// game->drawing_img.height / 2 + 1);
-	// pxl = set_pxl_argb(53, 162, 253, 0);
-	// draw_circle(&coor, 6, game, &pxl);
-	// draw_circle(&coor, 7, game, &pxl);
-	// pxl = set_pxl_argb(255, 255, 255, 0);
-	// coor = set_vector(game->drawing_img.width / 2 + 2,
-		// game->drawing_img.height / 2);
-	// draw_pixel(&coor, game, &game->drawing_img, &pxl);
-	// coor = set_vector(game->drawing_img.width / 2 - 2,
-		// game->drawing_img.height / 2);
-	// draw_pixel(&coor, game, &game->drawing_img, &pxl);
-	// coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height
-	//	/ 2 + 2);
-	// draw_pixel(&coor, game, &game->drawing_img, &pxl);
-	// coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height
-	//	/ 2 - 2);
-	// draw_pixel(&coor, game, &game->drawing_img, &pxl);
-	// coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height
-	//	/ 2);
-	// draw_pixel(&coor, game, &game->drawing_img, &pxl);
 }
 
 int	cub_launch(void *g)
