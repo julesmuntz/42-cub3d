@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 17:20:01 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:02:11 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,20 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 {
 	t_pxl	pxl;
 	float	dist;
+	int		pitch_ceiling;
+	int		pitch_floor;
 
 	ray->xy.y = 0;
+	pitch_ceiling = ray->ceiling + game->player->pitch * 25;
+	pitch_floor = ray->floor + game->player->pitch * 25;
 	while (ray->xy.y < game->drawing_img.height)
 	{
-		if (ray->xy.y < ray->ceiling)
+		if (ray->xy.y < pitch_ceiling)
 		{
 			pxl = set_pxl_argb(game->cub->ceiling_color[R], game->cub->ceiling_color[G], game->cub->ceiling_color[B], 0);
 			dist = dist_interpolation(game);
 		}
-		else if (ray->xy.y < ray->floor)
+		else if (ray->xy.y < pitch_floor)
 		{
 			get_pixel_from_xpm(texture, (int)(ray->wallX * texture->width), (int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor - ray->ceiling) * texture->height), &pxl);
 			dist = ray->wallDist;

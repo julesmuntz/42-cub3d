@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:36:57 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/29 17:33:02 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:02:11 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ void	check_movements(t_pge *game)
 
 	speed = 0.1f;
 	look = 0.06f;
+
+	if (game->key[1] == 1)
+		game->player->pitch = fmin(game->player->pitch + 0.5f, 10.0f);
+	if (game->key[2] == 1)
+		game->player->pitch = fmax(game->player->pitch - 0.5f, -10.0f);
 	if (game->key['w'] == 1)
 		go_front(game, speed);
 	if (game->key['s'] == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 14:36:39 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:34:25 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_player
 {
 	t_vf			pos;
 	float			angle;
+	float			pitch;
 	t_vf			plan;
 	t_vf			dir;
 	float			fov;
@@ -220,5 +221,6 @@ void				fill_rectangle_xpm(t_vi const *coor, t_vi const *v, t_xpm *xpm,
 						t_pxl *pxl);
 void				draw_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl);
 void				fill_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl);
+int					ft_mouse_move(int x, int y, void *game);
 
 #endif

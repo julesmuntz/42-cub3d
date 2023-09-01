@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/26 17:57:09 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:17:53 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	game_loop(t_pge *game, int f(void *))
 		&ft_key_press, (void *)game);
 	mlx_hook(game->ptr_window, KeyRelease, KeyReleaseMask,
 		&ft_key_release, (void *)game);
+	mlx_hook(game->ptr_window, MotionNotify, PointerMotionMask,
+		&ft_mouse_move, (void *)game);
 	mlx_loop(game->ptr_mlx);
 	return ;
 }

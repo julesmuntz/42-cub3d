@@ -1,10 +1,10 @@
-NO ./assets/portal_cobblestone.xpm
-SO ./assets/portal_stone.xpm
-WE ./assets/portal_whiteStone.xpm
-EA ./assets/portal_stoneslab_side.xpm
+NO ./assets/portal_textures/wall_basic.xpm
+SO ./assets/portal_textures/wall_vertical.xpm
+WE ./assets/portal_textures/wall_horizontal.xpm
+EA ./assets/portal_textures/wall_cross.xpm
 
-F 255,255,255
-C 255,255,255
+F 240,248,240
+C 240,248,240
 
 111111  11111
 100001  10001

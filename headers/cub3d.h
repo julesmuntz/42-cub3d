@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/31 18:39:07 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/01 13:25:51 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@
 # include <math.h>
 # include <stdbool.h>
 # include <stdlib.h>
-
-/* Global Variables (To Be Removed) */
-extern int		g_screen_width;
-extern int		g_screen_height;
-extern float	g_fov;
-extern bool		g_gofront;
-extern bool		g_goback;
-extern bool		g_goleft;
-extern bool		g_goright;
-extern bool		g_lookleft;
-extern bool		g_lookright;
-extern int		g_pixels;
 
 int				init_map(t_pge *game, char *arg);
 int				init_colors(t_pge *game, char *arg);
