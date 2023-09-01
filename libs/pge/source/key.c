@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:20 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 14:34:10 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:32:44 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,31 @@ int	ft_key_release(int keysym, void *game)
 	return (0);
 }
 
+static void	look_direction(t_pge *game, float n)
+{
+	game->player->angle -= n;
+	vectorf_rotation(&game->player->dir, n);
+	vectorf_rotation(&game->player->plan, n);
+}
+
 int	ft_mouse_move(int x, int y, void *game)
 {
 	t_pge	*g;
-	// int		last_x;
+	int		last_x;
 	int		last_y;
-	// float	delta_x;
+	float	delta_x;
 	float	delta_y;
 
 	g = (t_pge *)game;
-	// last_x = g->width / 2;
+	last_x = g->width / 2;
 	last_y = g->height / 2;
-	// delta_x = x - last_x;
+	delta_x = x - last_x;
 	delta_y = y - last_y;
-	(void)x;//T.B.C.
-	g->player->pitch = fmax(fmin(g->player->pitch - delta_y * 0.005f,
+	if (delta_x > 0)
+		look_direction(g, delta_x * 0.001f);
+	else if (delta_x < 0)
+		look_direction(g, delta_x * 0.001f);
+	g->player->pitch = fmax(fmin(g->player->pitch - delta_y * 0.0075f,
 				10.0f), -10.0f);
 	mlx_mouse_move(g->ptr_mlx, g->ptr_window, g->width / 2, g->height / 2);
 	return (0);
