@@ -1,7 +1,7 @@
-NO ./assets/cobblestone.xpm
-SO ./assets/Cat.xpm
-WE ./assets/Cat.xpm
-EA ./assets/Stitch.xpm
+NO ./assets/other/cobblestone.xpm
+SO ./assets/other/Cat.xpm
+WE ./assets/other/Cat.xpm
+EA ./assets/other/Stitch.xpm
 
 F 224,143,28
 C 13,143,224
