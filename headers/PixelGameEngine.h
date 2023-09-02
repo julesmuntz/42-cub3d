@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 17:09:18 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:51:49 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,17 @@ typedef struct s_cub
 
 }					t_cub;
 
+typedef struct s_portal
+{
+	bool			clicked_blue;
+	bool			clicked_orange;
+	bool			blue_led;
+	bool			orange_led;
+	char			*crosshair_ent_path;
+	char			*portalgun_ent_path;
+
+}					t_portal;
+
 typedef struct s_raycast
 {
 	float			cameraX;
@@ -155,6 +166,7 @@ typedef struct s_pge
 	t_cub			*cub;
 	t_player		*player;
 	t_raycast		*ray;
+	t_portal		*portal;
 }					t_pge;
 
 t_pxl				set_pxl_argb(unsigned char const red,

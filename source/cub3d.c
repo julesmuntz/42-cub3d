@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 17:52:07 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/02 19:20:55 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	main(int ac, char **av)
 		return (printf("Usage: %s <file>.cub\n", av[0]), 0);
 	screen.x = 1080;
 	screen.y = 720;
-	pxl.x = 2;
-	pxl.y = 2;
+	pxl.x = 1;
+	pxl.y = 1;
 	game = game_init(&screen, &pxl, "Cub3D");
 	if (!game)
 		return (1);
 	game->cub = init_cub();
+	game->portal = init_portal();
 	if (!game->cub)
 		return (1);
 	if (check_file(game, av[1]))

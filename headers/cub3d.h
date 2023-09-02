@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/01 13:25:51 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:48:47 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void			look_direction(t_pge *game, float n);
 void			fog_generation(t_pxl *pxl, float *dist, t_pge *game);
 bool			check_collision(t_pge *game);
 float			dist_interpolation(t_pge *game);
+t_portal		*init_portal(void);
+void			refresh_portal_colors(t_pge *game);
 
 #endif

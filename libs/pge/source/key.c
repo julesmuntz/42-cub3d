@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:20 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 17:32:44 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/02 19:24:20 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,6 @@ void	cub_clear(t_pge *game)
 	}
 	if (game->player)
 		free(game->player);
+	if (game->portal)
+		free(game->portal);
 }
