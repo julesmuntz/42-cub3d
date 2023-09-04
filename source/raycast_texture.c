@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:41:39 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:45:28 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,20 @@ int	add_texture(t_pge *game)
 	game->xpm = game_add_xpm(game->cub->south_tex_path, "south", game->xpm,
 			game);
 	if (!game->xpm)
-			return (0);
+		return (0);
 	game->xpm = game_add_xpm(game->cub->west_tex_path, "west", game->xpm, game);
 	if (!game->xpm)
-			return (0);
-	game->xpm = game_add_xpm(game->portal->portalgun_ent_path, "gun", game->xpm, game);
+		return (0);
+	game->xpm = game_add_xpm(game->portal->portalgun_ent_path, "gun", game->xpm,
+			game);
 	if (!game->xpm)
-			return (0);
-	game->xpm = game_add_xpm(game->portal->crosshair_ent_path, "crosshair", game->xpm, game);
+		return (0);
+	game->xpm = game_add_xpm(game->portal->crosshair_ent_path, "crosshair",
+			game->xpm, game);
 	if (!game->xpm)
-			return (0);
+		return (0);
 	if (add_portal_texture(game) == 0)
-			return (0);
+		return (0);
 	return (1);
 }
 
@@ -68,7 +70,7 @@ void	fog_generation(t_pxl *pxl, float *dist, t_pge *game)
 		*pxl = fog;
 	else
 		*pxl = pixel_interpolation(pxl, &fog, *dist,
-			game->cub->map_depth);
+				game->cub->map_depth);
 }
 
 float	dist_interpolation(t_pge *game)
@@ -84,8 +86,8 @@ float	dist_interpolation(t_pge *game)
 	dist = set_vector_by_points(&game->ray->xy, &center);
 	maxdist = set_vector_by_points(&floor, &center);
 	d = (0.1 * ((vector_dist(&maxdist) - vector_dist(&dist))
-			/ (vector_dist(&maxdist) - 0.1f)) + game->ray->wallDist
-		* ((vector_dist(&dist) - 0.1f) / (vector_dist(&maxdist) - 0.1f)));
+				/ (vector_dist(&maxdist) - 0.1f)) + game->ray->wallDist
+			* ((vector_dist(&dist) - 0.1f) / (vector_dist(&maxdist) - 0.1f)));
 	if (d < 1.f)
 		d = 0.f;
 	return (d);

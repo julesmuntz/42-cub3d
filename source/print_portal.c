@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:20:47 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:48:41 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_portal_gun(t_pge *game)
 	t_xpm	*sprite;
 
 	coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height
-		/ 2);
+			/ 2);
 	size = copy_vector(&coor);
 	if (game->portal->blue_led == true)
 		sprite = find_xpm(game->xpm, "bluegun");
@@ -38,9 +38,9 @@ void	print_crosshair(t_pge *game)
 	t_xpm	*sprite;
 
 	coor = set_vector(game->drawing_img.width / 2 - game->drawing_img.width
-		/ 28, game->drawing_img.height / 2 - game->drawing_img.width / 28);
+			/ 28, game->drawing_img.height / 2 - game->drawing_img.width / 28);
 	size = set_vector(game->drawing_img.width / 14, game->drawing_img.width
-		/ 14);
+			/ 14);
 	if (game->portal->clicked_blue == true)
 	{
 		if (game->portal->clicked_orange == true)
@@ -58,25 +58,24 @@ void	print_crosshair(t_pge *game)
 
 int	add_portal_texture(t_pge *game)
 {
-	/*add portal blue*/
 	game->xpm = game_add_xpm("./assets/portal_entities/portal_gun_blue.xpm",
-		"bluegun", game->xpm, game);
+			"bluegun", game->xpm, game);
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm("./assets/portal_entities/portal_gun_orange.xpm",
-		"orangegun", game->xpm, game);
+			"orangegun", game->xpm, game);
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm("./assets/portal_entities/crosshair_full.xpm",
-		"crosshairfull", game->xpm, game);
+			"crosshairfull", game->xpm, game);
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm("./assets/portal_entities/crosshair_blue_full.xpm",
-		"crosshairblue", game->xpm, game);
+			"crosshairblue", game->xpm, game);
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm("./assets/portal_entities/crosshair_orange_full.xpm",
-		"crosshairorange", game->xpm, game);
+			"crosshairorange", game->xpm, game);
 	if (!game->xpm)
 		return (0);
 	return (1);

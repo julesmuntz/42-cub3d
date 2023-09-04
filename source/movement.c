@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:36:57 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/02 19:21:10 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:49:06 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	check_movements(t_pge *game)
 
 	speed = 0.1f;
 	look = 0.06f;
-
 	refresh_portal_colors(game);
 	if (game->key[1] == 1)
 		game->player->pitch = fmin(game->player->pitch + 0.5f, 10.0f);
