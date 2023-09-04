@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   portal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 17:18:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/02 19:28:28 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:24:30 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_portal	*init_portal(void)
 	fd = open("./assets/portal_entities/portal_gun.xpm", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
+	close(fd);
 	return (portal);
 }
 

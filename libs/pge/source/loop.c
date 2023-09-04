@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/02 19:30:32 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:14:43 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 		game->portal->orange_led = true;
 		game->portal->clicked_orange = true;
 	}
+	printf("button value %d\n", button);
 
 	//temp
 	ft_putstr("\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/02 19:20:55 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 13:58:38 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,8 @@ int	main(int ac, char **av)
 
 void	print_visor(t_pge *game)
 {
-	t_vi	coor;
-	t_vi	size;
-
-	coor = set_vector(game->drawing_img.width / 2, game->drawing_img.height
-		/ 2);
-	size = copy_vector(&coor);
-	print_sprite(find_xpm(game->xpm, "gun"), coor, size, game);
-	coor = set_vector(game->drawing_img.width / 2 - game->drawing_img.width / 28, game->drawing_img.height / 2 - game->drawing_img.width / 28);
-	size = set_vector(game->drawing_img.width / 14 , game->drawing_img.width / 14);
-	print_sprite(find_xpm(game->xpm, "crosshair"), coor, size, game);
+	print_portal_gun(game);
+	print_crosshair(game);	
 }
 
 int	cub_launch(void *g)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
+#    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/02 17:24:07 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/09/04 13:29:04 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = 	cub3d.c				\
 		movement2.c			\
 		check_map.c			\
 		portal.c			\
+		print_portal.c		\
 
 # SRC_BONUS =	cub3d.c			\
 
