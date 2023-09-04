@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:28:23 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:46:20 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	game_loop(t_pge *game, int f(void *))
 		(void *)game);
 	mlx_hook(game->ptr_window, KeyRelease, KeyReleaseMask, &ft_key_release,
 		(void *)game);
-	mlx_hook(game->ptr_window, MotionNotify, PointerMotionMask, &ft_mouse_move,
-		(void *)game);
+	if (game->portal != NULL)
+		mlx_hook(game->ptr_window, MotionNotify, PointerMotionMask, &ft_mouse_move,
+			(void *)game);
 	mlx_mouse_hook(game->ptr_window, mouse_click, (void *)game);
 	mlx_hook(game->ptr_window, ClientMessage, 0, &ft_quit, (void *)game);
 	mlx_loop(game->ptr_mlx);

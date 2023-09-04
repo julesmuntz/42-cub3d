@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:51:17 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:50:14 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 {
 	t_pxl	pxl;
-	float	dist;
 
 	ray->xy.y = 0;
 	while (ray->xy.y < game->drawing_img.height)
@@ -125,24 +124,18 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 			pxl = set_pxl_argb(game->cub->ceiling_color[R],
 					game->cub->ceiling_color[G],
 					game->cub->ceiling_color[B], 0);
-			dist = ray->wallDist;
 		}
 		else if (ray->xy.y < ray->floor)
 		{
 			get_pixel_from_xpm(texture, (int)(ray->wallX * texture->width),
 				(int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor
 						- ray->ceiling) * texture->height), &pxl);
-			dist = ray->wallDist;
 		}
 		else
 		{
 			pxl = set_pxl_argb(game->cub->floor_color[R],
 					game->cub->floor_color[G], game->cub->floor_color[B], 0);
-			dist = (float)(game->drawing_img.height - ray->xy.y)
-				/ (float)game->drawing_img.height
-				* (float)(game->cub->map_depth / 2);
 		}
-		fog_generation(&pxl, &dist, game);
 		draw_pixel(&ray->xy, game, &game->drawing_img, &pxl);
 		ray->xy.y++;
 	}

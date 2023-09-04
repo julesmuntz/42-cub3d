@@ -6,7 +6,7 @@
 #    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/04 16:15:01 by gfranque         ###   ########.fr        #
+#    Updated: 2023/09/04 16:32:49 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ SRC = 	cub3d.c				\
 		movement2.c			\
 		check_map.c			\
 		portal.c			\
-		print_portal.c		\
 
 SRC_BONUS =	cub3d.c				\
 			mapping.c			\

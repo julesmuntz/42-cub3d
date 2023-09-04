@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:36:57 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 14:49:06 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:52:34 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,8 @@ void	check_movements(t_pge *game)
 	float	speed;
 	float	look;
 
-	speed = 0.1f;
-	look = 0.06f;
-	refresh_portal_colors(game);
-	if (game->key[1] == 1)
-		game->player->pitch = fmin(game->player->pitch + 0.5f, 10.0f);
-	if (game->key[2] == 1)
-		game->player->pitch = fmax(game->player->pitch - 0.5f, -10.0f);
+	speed = 0.05f;
+	look = 0.03f;
 	if (game->key['w'] == 1)
 		go_front(game, speed);
 	if (game->key['s'] == 1)
