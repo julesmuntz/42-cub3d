@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:09:13 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/28 16:21:35 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:09:45 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,31 @@ bool	invalid_extension(char *filename)
 	if (!cub || ft_strncmp(cub, ".cub\0", 5))
 		return (true);
 	return (false);
+}
+
+void	calculate_map_dimensions(t_pge *game, int fd)
+{
+	char	*line;
+	int		row_length;
+	int		sp;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		sp = 0;
+		while (ft_isspace(line[sp]))
+			sp++;
+		if (ft_ismap_char(line[sp]))
+		{
+			row_length = sp;
+			while (line[row_length] != '\0')
+				row_length++;
+			if (row_length > game->cub->map_width)
+				game->cub->map_width = row_length;
+			(game->cub->map_height)++;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 13:55:24 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:10:36 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void		print_portal_gun(t_pge *game);
 void		print_crosshair(t_pge *game);
 int			add_portal_texture(t_pge *game);
 void		portal_check(t_pge *game);
+void		calculate_map_dimensions(t_pge *game, int fd);
 
 #endif
