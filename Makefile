@@ -6,7 +6,7 @@
 #    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/04 13:29:04 by gfranque         ###   ########.fr        #
+#    Updated: 2023/09/04 16:15:01 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,20 @@ SRC = 	cub3d.c				\
 		portal.c			\
 		print_portal.c		\
 
-# SRC_BONUS =	cub3d.c			\
+SRC_BONUS =	cub3d.c				\
+			mapping.c			\
+			utilities.c			\
+			player.c			\
+			colors.c			\
+			check_file.c		\
+			textures.c			\
+			raycast.c			\
+			raycast_texture.c	\
+			movement.c			\
+			movement2.c			\
+			check_map.c			\
+			portal.c			\
+			print_portal.c		\
 
 INCLUDES = -I ./headers/ -I ./libs/mlx/
 
@@ -47,11 +60,11 @@ LIBRARY = -lX11 -lXext -lm
 
 SRC_DIR = source
 
-SRC_BONUS_DIR = source
+SRC_BONUS_DIR = source_bonus
 
 OBJ_DIR = obj
 
-OBJ_BONUS_DIR = obj
+OBJ_BONUS_DIR = obj_bonus
 
 SRCS = $(SRC:%=$(SRC_DIR)/%)
 
