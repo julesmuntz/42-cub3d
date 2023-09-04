@@ -6,7 +6,7 @@
 #    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/04 16:32:49 by gfranque         ###   ########.fr        #
+#    Updated: 2023/09/04 17:03:42 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,6 +167,10 @@ bonus:	$(OBJS_BONUS)
 	$(UNCOLOR)
 	@echo "\033[46m\033[37m Compilation completed \033[0m"
 
+rebonus:
+	$(MAKE) fclean
+	$(MAKE)	-j bonus
+
 m: all clean
 
-.PHONY: all clean fclean re m bonus
+.PHONY: all clean fclean re m bonus rebonus
