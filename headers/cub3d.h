@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:33:59 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:47:21 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int			add_portal_texture(t_pge *game);
 void		portal_check(t_pge *game);
 void		calculate_map_dimensions(t_pge *game, int fd);
 void		flood_fill(t_pge *game, int a, int b, bool *failure);
+void		set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist, t_pxl *pxl);
 
 #endif

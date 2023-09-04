@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:48:41 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:51:02 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	add_portal_texture(t_pge *game)
 			"crosshairblue", game->xpm, game);
 	if (!game->xpm)
 		return (0);
-	game->xpm = game_add_xpm("./assets/portal_entities/crosshair_orange_full.xpm",
+	game->xpm = game_add_xpm(
+			"./assets/portal_entities/crosshair_orange_full.xpm",
 			"crosshairorange", game->xpm, game);
 	if (!game->xpm)
 		return (0);

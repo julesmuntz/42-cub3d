@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   portal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 17:18:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 14:49:07 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:50:39 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int check_xpmpath(char *path)
+static int	check_xpmpath(char *path)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -50,13 +50,21 @@ t_portal	*init_portal(void)
 void	refresh_portal_colors(t_pge *game)
 {
 	if (game->portal->blue_led == true && game->portal->orange_led == false)
-		game->portal->portalgun_ent_path = "./assets/portal_entities/portal_gun_blue.xpm";
+		game->portal->portalgun_ent_path
+			= "./assets/portal_entities/portal_gun_blue.xpm";
 	if (game->portal->blue_led == false && game->portal->orange_led == true)
-		game->portal->portalgun_ent_path = "./assets/portal_entities/portal_gun_orange.xpm";
-	if (game->portal->clicked_blue == true && game->portal->clicked_orange == false)
-		game->portal->crosshair_ent_path = "./assets/portal_entities/crosshair_blue_full.xpm";
-	if (game->portal->clicked_blue == false && game->portal->clicked_orange == true)
-		game->portal->crosshair_ent_path = "./assets/portal_entities/crosshair_orange_full.xpm";
-	if (game->portal->clicked_blue == true && game->portal->clicked_orange == true)
-		game->portal->crosshair_ent_path = "./assets/portal_entities/crosshair_full.xpm";
+		game->portal->portalgun_ent_path
+			= "./assets/portal_entities/portal_gun_orange.xpm";
+	if (game->portal->clicked_blue == true
+		&& game->portal->clicked_orange == false)
+		game->portal->crosshair_ent_path
+			= "./assets/portal_entities/crosshair_blue_full.xpm";
+	if (game->portal->clicked_blue == false
+		&& game->portal->clicked_orange == true)
+		game->portal->crosshair_ent_path
+			= "./assets/portal_entities/crosshair_orange_full.xpm";
+	if (game->portal->clicked_blue == true
+		&& game->portal->clicked_orange == true)
+		game->portal->crosshair_ent_path
+			= "./assets/portal_entities/crosshair_full.xpm";
 }
