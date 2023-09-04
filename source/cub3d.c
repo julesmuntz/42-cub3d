@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 13:58:38 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:50:53 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ int	main(int ac, char **av)
 	if (!game)
 		return (1);
 	game->cub = init_cub();
-	game->portal = init_portal();
 	if (!game->cub)
-		return (1);
+		return (game_clear(game), 1);
+	game->portal = init_portal();
+	if (!game->portal)
+		return (cub_clear(game), game_clear(game), 1);
 	if (check_file(game, av[1]))
 		return (cub_clear(game), game_clear(game), 1);
 	game->player = set_player(&game->cub->player_pos, game->cub->player_angle,
