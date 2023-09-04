@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 18:18:57 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:02:33 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	add_texture(t_pge *game)
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm(game->cub->west_tex_path, "west", game->xpm, game);
+	if (!game->xpm)
+		return (0);
+	game->xpm = game_add_xpm("assets/portal_textures/door.xpm", "door", game->xpm,
+			game);
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm(game->portal->portalgun_ent_path, "gun", game->xpm,

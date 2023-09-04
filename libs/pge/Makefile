@@ -6,7 +6,7 @@
 #    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/01 17:40:13 by gfranque         ###   ########.fr        #
+#    Updated: 2023/09/04 18:34:53 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 GCC = cc
 
-FLAGS = -Wall -Wextra -Werror -Ofast
+FLAGS = -Wall -Wextra -Werror #-Ofast
 
 AR = ar rcs
 
