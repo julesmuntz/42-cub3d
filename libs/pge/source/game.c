@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 16:51:47 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:29:35 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	game_clear(t_pge *game)
 void	game_refresh(t_pge *game)
 {
 	t_vi	x;
-	t_pxl		pxl;
+	t_pxl	pxl;
 
 	x.x = 0;
 	while (x.x < game->img.width)

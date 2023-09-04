@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 13:56:07 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 14:31:44 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:27:47 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_circle_points(t_vi *coor, t_vi *xy, t_xpm *xpm, t_pxl *pxl)
 	draw_pixel_xpm(&point, xpm, pxl);
 }
 
-void	draw_circle_xpm(t_vi *coor, int	r, t_xpm *xpm, t_pxl *pxl)
+void	draw_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl)
 {
 	int		d;
 	t_vi	xy;
@@ -63,7 +63,7 @@ void	draw_circle_xpm(t_vi *coor, int	r, t_xpm *xpm, t_pxl *pxl)
 	}
 }
 
-void	fill_circle_xpm(t_vi *coor, int	r, t_xpm *xpm, t_pxl *pxl)
+void	fill_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl)
 {
 	while (r > 0)
 	{

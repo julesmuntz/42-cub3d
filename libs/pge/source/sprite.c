@@ -6,11 +6,17 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:09 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 16:44:44 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:40:10 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
+
+void	print_sprite_vector_set(t_vi *xy, t_vi *coor, t_vi *p)
+{
+	xy->x += p->x;
+	xy->y = coor->y;
+}
 
 void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 {
@@ -26,10 +32,9 @@ void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 		p.x = -1;
 	if (v.y < 0)
 		p.y = -1;
-	xy.x = coor.x;
+	xy = set_vector(coor.x, coor.y);
 	while (xy.x != coor.x + v.x)
 	{
-		xy.y = coor.y;
 		while (xy.y != coor.y + v.y)
 		{
 			get_pixel_from_xpm(xpm, ((float)(xy.x - coor.x)) / (float)v.x
@@ -38,7 +43,7 @@ void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 			draw_pixel(&xy, game, &game->drawing_img, &pxl);
 			xy.y += p.y;
 		}
-		xy.x += p.x;
+		print_sprite_vector_set(&xy, &coor, &p);
 	}
 }
 
@@ -60,7 +65,7 @@ int	new_sprite(t_vi const *size, char const *name, t_xpm **xpm, t_pge *game)
 	xpm[len]->width = size->x;
 	xpm[len]->height = size->y;
 	xpm[len]->addr = mlx_get_data_addr(xpm[len]->img, &xpm[len]->bpp,
-		&xpm[len]->line_len, &xpm[len]->endian);
+			&xpm[len]->line_len, &xpm[len]->endian);
 	xpm[len]->name = (char *)name;
 	coor = set_vector(0, 0);
 	pxl = set_pxl_argb(0, 0, 0, 255);

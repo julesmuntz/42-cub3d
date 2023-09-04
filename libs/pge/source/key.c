@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:20 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/02 19:24:20 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:27:36 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int	ft_key_press(int keysym, void *game)
 	}
 	if (keysym < 127)
 		g->key[keysym] = 1;
-	/*if (keysym == 65362)
-		g->key['w'] = 1;
-	else if (keysym == 65364)
-		g->key['s'] = 1;*/
 	if (keysym == XK_Left)
 		g->key['q'] = 1;
 	if (keysym == XK_Right)
@@ -38,8 +34,6 @@ int	ft_key_press(int keysym, void *game)
 		g->key[1] = 1;
 	if (keysym == XK_Down)
 		g->key[2] = 1;
-	/*if (keysym >= 127)
-		printf("key press %d\n", keysym);*/
 	return (0);
 }
 
@@ -50,10 +44,6 @@ int	ft_key_release(int keysym, void *game)
 	g = (t_pge *)game;
 	if (keysym < 127)
 		g->key[keysym] = 0;
-	/*if (keysym == 65362)
-		g->key['w'] = 0;
-	else if (keysym == 65364)
-		g->key['s'] = 0;*/
 	if (keysym == 65361)
 		g->key['q'] = 0;
 	else if (keysym == 65363)

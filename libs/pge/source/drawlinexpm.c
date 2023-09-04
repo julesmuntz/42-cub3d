@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 13:08:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 14:38:00 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:27:05 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	draw_rectangle_xpm(t_vi *coor, t_vi *v, t_xpm *xpm, t_pxl *pxl)
 	draw_line_xpm(&xy, &v1, xpm, pxl);
 }
 
-void	fill_rectangle_xpm(t_vi const *coor, t_vi const *v, t_xpm *xpm, t_pxl *pxl)
+void	fill_rectangle_xpm(t_vi const *coor, t_vi const *v, t_xpm *xpm,
+		t_pxl *pxl)
 {
 	int		xf;
 	int		step;

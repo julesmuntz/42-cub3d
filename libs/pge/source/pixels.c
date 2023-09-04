@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:58 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/31 14:33:21 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:29:17 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ t_pxl	pixel_interpolation(t_pxl const *color, t_pxl const *fog,
 	else
 	{
 		red = (unsigned char)(color->red * ((max - dist) / (max - 0.1f))
-			+ fog->red * ((dist - 0.1f) / (max - 0.1f)));
+				+ fog->red * ((dist - 0.1f) / (max - 0.1f)));
 		green = (unsigned char)(color->green * ((max - dist) / (max - 0.1f))
-			+ fog->green * ((dist - 0.1f) / (max - 0.1f)));
+				+ fog->green * ((dist - 0.1f) / (max - 0.1f)));
 		blue = (unsigned char)(color->blue * ((max - dist) / (max - 0.1f))
-			+ fog->blue * ((dist - 0.1f) / (max - 0.1f)));
+				+ fog->blue * ((dist - 0.1f) / (max - 0.1f)));
 		new = set_pxl_argb(red, green, blue, 0);
 	}
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:03 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/22 16:45:31 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:28:41 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	fill_rectangle(t_vi *coor, t_vi *v, t_pge *game, t_pxl *pxl)
 {
 	short int	i;
 	short int	y;
-	t_vi	vhrzt;
+	t_vi		vhrzt;
 
 	if (v->x == 0 || v->y == 0)
 		return (draw_line(coor, v, game, pxl));

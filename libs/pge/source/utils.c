@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/26 14:57:15 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:40:04 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	get_pixel_from_xpm(t_xpm *xpm, int x, int y, t_pxl *pxl)
 {
-	unsigned int const	*array = (unsigned int const *)xpm->addr;
+	unsigned int	*array;
 
+	array = (unsigned int *)xpm->addr;
 	if (x < 0 || x > xpm->width || y < 0 || y > xpm->height)
 	{
 		*pxl = set_pxl_argb(0, 0, 0, 255);
@@ -27,8 +28,9 @@ void	get_pixel_from_xpm(t_xpm *xpm, int x, int y, t_pxl *pxl)
 
 void	get_pixel_from_img(t_im img, int x, int y, t_pxl *pxl)
 {
-	unsigned int const	*array = (unsigned int const *)img.addr;
+	unsigned int	*array;
 
+	array = (unsigned int *)img.addr;
 	if (x < 0 || x > img.width || y < 0 || y > img.height)
 	{
 		set_pxl_hex(0, pxl);
@@ -85,8 +87,8 @@ t_xpm	*find_xpm(t_xpm **array, char *name)
 	len = ft_strlen(name);
 	while (array[i])
 	{
-		if ((int)ft_strlen(array[i]->name) == len
-				&& ft_strncmp(name, array[i]->name, len) == 0)
+		if ((int)ft_strlen(array[i]->name) == len && ft_strncmp(name,
+				array[i]->name, len) == 0)
 			return (array[i]);
 		i++;
 	}

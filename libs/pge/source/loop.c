@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:14:43 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:28:23 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,18 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 		game->portal->orange_led = true;
 		game->portal->clicked_orange = true;
 	}
-	printf("button value %d\n", button);
-
-	//temp
-	ft_putstr("\n");
-	if (game->portal->blue_led == true && game->portal->orange_led == false)
-		ft_putstr("\1\033[38;5;033m\2The led is blue\n\1\033[0m\2");
-	if (game->portal->blue_led == false && game->portal->orange_led == true)
-		ft_putstr("\1\033[38;5;208m\2The led is orange\n\1\033[0m\2");
-	if (game->portal->clicked_blue == true && game->portal->clicked_orange == false)
-		ft_putstr("\1\033[38;5;033m\2The blue part of the crosshair is filled\n\1\033[0m\2");
-	if (game->portal->clicked_blue == false && game->portal->clicked_orange == true)
-		ft_putstr("\1\033[38;5;208m\2The orange part of the crosshair is filled\n\1\033[0m\2");
-	if (game->portal->clicked_blue == true && game->portal->clicked_orange == true)
-		ft_putstr("\1\033[38;5;159m\2Both parts of the crosshair are filled\n\1\033[0m\2");
-	//temp
-
 	return (0);
 }
 
 void	game_loop(t_pge *game, int f(void *))
 {
 	mlx_loop_hook(game->ptr_mlx, f, game);
-	mlx_hook(game->ptr_window, KeyPress, KeyPressMask,
-		&ft_key_press, (void *)game);
-	mlx_hook(game->ptr_window, KeyRelease, KeyReleaseMask,
-		&ft_key_release, (void *)game);
-	mlx_hook(game->ptr_window, MotionNotify, PointerMotionMask,
-		&ft_mouse_move, (void *)game);
+	mlx_hook(game->ptr_window, KeyPress, KeyPressMask, &ft_key_press,
+		(void *)game);
+	mlx_hook(game->ptr_window, KeyRelease, KeyReleaseMask, &ft_key_release,
+		(void *)game);
+	mlx_hook(game->ptr_window, MotionNotify, PointerMotionMask, &ft_mouse_move,
+		(void *)game);
 	mlx_mouse_hook(game->ptr_window, mouse_click, (void *)game);
 	mlx_hook(game->ptr_window, ClientMessage, 0, &ft_quit, (void *)game);
 	mlx_loop(game->ptr_mlx);
