@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 17:40:02 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:18:57 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
 {
+	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'D')
+		return (find_xpm(game->xpm, "door"));
 	if (side == 0)
 	{
 		if (step->x < 0)

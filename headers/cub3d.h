@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:47:21 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:20:33 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void		portal_check(t_pge *game);
 void		calculate_map_dimensions(t_pge *game, int fd);
 void		flood_fill(t_pge *game, int a, int b, bool *failure);
 void		set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist, t_pxl *pxl);
+int			door_is_close(t_pge *game, int x, int y);
 
 #endif

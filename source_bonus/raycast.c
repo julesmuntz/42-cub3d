@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 17:37:53 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:11:20 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (game->cub->map[ray->map.y][ray->map.x] == '1')
+		if (game->cub->map[ray->map.y][ray->map.x] == '1'
+			|| (game->cub->map[ray->map.y][ray->map.x] == 'D'
+			&& door_is_close(game, ray->map.x, ray->map.y) == 1))
 			ray->hit = 1;
 	}
 	if (ray->side == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:09:13 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:32:34 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:16:16 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,12 @@ void	flood_fill(t_pge *game, int a, int b, bool *failure)
 	flood_fill(game, a - 1, b, failure);
 	flood_fill(game, a, b + 1, failure);
 	flood_fill(game, a, b - 1, failure);
+}
+
+int	door_is_close(t_pge *game, int x, int y)
+{
+	if (game->player->pos.x >= x - 1 && game->player->pos.x <= x + 1
+		&& game->player->pos.y >= y - 1 && game->player->pos.y <= y + 1)
+		return (0);
+	return (1);
 }
