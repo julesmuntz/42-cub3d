@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:31:12 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:30:58 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ static int	end(t_pge *game, char *arg)
 		return (print_error("Missing color(s)"), 1);
 	if (init_colors(game, arg))
 		return (1);
-	if (game->cub->map_found == false || game->cub->wall_found == false)
-		return (print_error("Missing map"), 1);
 	if (game->cub->multiple_players == true)
 		return (print_error("Multiple players"), 1);
-	if (game->cub->valid_map == false)
+	if (game->cub->valid_map == false || game->cub->invalid_map == true)
 		return (print_error("Invalid map"), 1);
+	if (game->cub->map_found == false || game->cub->wall_found == false)
+		return (print_error("Missing map"), 1);
 	if (game->cub->player_found == false)
 		return (print_error("Player not found"), 1);
 	if (game->cub->unreachable_areas == true)

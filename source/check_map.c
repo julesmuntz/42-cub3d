@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 12:32:27 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:44:26 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:31:09 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 static bool	is_space_around(t_pge *game, int a, int b)
 {
-	if (a - 1 >= 0 && game->cub->map[a - 1][b] == ' ')
+	if (a - 1 >= 0 && (game->cub->map[a - 1][b] == ' '
+		|| game->cub->map[a - 1][b] == 0))
 		return (true);
-	if (a + 1 < game->cub->map_height && game->cub->map[a + 1][b] == ' ')
+	if (game->cub->map[a + 1] && (game->cub->map[a + 1][b] == ' '
+		|| game->cub->map[a + 1][b] == 0))
 		return (true);
-	if (b - 1 >= 0 && game->cub->map[a][b - 1] == ' ')
+	if (b - 1 >= 0 && (game->cub->map[a][b - 1] == ' '
+		|| game->cub->map[a][b - 1] == 0))
 		return (true);
-	if (game->cub->map[a][b + 1] == ' ')
+	if ((game->cub->map[a][b + 1] == ' '
+		|| game->cub->map[a][b + 1] == 0))
 		return (true);
 	return (false);
 }
@@ -67,6 +71,7 @@ static bool	is_space_around_and_flood_fill(t_pge *game,
 				|| ft_ismap_player(game->cub->map[*a][*b]))
 				&& (is_space_around(game, *a, *b)))
 			{
+				game->cub->invalid_map = true;
 				*failure = true;
 				return (true);
 			}
