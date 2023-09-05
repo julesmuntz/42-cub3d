@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 12:32:27 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/05 15:36:18 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:03:30 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,18 +112,21 @@ int	check_map(t_pge *game, char *arg)
 	int		a;
 	int		b;
 
-	failure = false;
-	init_map(game, arg);
-	if (!game->cub->map)
-		return (ft_free_lines(game->cub->map), 1);
-	game->cub->map_found = true;
-	a = -1;
-	if (check_map_characters(game, &a, &b, &failure))
-		return (0);
-	if (is_space_around_and_flood_fill(game, &a, &b, &failure))
-		return (0);
-	check_walls_and_unreachable_areas(game);
-	if (failure == false)
-		game->cub->valid_map = true;
+	if (game->cub->searching_for_map)
+	{
+		failure = false;
+		init_map(game, arg);
+		if (!game->cub->map)
+			return (ft_free_lines(game->cub->map), 1);
+		game->cub->map_found = true;
+		a = -1;
+		if (check_map_characters(game, &a, &b, &failure))
+			return (0);
+		if (is_space_around_and_flood_fill(game, &a, &b, &failure))
+			return (0);
+		check_walls_and_unreachable_areas(game);
+		if (failure == false)
+			game->cub->valid_map = true;
+	}
 	return (0);
 }

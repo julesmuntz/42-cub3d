@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/05 15:18:02 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:03:20 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ static int	check_texture_and_color(t_pge *game, char *line)
 
 static int	end(t_pge *game, char *arg)
 {
-	if (game->cub->searching_for_map)
-		check_map(game, arg);
+	check_map(game, arg);
 	if (!game->cub->north_found || !game->cub->south_found
 		|| !game->cub->west_found || !game->cub->east_found)
 		return (print_error("Missing texture(s)"), 1);
