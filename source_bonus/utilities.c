@@ -6,11 +6,11 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:09:13 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/05 16:42:24 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:36:41 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PixelGameEngine.h"
+#include "cub3d.h"
 
 void	print_error(char *str)
 {
@@ -77,8 +77,8 @@ void	flood_fill(t_pge *game, int a, int b, bool *failure)
 
 int	door_is_close(t_pge *game, int x, int y)
 {
-	if (game->player->pos.x >= x - 1 && game->player->pos.x <= x + 2
-		&& game->player->pos.y >= y - 1 && game->player->pos.y <= y + 2)
+	if (game->player->pos.x >= x - 0.5f && game->player->pos.x <= x + 1.5f
+		&& game->player->pos.y >= y - 0.5f && game->player->pos.y <= y + 1.5f)
 		return (0);
 	return (1);
 }

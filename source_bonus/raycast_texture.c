@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 16:38:47 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:52:57 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,26 @@ int	add_texture(t_pge *game)
 {
 	game->xpm = game_add_xpm(game->cub->east_tex_path, "east", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("east xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm(game->cub->north_tex_path, "north", game->xpm,
 			game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("north xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm(game->cub->south_tex_path, "south", game->xpm,
 			game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("south xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm(game->cub->west_tex_path, "west", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("west xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm(game->portal->portalgun_ent_path, "gun", game->xpm,
 			game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("portalgun xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm(game->portal->crosshair_ent_path, "crosshair",
 			game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("crosshair (empty) xpm failed to load\n"), 0);
 	if (add_portal_texture(game) == 0)
 		return (0);
 	return (1);

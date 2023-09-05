@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 16:40:31 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:52:33 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	add_door_texture(t_pge *game)
 	game->xpm = game_add_xpm("assets/portal_textures/door.xpm",
 			"door", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("door xpm failed to load\n"), 0);
 	return (1);
 }
 
@@ -72,23 +72,23 @@ int	add_portal_texture(t_pge *game)
 	game->xpm = game_add_xpm("./assets/portal_entities/portal_gun_blue.xpm",
 			"bluegun", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("portalgun (blue led) xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm("./assets/portal_entities/portal_gun_orange.xpm",
 			"orangegun", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("portalgun (orange led) xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm("./assets/portal_entities/crosshair_full.xpm",
 			"crosshairfull", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("crosshair (full) xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm("./assets/portal_entities/crosshair_blue_full.xpm",
 			"crosshairblue", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("crosshair (blue) xpm failed to load\n"), 0);
 	game->xpm = game_add_xpm(
 			"./assets/portal_entities/crosshair_orange_full.xpm",
 			"crosshairorange", game->xpm, game);
 	if (!game->xpm)
-		return (0);
+		return (print_error("crosshair (orange) xpm failed to load\n"), 0);
 	return (1);
 }

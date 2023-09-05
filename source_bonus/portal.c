@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 17:18:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:50:39 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:59:47 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static int	check_xpmpath(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (1);
+		return (printf("\033[0;31mError\nFailed to load\n\"%s\"\n\033[0;0m",
+				path), 1);
 	close(fd);
 	return (0);
 }
