@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 14:48:46 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:35:55 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,19 +128,19 @@ typedef struct s_portal
 
 typedef struct s_raycast
 {
-	float			cameraX;
-	t_vf			rayDir;
+	float			camerax;
+	t_vf			raydir;
 	t_vi			map;
-	t_vf			sideDist;
-	t_vf			deltaDist;
-	float			wallDist;
+	t_vf			sidedist;
+	t_vf			deltadist;
+	float			walldist;
 	t_vi			step;
 	int				hit;
 	int				side;
-	int				wallSize;
+	int				wallsize;
 	int				ceiling;
 	int				floor;
-	float			wallX;
+	float			wallx;
 	t_vi			xy;
 }					t_raycast;
 
@@ -232,8 +232,8 @@ short int			draw_pixel_xpm(t_vi *xy, t_xpm *xpm, t_pxl *pxl);
 void				draw_line_xpm(t_vi *coor, t_vi *v, t_xpm *xpm, t_pxl *pxl);
 void				draw_rectangle_xpm(t_vi *coor, t_vi *v, t_xpm *xpm,
 						t_pxl *pxl);
-void				fill_rectangle_xpm(t_vi const *coor, t_vi const *v, t_xpm *xpm,
-						t_pxl *pxl);
+void				fill_rectangle_xpm(t_vi const *coor, t_vi const *v,
+						t_xpm *xpm, t_pxl *pxl);
 void				draw_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl);
 void				fill_circle_xpm(t_vi *coor, int r, t_xpm *xpm, t_pxl *pxl);
 int					ft_mouse_move(int x, int y, void *game);

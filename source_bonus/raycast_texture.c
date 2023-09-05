@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 19:02:33 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:38:47 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ int	add_texture(t_pge *game)
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm(game->cub->west_tex_path, "west", game->xpm, game);
-	if (!game->xpm)
-		return (0);
-	game->xpm = game_add_xpm("assets/portal_textures/door.xpm", "door", game->xpm,
-			game);
 	if (!game->xpm)
 		return (0);
 	game->xpm = game_add_xpm(game->portal->portalgun_ent_path, "gun", game->xpm,
@@ -92,7 +88,7 @@ float	dist_interpolation(t_pge *game)
 	dist = set_vector_by_points(&game->ray->xy, &center);
 	maxdist = set_vector_by_points(&floor, &center);
 	d = (0.1 * ((vector_dist(&maxdist) - vector_dist(&dist))
-				/ (vector_dist(&maxdist) - 0.1f)) + game->ray->wallDist
+				/ (vector_dist(&maxdist) - 0.1f)) + game->ray->walldist
 			* ((vector_dist(&dist) - 0.1f) / (vector_dist(&maxdist) - 0.1f)));
 	if (d < 1.f)
 		d = 0.f;
@@ -109,14 +105,14 @@ void	set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist, t_pxl *pxl)
 		*pxl = set_pxl_argb(game->cub->ceiling_color[R],
 				game->cub->ceiling_color[G],
 				game->cub->ceiling_color[B], 0);
-		*dist = ray->wallDist;
+		*dist = ray->walldist;
 	}
 	else if (ray->xy.y < ray->floor)
 	{
-		get_pixel_from_xpm(texture, (int)(ray->wallX * texture->width),
+		get_pixel_from_xpm(texture, (int)(ray->wallx * texture->width),
 			(int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor
 					- ray->ceiling) * texture->height), pxl);
-		*dist = ray->wallDist;
+		*dist = ray->walldist;
 	}
 	else
 	{

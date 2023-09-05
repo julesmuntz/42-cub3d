@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 16:50:14 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:35:55 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	raycast_init(t_pge *game)
 	ray->xy.x = 0;
 	while (ray->xy.x < game->drawing_img.width)
 	{
-		ray->cameraX = (float)ray->xy.x / (float)game->drawing_img.width * 2.f
+		ray->camerax = (float)ray->xy.x / (float)game->drawing_img.width * 2.f
 			- 1.f;
-		ray->rayDir.x = game->player->dir.x + game->player->plan.x
-			* ray->cameraX;
-		ray->rayDir.y = game->player->dir.y + game->player->plan.y
-			* ray->cameraX;
+		ray->raydir.x = game->player->dir.x + game->player->plan.x
+			* ray->camerax;
+		ray->raydir.y = game->player->dir.y + game->player->plan.y
+			* ray->camerax;
 		ray->map.x = (int)game->player->pos.x;
 		ray->map.y = (int)game->player->pos.y;
-		ray->deltaDist.x = fabsf(1.f / ray->rayDir.x);
-		ray->deltaDist.y = fabsf(1.f / ray->rayDir.y);
+		ray->deltadist.x = fabsf(1.f / ray->raydir.x);
+		ray->deltadist.y = fabsf(1.f / ray->raydir.y);
 		ray->hit = 0;
 		raycast_dda(game, ray);
 		ray->xy.x++;
@@ -38,29 +38,29 @@ void	raycast_init(t_pge *game)
 
 void	raycast_dda(t_pge *game, t_raycast *ray)
 {
-	if (ray->rayDir.x < 0)
+	if (ray->raydir.x < 0)
 	{
 		ray->step.x = -1;
-		ray->sideDist.x = (game->player->pos.x - (float)ray->map.x)
-			* ray->deltaDist.x;
+		ray->sidedist.x = (game->player->pos.x - (float)ray->map.x)
+			* ray->deltadist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->sideDist.x = ((float)ray->map.x + 1.0f - game->player->pos.x)
-			* ray->deltaDist.x;
+		ray->sidedist.x = ((float)ray->map.x + 1.0f - game->player->pos.x)
+			* ray->deltadist.x;
 	}
-	if (ray->rayDir.y < 0)
+	if (ray->raydir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->sideDist.y = (game->player->pos.y - (float)ray->map.y)
-			* ray->deltaDist.y;
+		ray->sidedist.y = (game->player->pos.y - (float)ray->map.y)
+			* ray->deltadist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->sideDist.y = ((float)ray->map.y + 1.0f - game->player->pos.y)
-			* ray->deltaDist.y;
+		ray->sidedist.y = ((float)ray->map.y + 1.0f - game->player->pos.y)
+			* ray->deltadist.y;
 	}
 	raycast_dda_collision(game, ray);
 }
@@ -69,15 +69,15 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray)
 {
 	while (ray->hit == 0)
 	{
-		if (ray->sideDist.x < ray->sideDist.y)
+		if (ray->sidedist.x < ray->sidedist.y)
 		{
-			ray->sideDist.x += ray->deltaDist.x;
+			ray->sidedist.x += ray->deltadist.x;
 			ray->map.x += ray->step.x;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDist.y += ray->deltaDist.y;
+			ray->sidedist.y += ray->deltadist.y;
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
@@ -85,9 +85,9 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray)
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
-		ray->wallDist = (ray->sideDist.x - ray->deltaDist.x);
+		ray->walldist = (ray->sidedist.x - ray->deltadist.x);
 	else
-		ray->wallDist = (ray->sideDist.y - ray->deltaDist.y);
+		ray->walldist = (ray->sidedist.y - ray->deltadist.y);
 	raycast_dda_setup(game, ray);
 }
 
@@ -95,19 +95,19 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 {
 	t_xpm	*texture;
 
-	ray->wallSize = (float)game->drawing_img.height / ray->wallDist;
-	ray->ceiling = (float)(game->drawing_img.height) / 2.f - ray->wallSize / 2.f
+	ray->wallsize = (float)game->drawing_img.height / ray->walldist;
+	ray->ceiling = (float)(game->drawing_img.height) / 2.f - ray->wallsize / 2.f
 		+ game->player->pitch * 25;
-	ray->floor = ray->ceiling + ray->wallSize;
+	ray->floor = ray->ceiling + ray->wallsize;
 	if (ray->side == 0)
-		ray->wallX = game->player->pos.y + ray->wallDist * ray->rayDir.y;
+		ray->wallx = game->player->pos.y + ray->walldist * ray->raydir.y;
 	else
-		ray->wallX = game->player->pos.x + ray->wallDist * ray->rayDir.x;
-	ray->wallX -= (int)(ray->wallX);
-	ray->wallX = 1.0f - ray->wallX;
-	if ((ray->side == 0 && ray->rayDir.x < 0) || (ray->side == 1
-			&& ray->rayDir.y > 0))
-		ray->wallX = 1.0f - ray->wallX;
+		ray->wallx = game->player->pos.x + ray->walldist * ray->raydir.x;
+	ray->wallx -= (int)(ray->wallx);
+	ray->wallx = 1.0f - ray->wallx;
+	if ((ray->side == 0 && ray->raydir.x < 0) || (ray->side == 1
+			&& ray->raydir.y > 0))
+		ray->wallx = 1.0f - ray->wallx;
 	texture = texture_choice(ray->side, &ray->step, game);
 	raycast_dda_trace(game, ray, texture);
 }
@@ -127,7 +127,7 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 		}
 		else if (ray->xy.y < ray->floor)
 		{
-			get_pixel_from_xpm(texture, (int)(ray->wallX * texture->width),
+			get_pixel_from_xpm(texture, (int)(ray->wallx * texture->width),
 				(int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor
 						- ray->ceiling) * texture->height), &pxl);
 		}

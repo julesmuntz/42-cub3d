@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 16:28:25 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:35:14 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ float	dist_interpolation(t_pge *game)
 	dist = set_vector_by_points(&game->ray->xy, &center);
 	maxdist = set_vector_by_points(&floor, &center);
 	d = (0.1 * ((vector_dist(&maxdist) - vector_dist(&dist))
-				/ (vector_dist(&maxdist) - 0.1f)) + game->ray->wallDist
+				/ (vector_dist(&maxdist) - 0.1f)) + game->ray->walldist
 			* ((vector_dist(&dist) - 0.1f) / (vector_dist(&maxdist) - 0.1f)));
 	if (d < 1.f)
 		d = 0.f;

@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 17:51:02 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:40:31 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,19 @@ void	print_crosshair(t_pge *game)
 		print_sprite(sprite, coor, size, game);
 }
 
+int	add_door_texture(t_pge *game)
+{
+	game->xpm = game_add_xpm("assets/portal_textures/door.xpm",
+			"door", game->xpm, game);
+	if (!game->xpm)
+		return (0);
+	return (1);
+}
+
 int	add_portal_texture(t_pge *game)
 {
+	if (add_door_texture(game) == 0)
+		return (0);
 	game->xpm = game_add_xpm("./assets/portal_entities/portal_gun_blue.xpm",
 			"bluegun", game->xpm, game);
 	if (!game->xpm)
