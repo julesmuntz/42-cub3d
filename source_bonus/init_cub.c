@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:30:17 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 17:02:16 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:48:54 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static void	init_cub2(t_cub *cub)
 	cub->searching_for_map = false;
 	cub->unreachable_areas = false;
 	cub->wall_found = false;
+	cub->door_found = false;
+	cub->invalid_door = false;
+	cub->invalid_map = false;
 }
 
 t_cub	*init_cub(void)

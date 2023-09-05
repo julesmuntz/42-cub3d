@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:16:23 by gfranque          #+#    #+#             */
-/*   Updated: 2023/08/25 18:15:39 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:14:30 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ char	*ft_strndup(const char *s, size_t n);
 int		ft_str_is(int (*f)(int), char *str);
 int		ft_ismap_char(int c);
 int		ft_ismap_player(int c);
+int		ft_ismap_walkable(int c);
 
 #endif

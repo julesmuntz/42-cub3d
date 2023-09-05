@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/02 18:51:49 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:48:46 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ typedef struct s_cub
 	bool			searching_for_map;
 	bool			unreachable_areas;
 	bool			wall_found;
+	bool			door_found;
+	bool			invalid_door;
+	bool			invalid_map;
 
 	int				map_width;
 	int				map_height;

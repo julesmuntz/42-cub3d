@@ -6,7 +6,7 @@
 #    By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/04 17:37:42 by julmuntz         ###   ########.fr        #
+#    Updated: 2023/09/05 15:37:32 by julmuntz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC = 	cub3d.c				\
 SRC_BONUS =	cub3d.c				\
 			mapping.c			\
 			utilities.c			\
+			utilities2.c		\
 			player.c			\
 			colors.c			\
 			check_file.c		\

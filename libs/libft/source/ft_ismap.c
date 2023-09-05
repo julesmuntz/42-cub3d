@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ismap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 15:47:10 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 18:58:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:13:57 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ int	ft_ismap_char(int c)
 int	ft_ismap_player(int c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
+int	ft_ismap_walkable(int c)
+{
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	return (0);
 }
