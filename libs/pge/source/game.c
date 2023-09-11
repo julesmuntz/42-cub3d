@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/11 15:12:52 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:15:53 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static short int	game_set(t_pge *game)
 	game->ptr_mlx = mlx_init();
 	if (!game->ptr_mlx)
 	{
-		free(game);
+		game_clear(game);
 		return (0);
 	}
 	if (game_image_add(game, &game->img, game->width, game->height) == 0)
