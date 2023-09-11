@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 12:32:27 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/05 18:31:09 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:50:09 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static bool	is_space_around_and_flood_fill(t_pge *game,
 		*b = 0;
 		while (game->cub->map[*a][*b])
 		{
+			if (game->cub->map[*a][*b] == 'D')
+				game->cub->door_found = true;
 			if ((game->cub->map[*a][*b] == '0'
 				|| ft_ismap_player(game->cub->map[*a][*b]))
 				&& (is_space_around(game, *a, *b)))
@@ -97,10 +99,7 @@ static void	check_walls_and_unreachable_areas(t_pge *game)
 		while (game->cub->map[a][b])
 		{
 			if (game->cub->map[a][b] == '1')
-			{
 				game->cub->wall_found = true;
-				return ;
-			}
 			if (game->cub->map[a][b] == '0')
 				game->cub->unreachable_areas = true;
 			b++;
@@ -115,18 +114,21 @@ int	check_map(t_pge *game, char *arg)
 	int		a;
 	int		b;
 
-	failure = false;
-	init_map(game, arg);
-	if (!game->cub->map)
-		return (ft_free_lines(game->cub->map), 1);
-	game->cub->map_found = true;
-	a = 0;
-	if (check_map_characters(game, &a, &b, &failure))
-		return (0);
-	if (is_space_around_and_flood_fill(game, &a, &b, &failure))
-		return (0);
-	check_walls_and_unreachable_areas(game);
-	if (failure == false)
-		game->cub->valid_map = true;
+	if (game->cub->searching_for_map)
+	{
+		failure = false;
+		init_map(game, arg);
+		if (!game->cub->map)
+			return (ft_free_lines(game->cub->map), 1);
+		game->cub->map_found = true;
+		a = 0;
+		if (check_map_characters(game, &a, &b, &failure))
+			return (0);
+		if (is_space_around_and_flood_fill(game, &a, &b, &failure))
+			return (0);
+		check_walls_and_unreachable_areas(game);
+		if (failure == false)
+			game->cub->valid_map = true;
+	}
 	return (0);
 }
