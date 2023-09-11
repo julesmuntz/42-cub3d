@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 17:34:04 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:27:09 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ int	cub_set(t_pge *game)
 	return (0);
 }
 
+int	main2(t_pge *game)
+{
+	cub_set(game);
+	look_direction(game, game->cub->player_angle);
+	if (game_open_window(game, "Cub3D") == 0)
+		return (cub_clear(game), game_clear(game), 2);
+	game_loop(game, &cub_launch);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_pge	*game;
@@ -44,7 +54,7 @@ int	main(int ac, char **av)
 	screen.y = 720;
 	pxl.x = 1;
 	pxl.y = 1;
-	game = game_init(&screen, &pxl, "Cub3D");
+	game = game_init(&screen, &pxl);
 	if (!game)
 		return (1);
 	game->cub = init_cub();
@@ -55,10 +65,7 @@ int	main(int ac, char **av)
 		return (cub_clear(game), game_clear(game), 1);
 	if (check_file(game, av[1]))
 		return (cub_clear(game), game_clear(game), 1);
-	cub_set(game);
-	look_direction(game, game->cub->player_angle);
-	game_loop(game, &cub_launch);
-	return (0);
+	return (main2(game));
 }
 
 void	print_visor(t_pge *game)

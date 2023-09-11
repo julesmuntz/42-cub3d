@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:29:35 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:12:52 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,12 @@ static short int	game_image_add(t_pge *game, t_im *img, short int width,
 	return (1);
 }
 
-static short int	game_set(t_pge *game, char const *name)
+static short int	game_set(t_pge *game)
 {
 	game->ptr_mlx = mlx_init();
 	if (!game->ptr_mlx)
 	{
 		free(game);
-		return (0);
-	}
-	game->ptr_window = mlx_new_window(game->ptr_mlx, game->width, game->height,
-			(char *)name);
-	if (!game->ptr_window)
-	{
-		game_clear(game);
 		return (0);
 	}
 	if (game_image_add(game, &game->img, game->width, game->height) == 0)
@@ -54,7 +47,7 @@ static short int	game_set(t_pge *game, char const *name)
 	return (1);
 }
 
-t_pge	*game_init(t_vi *screensize, t_vi *pxlsize, char const *name)
+t_pge	*game_init(t_vi *screensize, t_vi *pxlsize)
 {
 	t_pge	*game;
 	int		i;
@@ -78,7 +71,7 @@ t_pge	*game_init(t_vi *screensize, t_vi *pxlsize, char const *name)
 	game->player = NULL;
 	while (++i < 127)
 		game->key[i] = 0;
-	if (game_set(game, name) == 1)
+	if (game_set(game) == 1)
 		return (game);
 	return (NULL);
 }
