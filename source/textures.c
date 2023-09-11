@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:16:08 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/24 19:17:47 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:26:56 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static char	*get_texture_path(char str[2], char *arg)
 		{
 			path = ft_strndup(line + 3, ft_strlen(line + 3) - 1);
 			free(line);
+			close(fd);
 			return (path);
 		}
 		free(line);
@@ -41,10 +42,13 @@ static bool	valid_texture(char *tex_path)
 {
 	int	fd;
 
+	if (!tex_path)
+		return (false);
 	fd = open(tex_path, O_RDONLY);
 	if (fd == -1)
 		return (printf("\033[0;31mError\n\
 Failed to load \"%s\"\n\033[0;0m", tex_path), false);
+	close(fd);
 	return (true);
 }
 
