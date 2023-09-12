@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:16:08 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/11 17:05:10 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:26:59 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,21 @@ static char	*get_texture_path(char str[2], char *arg)
 	char	*path;
 	char	*line;
 
+	path = NULL;
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] == str[0] && line[1] == str[1] && line[2] == ' ')
-		{
+		if (path == NULL && line[0] == str[0]
+			&& line[1] == str[1] && line[2] == ' ')
 			path = ft_strndup(line + 3, ft_strlen(line + 3) - 1);
-			free(line);
-			close(fd);
-			return (path);
-		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (NULL);
+	return (path);
 }
 
 static bool	valid_texture(char *tex_path)
