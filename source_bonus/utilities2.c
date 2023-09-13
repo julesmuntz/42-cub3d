@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:36:52 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/05 15:37:12 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:34:08 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,22 @@ void	check_door(t_pge *game, int *a, int *b)
 		&& game->cub->map[*a - 1][*b] == '1'
 		&& game->cub->map[*a + 1][*b] == '1'))))
 		game->cub->invalid_door = true;
+}
+
+int	ft_is_in_charcount(char *str, char tofind)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	if (!str)
+		return (i);
+	while (str[i])
+	{
+		if (str[i] == tofind)
+			n++;
+		i++;
+	}
+	return (n);
 }

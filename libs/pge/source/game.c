@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/11 16:15:53 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:45:59 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ void	game_clear(t_pge *game)
 		free(game->ray);
 	if (game)
 		free(game);
+	close(0);
+	close(1);
+	close(2);
 }
 
 void	game_refresh(t_pge *game)
