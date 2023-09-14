@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:55:33 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/01 14:19:17 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:16:13 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ t_player	*set_player(t_vi const *pos, float const playera, float const fov)
 	player->angle = -M_PI_2;
 	player->pitch = 0.0f;
 	(void)playera;
+	player->target = set_vector(0, 0);
+	player->t = 'g';
+	player->portalb = set_vector(0, 0);
+	player->portalo = set_vector(0, 0);
+	player->pb = 'o';
+	player->po = 'b';
 	set_fov(fov, player);
 	return (player);
 }

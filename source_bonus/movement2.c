@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:43:12 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/08/29 17:33:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:25:34 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,30 @@ bool	check_collision(t_pge *game)
 		return (1);
 	if (game->cub->map[(int)(game->player->pos.y
 			- 0.1f)][(int)(game->player->pos.x + 0.1f)] == '1')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			+ 0.1f)][(int)(game->player->pos.x + 0.1f)] == 'B')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			- 0.1f)][(int)(game->player->pos.x - 0.1f)] == 'B')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			+ 0.1f)][(int)(game->player->pos.x - 0.1f)] == 'B')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			- 0.1f)][(int)(game->player->pos.x + 0.1f)] == 'B')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			+ 0.1f)][(int)(game->player->pos.x + 0.1f)] == 'O')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			- 0.1f)][(int)(game->player->pos.x - 0.1f)] == 'O')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			+ 0.1f)][(int)(game->player->pos.x - 0.1f)] == 'O')
+		return (1);
+	if (game->cub->map[(int)(game->player->pos.y
+			- 0.1f)][(int)(game->player->pos.x + 0.1f)] == 'O')
 		return (1);
 	return (0);
 }

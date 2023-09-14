@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 17:52:33 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:16:41 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,19 @@ int	add_door_texture(t_pge *game)
 	return (1);
 }
 
+int	add_portal_text(t_pge *game)
+{
+	game->xpm = game_add_xpm("./assets/portal_textures/portal blue.xpm",
+			"portalb", game->xpm, game);
+	if (!game->xpm)
+		return (print_error("portal blue xpm failed to load\n"), 0);
+	game->xpm = game_add_xpm("./assets/portal_textures/portal orange.xpm",
+			"portalo", game->xpm, game);
+	if (!game->xpm)
+		return (print_error("portal orange xpm failed to load\n"), 0);
+	return (1);
+}
+
 int	add_portal_texture(t_pge *game)
 {
 	if (add_door_texture(game) == 0)
@@ -90,5 +103,5 @@ int	add_portal_texture(t_pge *game)
 			"crosshairorange", game->xpm, game);
 	if (!game->xpm)
 		return (print_error("crosshair (orange) xpm failed to load\n"), 0);
-	return (1);
+	return (add_portal_text(game));
 }

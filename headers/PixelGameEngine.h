@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/11 15:15:07 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:03:10 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_portal
 	bool			orange_led;
 	char			*crosshair_ent_path;
 	char			*portalgun_ent_path;
+	int				portal;
 
 }					t_portal;
 
@@ -152,14 +153,20 @@ typedef struct s_player
 	t_vf			plan;
 	t_vf			dir;
 	float			fov;
+	t_vi			target;
+	char			t;
+	t_vi			portalb;
+	t_vi			portalo;
+	char			pb;
+	char			po;
 }					t_player;
 
 typedef struct s_pge
 {
 	void			*ptr_mlx;
 	void			*ptr_window;
-	t_im			img;
-	t_im			drawing_img;
+	t_xpm			img;
+	t_xpm			drawing_img;
 	short int		width;
 	short int		height;
 	short int		pxlwidth;
@@ -193,7 +200,7 @@ float				vectorf_dist(t_vf const *v);
 t_pge				*game_init(t_vi *screensize, t_vi *pxlsize);
 void				game_clear(t_pge *game);
 void				game_refresh(t_pge *game);
-short int			draw_pixel(t_vi *xy, t_pge *game, t_im *img, t_pxl *pxl);
+short int			draw_pixel(t_vi *xy, t_pge *game, t_xpm *img, t_pxl *pxl);
 void				draw_line(t_vi *xy, t_vi *v, t_pge *game, t_pxl *pxl);
 void				draw_circle(t_vi *xy, short int const radius, t_pge *game,
 						t_pxl *pxl);

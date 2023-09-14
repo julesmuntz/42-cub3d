@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/11 15:27:09 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:21:32 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	cub_set(t_pge *game)
 		game_clear(game);
 		exit(4);
 	}
-	game->cub->map_depth = 30.0f;
+	game->cub->map_depth = 100.0f;
 	return (0);
 }
 
@@ -82,6 +82,7 @@ int	cub_launch(void *g)
 	raycast_init(game);
 	check_movements(game);
 	print_visor(game);
+	check_portal(game);
 	game_refresh(game);
 	return (0);
 }

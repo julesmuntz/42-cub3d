@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 17:51:44 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:07:11 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 			game->portal->blue_led = true;
 			game->portal->orange_led = false;
 			game->portal->clicked_blue = true;
+			game->portal->portal = 1;
 		}
 		if (button == 3)
 		{
 			game->portal->blue_led = false;
 			game->portal->orange_led = true;
 			game->portal->clicked_orange = true;
+			game->portal->portal = 2;
 		}
 	}
 	return (0);

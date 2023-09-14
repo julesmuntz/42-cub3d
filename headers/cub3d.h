@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/13 16:34:39 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:17:06 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void		set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist,
 int			door_is_close(t_pge *game, int x, int y);
 void		check_door(t_pge *game, int *a, int *b);
 int			ft_is_in_charcount(char *str, char tofind);
+void		check_portal(t_pge *game);
 
 #endif

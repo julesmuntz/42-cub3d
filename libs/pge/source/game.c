@@ -6,19 +6,19 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/13 15:45:59 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:04:55 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PixelGameEngine.h"
 
-static short int	game_image_add(t_pge *game, t_im *img, short int width,
+static short int	game_image_add(t_pge *game, t_xpm *img, short int width,
 	short int height)
 {
-	img->mlx_img = mlx_new_image(game->ptr_mlx, width, height);
-	if (!img->mlx_img)
+	img->img = mlx_new_image(game->ptr_mlx, width, height);
+	if (!img->img)
 		return (0);
-	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
 			&img->line_len, &img->endian);
 	img->width = width;
 	img->height = height;
@@ -65,8 +65,8 @@ t_pge	*game_init(t_vi *screensize, t_vi *pxlsize)
 	game->pxlheight = pxlsize->y;
 	game->ptr_mlx = NULL;
 	game->ptr_window = NULL;
-	game->img.mlx_img = NULL;
-	game->drawing_img.mlx_img = NULL;
+	game->img.img = NULL;
+	game->drawing_img.img = NULL;
 	game->xpm = NULL;
 	game->player = NULL;
 	while (++i < 127)
@@ -78,10 +78,10 @@ t_pge	*game_init(t_vi *screensize, t_vi *pxlsize)
 
 void	game_clear(t_pge *game)
 {
-	if (game->drawing_img.mlx_img)
-		mlx_destroy_image(game->ptr_mlx, game->drawing_img.mlx_img);
-	if (game->img.mlx_img)
-		mlx_destroy_image(game->ptr_mlx, game->img.mlx_img);
+	if (game->drawing_img.img)
+		mlx_destroy_image(game->ptr_mlx, game->drawing_img.img);
+	if (game->img.img)
+		mlx_destroy_image(game->ptr_mlx, game->img.img);
 	if (game->ptr_window)
 		mlx_destroy_window(game->ptr_mlx, game->ptr_window);
 	if (game->ptr_mlx)
@@ -109,7 +109,7 @@ void	game_refresh(t_pge *game)
 		x.y = 0;
 		while (x.y < game->img.height)
 		{
-			get_pixel_from_img(game->drawing_img, x.x / game->pxlwidth,
+			get_pixel_from_xpm(&game->drawing_img, x.x / game->pxlwidth,
 				x.y / game->pxlheight, &pxl);
 			draw_pixel(&x, game, &game->img, &pxl);
 			x.y++;
@@ -117,5 +117,5 @@ void	game_refresh(t_pge *game)
 		x.x++;
 	}
 	mlx_put_image_to_window(game->ptr_mlx, game->ptr_window,
-		game->img.mlx_img, 0, 0);
+		game->img.img, 0, 0);
 }

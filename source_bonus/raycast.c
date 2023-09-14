@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 16:35:55 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:05:40 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray)
 			ray->side = 1;
 		}
 		if (game->cub->map[ray->map.y][ray->map.x] == '1'
+			|| game->cub->map[ray->map.y][ray->map.x] == 'O'
+			|| game->cub->map[ray->map.y][ray->map.x] == 'B'
 			|| (game->cub->map[ray->map.y][ray->map.x] == 'D'
 			&& door_is_close(game, ray->map.x, ray->map.y) == 1))
 			ray->hit = 1;
@@ -111,6 +113,14 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 			&& ray->raydir.y > 0))
 		ray->wallx = 1.0f - ray->wallx;
 	texture = texture_choice(ray->side, &ray->step, game);
+	if (ray->xy.x == game->drawing_img.width / 2)
+	{
+		game->player->target = copy_vector(&ray->map);
+		if (ray->side == 0)
+			game->player->t = 1 * ray->step.x;
+		else
+			game->player->t = 2 * ray->step.y;
+	}
 	raycast_dda_trace(game, ray, texture);
 }
 

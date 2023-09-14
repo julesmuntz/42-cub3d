@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 17:52:57 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:33:56 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,42 @@ t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
 {
 	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'D')
 		return (find_xpm(game->xpm, "door"));
+	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'B')
+	{
+		if (side == 0)
+		{
+			if (step->x < 0 && game->player->pb != 'W')
+				return (find_xpm(game->xpm, "west"));
+			else if (game->player->pb != 'E')
+				return (find_xpm(game->xpm, "east"));
+		}
+		else if (side == 1)
+		{
+			if (step->y < 0 && game->player->pb != 'N')
+				return (find_xpm(game->xpm, "north"));
+			else if (game->player->pb != 'S')
+				return (find_xpm(game->xpm, "south"));
+		}
+		return (find_xpm(game->xpm, "portalb"));
+	}
+	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'O')
+	{
+		if (side == 0)
+		{
+			if (step->x < 0 && game->player->po != 'W')
+				return (find_xpm(game->xpm, "west"));
+			else if (game->player->po != 'E')
+				return (find_xpm(game->xpm, "east"));
+		}
+		else if (side == 1)
+		{
+			if (step->y < 0 && game->player->po != 'N')
+				return (find_xpm(game->xpm, "north"));
+			else if (game->player->po != 'S')
+				return (find_xpm(game->xpm, "south"));
+		}
+		return (find_xpm(game->xpm, "portalo"));
+	}
 	if (side == 0)
 	{
 		if (step->x < 0)
@@ -23,13 +59,14 @@ t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
 		else
 			return (find_xpm(game->xpm, "east"));
 	}
-	else
+	else if (side == 1)
 	{
 		if (step->y < 0)
 			return (find_xpm(game->xpm, "north"));
 		else
 			return (find_xpm(game->xpm, "south"));
 	}
+	return (NULL);
 }
 
 int	add_texture(t_pge *game)
