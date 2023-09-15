@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_portal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 15:16:41 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:35:01 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int	add_door_texture(t_pge *game)
 
 int	add_portal_text(t_pge *game)
 {
-	game->xpm = game_add_xpm("./assets/portal_textures/portal blue.xpm",
+	game->xpm = game_add_xpm("./assets/portal_textures/portal_blue.xpm",
 			"portalb", game->xpm, game);
 	if (!game->xpm)
 		return (print_error("portal blue xpm failed to load\n"), 0);
-	game->xpm = game_add_xpm("./assets/portal_textures/portal orange.xpm",
+	game->xpm = game_add_xpm("./assets/portal_textures/portal_orange.xpm",
 			"portalo", game->xpm, game);
 	if (!game->xpm)
 		return (print_error("portal orange xpm failed to load\n"), 0);
