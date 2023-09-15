@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 16:33:56 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:42:54 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
 		if (step->y < 0)
 			return (find_xpm(game->xpm, "north"));
 		else
-			return (find_xpm(game->xpm, "south"));
+			return ((t_xpm *)&game->img);
+			// return (find_xpm(game->xpm, "south"));
 	}
 	return (NULL);
 }

@@ -14,9 +14,10 @@
 
 
 
-int		mlx_mouse_hook(t_win_list *win,int (*funct)(),void *param)
+int		mlx_mouse_hook(t_win_list *win, int x_event, int x_mask, 
+		 int (*funct)(),void *param)
 {
-  win->hooks[ButtonPress].hook = funct;
-  win->hooks[ButtonPress].param = param;
-  win->hooks[ButtonPress].mask = ButtonPressMask;
+  win->hooks[x_event].hook = funct;
+  win->hooks[x_event].param = param;
+  win->hooks[x_event].mask = x_mask;
 }

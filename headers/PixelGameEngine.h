@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 16:03:10 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:24:52 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_portal
 	bool			clicked_orange;
 	bool			blue_led;
 	bool			orange_led;
+	bool			laserbeam;
 	char			*crosshair_ent_path;
 	char			*portalgun_ent_path;
 	int				portal;

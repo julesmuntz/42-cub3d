@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 15:07:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:59:20 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 			game->portal->orange_led = false;
 			game->portal->clicked_blue = true;
 			game->portal->portal = 1;
+			game->portal->laserbeam = true;
 		}
 		if (button == 3)
 		{
@@ -46,13 +47,29 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 			game->portal->orange_led = true;
 			game->portal->clicked_orange = true;
 			game->portal->portal = 2;
+			game->portal->laserbeam = true;
 		}
+	}
+	return (0);
+}
+
+int	mouse_release(int button, int x, int y, t_pge *game)
+{
+	(void)x;
+	(void)y;
+	if (game->portal != NULL)
+	{
+		if (button == 1)
+			game->portal->laserbeam = false;
+		if (button == 3)
+			game->portal->laserbeam = false;
 	}
 	return (0);
 }
 
 void	game_loop(t_pge *game, int f(void *))
 {
+	mlx_mouse_hide(game->ptr_mlx, game->ptr_window);
 	mlx_loop_hook(game->ptr_mlx, f, game);
 	mlx_hook(game->ptr_window, KeyPress, KeyPressMask, &ft_key_press,
 		(void *)game);
@@ -61,7 +78,10 @@ void	game_loop(t_pge *game, int f(void *))
 	if (game->portal != NULL)
 		mlx_hook(game->ptr_window, MotionNotify, PointerMotionMask,
 			&ft_mouse_move, (void *)game);
-	mlx_mouse_hook(game->ptr_window, mouse_click, (void *)game);
+	mlx_mouse_hook(game->ptr_window, ButtonPress, ButtonPressMask,
+		mouse_click, (void *)game);
+	mlx_mouse_hook(game->ptr_window, ButtonRelease, ButtonReleaseMask,
+		mouse_release, (void *)game);
 	mlx_hook(game->ptr_window, ClientMessage, 0, &ft_quit, (void *)game);
 	mlx_loop(game->ptr_mlx);
 	return ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   portal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 17:18:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/14 15:06:48 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:25:11 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_portal	*init_portal(void)
 	portal->clicked_orange = false;
 	portal->blue_led = false;
 	portal->orange_led = false;
+	portal->laserbeam = false;
 	portal->portal = 0;
 	portal->portalgun_ent_path = "./assets/portal_entities/portal_gun.xpm";
 	portal->crosshair_ent_path = "./assets/portal_entities/crosshair_empty.xpm";

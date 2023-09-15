@@ -206,10 +206,10 @@ int	main()
   printf(" 3rd window, Installing hooks ...");
   win3 = mlx_new_window(mlx,WIN1_SX,WIN1_SY,"Title3");
   mlx_expose_hook(win1,expose_win1,0);
-  mlx_mouse_hook(win1,mouse_win1,0);
+  mlx_mouse_hook(win1,ButtonPress,ButtonPressMask,mouse_win1,0);
   mlx_key_hook(win1,key_win1,0);
   mlx_expose_hook(win2,expose_win2,0);
-  mlx_mouse_hook(win2,mouse_win2,0);
+  mlx_mouse_hook(win2,ButtonPress,ButtonPressMask,mouse_win2,0);
   mlx_key_hook(win2,key_win2,0);
   mlx_key_hook(win3,key_win3,0);
 
