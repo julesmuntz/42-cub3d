@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:58 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 14:05:06 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:18:20 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ short int	draw_pixel(t_vi *xy, t_pge *game, t_xpm *img, t_pxl *pxl)
 	(void)game;
 	pixel = (unsigned int *)img->addr;
 	if (xy->x >= img->width || xy->x < 0 || xy->y >= img->height || xy->y < 0
-		|| pxl->alpha == 255)
+		|| pxl->alpha != 0)
 		return (1);
 	pixel[xy->y * img->width + xy->x] = pxl->red * 65536 + pxl->green * 256
 		+ pxl->blue;
@@ -83,7 +83,7 @@ short int	draw_pixel_xpm(t_vi *xy, t_xpm *xpm, t_pxl *pxl)
 
 	pixel = (unsigned int *)xpm->addr;
 	if (xy->x >= xpm->width || xy->x < 0 || xy->y >= xpm->height || xy->y < 0
-		|| pxl->alpha == 255)
+		|| pxl->alpha != 0)
 		return (1);
 	pixel[xy->y * xpm->width + xy->x] = pxl->red * 65536 + pxl->green * 256
 		+ pxl->blue;

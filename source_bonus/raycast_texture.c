@@ -3,70 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 14:42:54 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:56:38 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
+t_xpm	*texture_choice(t_raycast *ray, t_pge const *game)
 {
+	char	c;
+	char	p;
+
+	p = 'p';
 	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'D')
 		return (find_xpm(game->xpm, "door"));
 	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'B')
-	{
-		if (side == 0)
-		{
-			if (step->x < 0 && game->player->pb != 'W')
-				return (find_xpm(game->xpm, "west"));
-			else if (game->player->pb != 'E')
-				return (find_xpm(game->xpm, "east"));
-		}
-		else if (side == 1)
-		{
-			if (step->y < 0 && game->player->pb != 'N')
-				return (find_xpm(game->xpm, "north"));
-			else if (game->player->pb != 'S')
-				return (find_xpm(game->xpm, "south"));
-		}
-		return (find_xpm(game->xpm, "portalb"));
-	}
+		p = game->player->pb;
 	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'O')
-	{
-		if (side == 0)
-		{
-			if (step->x < 0 && game->player->po != 'W')
-				return (find_xpm(game->xpm, "west"));
-			else if (game->player->po != 'E')
-				return (find_xpm(game->xpm, "east"));
-		}
-		else if (side == 1)
-		{
-			if (step->y < 0 && game->player->po != 'N')
-				return (find_xpm(game->xpm, "north"));
-			else if (game->player->po != 'S')
-				return (find_xpm(game->xpm, "south"));
-		}
-		return (find_xpm(game->xpm, "portalo"));
-	}
-	if (side == 0)
-	{
-		if (step->x < 0)
-			return (find_xpm(game->xpm, "west"));
-		else
-			return (find_xpm(game->xpm, "east"));
-	}
-	else if (side == 1)
-	{
-		if (step->y < 0)
-			return (find_xpm(game->xpm, "north"));
-		else
-			return ((t_xpm *)&game->img);
-			// return (find_xpm(game->xpm, "south"));
-	}
+		p = game->player->po;
+	c = get_side(ray);
+	if ((c == 'W' && p == 'p') || (c == 'W' && p != c))
+		return (find_xpm(game->xpm, "west"));
+	else if ((c == 'E' && p == 'p') || (c == 'E' && p != c))
+		return (find_xpm(game->xpm, "east"));
+	else if ((c == 'N' && p == 'p') || (c == 'N' && p != c))
+		return (find_xpm(game->xpm, "north"));
+	else if ((c == 'S' && p == 'p') || (c == 'S' && p != c))
+		return (find_xpm(game->xpm, "south"));
+	else if (c == p && game->cub->map[game->ray->map.y][game->ray->map.x] == 'B')
+		return (NULL);//find_xpm(game->xpm, "portalb"));
+	else if (c == p && game->cub->map[game->ray->map.y][game->ray->map.x] == 'O')
+		return (NULL);//find_xpm(game->xpm, "portalo"));
 	return (NULL);
 }
 
@@ -138,7 +108,9 @@ void	set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist, t_pxl *pxl)
 	t_raycast	*ray;
 
 	ray = game->ray;
-	if (ray->xy.y < ray->ceiling)
+	if (texture == NULL)
+		*pxl = set_pxl_argb(0,0,0,255);
+	else if (ray->xy.y < ray->ceiling)
 	{
 		*pxl = set_pxl_argb(game->cub->ceiling_color[R],
 				game->cub->ceiling_color[G],

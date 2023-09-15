@@ -6,13 +6,13 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 16:05:40 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:48:36 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	raycast_init(t_pge *game)
+void	raycast_init(t_pge *game, t_vf start)
 {
 	t_raycast	*ray;
 
@@ -20,46 +20,48 @@ void	raycast_init(t_pge *game)
 	ray->xy.x = 0;
 	while (ray->xy.x < game->drawing_img.width)
 	{
+		ray->walldist = 0;
+		ray->start = start;
 		ray->camerax = (float)ray->xy.x / (float)game->drawing_img.width * 2.f
 			- 1.f;
 		ray->raydir.x = game->player->dir.x + game->player->plan.x
 			* ray->camerax;
 		ray->raydir.y = game->player->dir.y + game->player->plan.y
 			* ray->camerax;
-		ray->map.x = (int)game->player->pos.x;
-		ray->map.y = (int)game->player->pos.y;
+		ray->map.x = start.x;
+		ray->map.y = start.y;
 		ray->deltadist.x = fabsf(1.f / ray->raydir.x);
 		ray->deltadist.y = fabsf(1.f / ray->raydir.y);
 		ray->hit = 0;
-		raycast_dda(game, ray);
+		raycast_dda(game, ray, &start);
 		ray->xy.x++;
 	}
 }
 
-void	raycast_dda(t_pge *game, t_raycast *ray)
+void	raycast_dda(t_pge *game, t_raycast *ray, t_vf *start)
 {
 	if (ray->raydir.x < 0)
 	{
 		ray->step.x = -1;
-		ray->sidedist.x = (game->player->pos.x - (float)ray->map.x)
+		ray->sidedist.x = (start->x - (float)ray->map.x)
 			* ray->deltadist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->sidedist.x = ((float)ray->map.x + 1.0f - game->player->pos.x)
+		ray->sidedist.x = ((float)ray->map.x + 1.0f - start->x)
 			* ray->deltadist.x;
 	}
 	if (ray->raydir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->sidedist.y = (game->player->pos.y - (float)ray->map.y)
+		ray->sidedist.y = (start->y - (float)ray->map.y)
 			* ray->deltadist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->sidedist.y = ((float)ray->map.y + 1.0f - game->player->pos.y)
+		ray->sidedist.y = ((float)ray->map.y + 1.0f - start->y)
 			* ray->deltadist.y;
 	}
 	raycast_dda_collision(game, ray);
@@ -81,17 +83,17 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (game->cub->map[ray->map.y][ray->map.x] == '1'
-			|| game->cub->map[ray->map.y][ray->map.x] == 'O'
-			|| game->cub->map[ray->map.y][ray->map.x] == 'B'
-			|| (game->cub->map[ray->map.y][ray->map.x] == 'D'
-			&& door_is_close(game, ray->map.x, ray->map.y) == 1))
+		if (check_collision_ray(game, ray) == 1)
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
 		ray->walldist = (ray->sidedist.x - ray->deltadist.x);
 	else
 		ray->walldist = (ray->sidedist.y - ray->deltadist.y);
+	if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'B')
+			raycast_portal(game, ray, ray->walldist, 'B');
+	else if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'O')
+			raycast_portal(game, ray, ray->walldist, 'O');
 	raycast_dda_setup(game, ray);
 }
 
@@ -112,7 +114,7 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 	if ((ray->side == 0 && ray->raydir.x < 0) || (ray->side == 1
 			&& ray->raydir.y > 0))
 		ray->wallx = 1.0f - ray->wallx;
-	texture = texture_choice(ray->side, &ray->step, game);
+	texture = texture_choice(ray, game);
 	if (ray->xy.x == game->drawing_img.width / 2)
 	{
 		game->player->target = copy_vector(&ray->map);
@@ -132,8 +134,13 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 	ray->xy.y = 0;
 	while (ray->xy.y < game->drawing_img.height)
 	{
-		set_pxl_for_dda(game, texture, &dist, &pxl);
-		fog_generation(&pxl, &dist, game);
+		if (ray->walldist >= game->cub->map_depth)
+			pxl = set_pxl_argb(0, 0, 0, 0);
+		else
+		{
+			set_pxl_for_dda(game, texture, &dist, &pxl);
+			fog_generation(&pxl, &dist, game);
+		}
 		draw_pixel(&ray->xy, game, &game->drawing_img, &pxl);
 		ray->xy.y++;
 	}

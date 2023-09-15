@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:25:37 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/13 16:41:26 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:42:12 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	*get_color2(char *line, int *rgb)
 	i = -1;
 	if (ft_is_in_charcount(line, ',') != 2)
 		return (print_error("Invalid color format"), free(rgb),
-				NULL);
+			NULL);
 	while (line[++i])
 	{
 		s = rgb_split(line);

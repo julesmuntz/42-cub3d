@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 17:59:20 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:41:32 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 		{
 			game->portal->blue_led = true;
 			game->portal->orange_led = false;
-			game->portal->clicked_blue = true;
 			game->portal->portal = 1;
 			game->portal->laserbeam = true;
 		}
@@ -45,7 +44,6 @@ int	mouse_click(int button, int x, int y, t_pge *game)
 		{
 			game->portal->blue_led = false;
 			game->portal->orange_led = true;
-			game->portal->clicked_orange = true;
 			game->portal->portal = 2;
 			game->portal->laserbeam = true;
 		}

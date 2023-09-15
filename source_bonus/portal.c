@@ -6,7 +6,7 @@
 /*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 17:18:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/15 17:25:11 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:40:34 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,39 @@ void	refresh_portal_colors(t_pge *game)
 		&& game->portal->clicked_orange == true)
 		game->portal->crosshair_ent_path
 			= "./assets/portal_entities/crosshair_full.xpm";
+}
+
+static void	add_laser(t_pge *game, int shift[2],
+	t_pxl blue_laser, t_pxl orange_laser)
+{
+	t_vi	coor;
+	t_vi	size;
+	t_pxl	pixel;
+
+	coor = set_vector(game->drawing_img.width / 2 + shift[0],
+			game->drawing_img.height / 2 + shift[1]);
+	size = set_vector(game->drawing_img.width / 7.5,
+			game->drawing_img.height / 4);
+	if (game->portal->blue_led == true && game->portal->laserbeam == true)
+		pixel = blue_laser;
+	else if (game->portal->orange_led == true
+		&& game->portal->laserbeam == true)
+		pixel = orange_laser;
+	else
+		pixel = set_pxl_argb(255, 255, 255, 255);
+	draw_line(&coor, &size, game, &pixel);
+}
+
+void	print_laserbeam(t_pge *game)
+{
+	add_laser(game, (int [2]){0, 0}, set_pxl_argb(173, 221, 255, 0),
+		set_pxl_argb(255, 210, 128, 0));
+	add_laser(game, (int [2]){1, 0}, set_pxl_argb(121, 199, 255, 0),
+		set_pxl_argb(255, 200, 99, 0));
+	add_laser(game, (int [2]){0, 1}, set_pxl_argb(121, 199, 255, 0),
+		set_pxl_argb(255, 200, 99, 0));
+	add_laser(game, (int [2]){2, 0}, set_pxl_argb(80, 181, 255, 0),
+		set_pxl_argb(255, 188, 65, 0));
+	add_laser(game, (int [2]){0, 2}, set_pxl_argb(80, 181, 255, 0),
+		set_pxl_argb(255, 188, 65, 0));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/14 15:17:06 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:56:52 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ bool		invalid_extension(char *filename);
 int			check_map(t_pge *game, char *arg);
 void		set_fov(float const fov, t_player *player);
 t_player	*set_player(t_vi const *pos, float const playera, float const fov);
-t_xpm		*texture_choice(int const side, t_vi const *step,
-				t_pge const *game);
+t_xpm		*texture_choice(t_raycast *ray, t_pge const *game);
 int			add_texture(t_pge *game);
-void		raycast_init(t_pge *game);
-void		raycast_dda(t_pge *game, t_raycast *ray);
+void		raycast_init(t_pge *game, t_vf start);
+void		raycast_dda(t_pge *game, t_raycast *ray, t_vf *start);
 void		raycast_dda_collision(t_pge *game, t_raycast *ray);
 void		raycast_dda_setup(t_pge *game, t_raycast *ray);
 void		raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture);
@@ -50,6 +49,7 @@ t_portal	*init_portal(void);
 void		refresh_portal_colors(t_pge *game);
 void		print_portal_gun(t_pge *game);
 void		print_crosshair(t_pge *game);
+void		print_laserbeam(t_pge *game);
 int			add_portal_texture(t_pge *game);
 void		portal_check(t_pge *game);
 void		calculate_map_dimensions(t_pge *game, int fd);
@@ -60,5 +60,16 @@ int			door_is_close(t_pge *game, int x, int y);
 void		check_door(t_pge *game, int *a, int *b);
 int			ft_is_in_charcount(char *str, char tofind);
 void		check_portal(t_pge *game);
+void		raycast_portal(t_pge *game, t_raycast *ray, int walldist, char dir);
+t_vf		same_side(t_pge *game, t_raycast *ray, char dir);
+t_vf		opposite_side(t_pge *game, t_raycast *ray, char dir);
+t_vf		right_side(t_pge *game, t_raycast *ray, char dir);
+t_vf		left_side(t_pge *game, t_raycast *ray, char dir);
+int			portal_side_check(t_pge *game, t_raycast *ray, char p);
+int			is_a_portal(t_pge *game, t_raycast *ray);
+t_vf		set_portal_value(t_pge *game, t_raycast *ray, char dir);
+int			check_collision_ray(t_pge *game, t_raycast *ray);
+int			check_side(t_pge *game, t_raycast *ray, char p);
+char		get_side(t_raycast	*ray);
 
 #endif
