@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 20:43:10 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:36:09 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int	main2(t_pge *game)
 	look_direction(game, game->cub->player_angle);
 	if (game_open_window(game, "Portal 3D") == 0)
 		return (cub_clear(game), game_clear(game), 2);
+	t_vi size = set_vector(400, 400);
+	game->xpm = game_add_sprite(&size, "bob", game->xpm, game);
+	game->xpm = game_add_sprite(&size, "bob1", game->xpm, game);
 	game_loop(game, &cub_launch);
 	return (0);
 }
@@ -81,7 +84,7 @@ int	cub_launch(void *g)
 
 	game = (t_pge *)g;
 	raycast_init(game, set_vectorf(game->player->pos.x,
-			game->player->pos.y));
+			game->player->pos.y), &game->drawing_img);
 	check_movements(game);
 	print_elements(game);
 	check_portal(game);

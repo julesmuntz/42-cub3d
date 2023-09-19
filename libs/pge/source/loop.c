@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:46 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 19:41:32 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:19:00 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	mouse_release(int button, int x, int y, t_pge *game)
 
 void	game_loop(t_pge *game, int f(void *))
 {
-	mlx_mouse_hide(game->ptr_mlx, game->ptr_window);
+	// mlx_mouse_hide(game->ptr_mlx, game->ptr_window);
 	mlx_loop_hook(game->ptr_mlx, f, game);
 	mlx_hook(game->ptr_window, KeyPress, KeyPressMask, &ft_key_press,
 		(void *)game);

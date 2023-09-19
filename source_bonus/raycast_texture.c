@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 18:56:38 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:37:18 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_xpm	*texture_choice(t_raycast *ray, t_pge const *game)
 	else if ((c == 'S' && p == 'p') || (c == 'S' && p != c))
 		return (find_xpm(game->xpm, "south"));
 	else if (c == p && game->cub->map[game->ray->map.y][game->ray->map.x] == 'B')
-		return (NULL);//find_xpm(game->xpm, "portalb"));
+		return (find_xpm(game->xpm, "bob"));
 	else if (c == p && game->cub->map[game->ray->map.y][game->ray->map.x] == 'O')
-		return (NULL);//find_xpm(game->xpm, "portalo"));
+		return (find_xpm(game->xpm, "bob1"));
 	return (NULL);
 }
 

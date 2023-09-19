@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:51:36 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 18:48:21 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:45:28 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,20 @@ void	raycast_portal(t_pge *game, t_raycast *ray, int walldist, char dir)
 	rcast = malloc(sizeof(t_raycast));
 	*rcast = *ray;
 	start = set_portal_value(game, rcast, dir);
-	rcast->deltadist.x = fabsf(1.f / rcast->raydir.x);
-	rcast->deltadist.y = fabsf(1.f / rcast->raydir.y);
-	rcast->hit = 0;
-	rcast->walldist += walldist;
-	raycast_dda(game, rcast, &start);
+	printf("===============\nstart[%f;%f]\n", start.x, start.y);
+	// rcast->deltadist.x = fabsf(1.f / rcast->raydir.x);
+	// rcast->deltadist.y = fabsf(1.f / rcast->raydir.y);
+	// rcast->hit = 0;
+	// rcast->walldist += walldist;
+	// ray->map.x = start.x;
+	// ray->map.y = start.y;
 	free(rcast);
+	(void)walldist;
+	if (dir == 'B')
+		raycast_init(game, start, find_xpm(game->xpm, "bob"));
+	if (dir == 'O')
+		raycast_init(game, start, find_xpm(game->xpm, "bob1"));
 }
-
 
 char	get_side(t_raycast	*ray)
 {

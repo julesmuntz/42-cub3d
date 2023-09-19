@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:08 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:38:24 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:16:48 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ void	draw_strait_line(t_vi const *xy, t_vi const *v, t_pge *game, t_pxl *pxl)
 	t_vi		xyp;
 	short int	i;
 
+	(void)game;
 	xyp = copy_vector(xy);
 	if (v->x == 0)
 	{
 		i = v->y / abs(v->y);
 		while (xyp.y != (xy->y + v->y))
 		{
-			draw_pixel(&xyp, game, &game->drawing_img, pxl);
+			draw_pixel(&xyp, &game->drawing_img, pxl);
 			xyp.y += i;
 		}
 	}
@@ -32,7 +33,7 @@ void	draw_strait_line(t_vi const *xy, t_vi const *v, t_pge *game, t_pxl *pxl)
 		i = v->x / abs(v->x);
 		while (xyp.x != (xy->x + v->x))
 		{
-			draw_pixel(&xyp, game, &game->drawing_img, pxl);
+			draw_pixel(&xyp, &game->drawing_img, pxl);
 			xyp.x += i;
 		}
 	}
@@ -45,6 +46,7 @@ void	draw_diagonal(t_vi const *xy, t_vi const *v, t_pge *game, t_pxl *pxl)
 	short int	i;
 	short int	j;
 
+	(void)game;
 	xyp = copy_vector(xy);
 	i = 1;
 	j = 1;
@@ -54,7 +56,7 @@ void	draw_diagonal(t_vi const *xy, t_vi const *v, t_pge *game, t_pxl *pxl)
 		i = -1;
 	while (xyp.x != (xy->x + v->x))
 	{
-		draw_pixel(&xyp, game, &game->drawing_img, pxl);
+		draw_pixel(&xyp, &game->drawing_img, pxl);
 		xyp.x += i;
 		xyp.y += j;
 	}
@@ -66,7 +68,8 @@ void	draw_line_x(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 	short int	i;
 	short int	p;
 	short int	x;
-
+	
+	(void)game;
 	x = xy.x + v->x;
 	i = 1;
 	if (v->y < 0)
@@ -74,7 +77,7 @@ void	draw_line_x(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 	p = 2 * abs(v->y) - abs(v->x);
 	while (xy.x != x)
 	{
-		draw_pixel(&xy, game, &game->drawing_img, pxl);
+		draw_pixel(&xy, &game->drawing_img, pxl);
 		xy.x++;
 		if (p < 0)
 			p = p + 2 * abs(v->y);
@@ -93,6 +96,7 @@ void	draw_line_y(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 	short int	p;
 	short int	y;
 
+	(void)game;
 	y = xy.y + v->y;
 	i = 1;
 	if (v->x < 0)
@@ -100,7 +104,7 @@ void	draw_line_y(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 	p = 2 * abs(v->x) - abs(v->y);
 	while (xy.y != y)
 	{
-		draw_pixel(&xy, game, &game->drawing_img, pxl);
+		draw_pixel(&xy, &game->drawing_img, pxl);
 		xy.y++;
 		if (p < 0)
 			p = p + 2 * abs(v->x);

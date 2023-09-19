@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:37:09 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:40:10 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:07:42 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_sprite_vector_set(t_vi *xy, t_vi *coor, t_vi *p)
 	xy->y = coor->y;
 }
 
-void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
+void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_xpm *img)
 {
 	t_vi	xy;
 	t_vi	p;
@@ -40,7 +40,7 @@ void	print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game)
 			get_pixel_from_xpm(xpm, ((float)(xy.x - coor.x)) / (float)v.x
 				* (float)xpm->width, ((float)(xy.y - coor.y)) / (float)v.y
 				* (float)xpm->height, &pxl);
-			draw_pixel(&xy, game, &game->drawing_img, &pxl);
+			draw_pixel(&xy, img, &pxl);
 			xy.y += p.y;
 		}
 		print_sprite_vector_set(&xy, &coor, &p);

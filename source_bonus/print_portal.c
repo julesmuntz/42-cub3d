@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_portal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:17:21 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 11:35:01 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:13:02 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_portal_gun(t_pge *game)
 	else
 		sprite = find_xpm(game->xpm, "gun");
 	if (sprite)
-		print_sprite(sprite, coor, size, game);
+		print_sprite(sprite, coor, size, &game->drawing_img);
 }
 
 void	print_crosshair(t_pge *game)
@@ -53,7 +53,7 @@ void	print_crosshair(t_pge *game)
 	else
 		sprite = find_xpm(game->xpm, "crosshair");
 	if (sprite)
-		print_sprite(sprite, coor, size, game);
+		print_sprite(sprite, coor, size, &game->drawing_img);
 }
 
 int	add_door_texture(t_pge *game)

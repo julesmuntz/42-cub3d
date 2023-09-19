@@ -6,18 +6,20 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 18:48:36 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:48:22 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	raycast_init(t_pge *game, t_vf start)
+void	raycast_init(t_pge *game, t_vf start, t_xpm *img)
 {
 	t_raycast	*ray;
 
 	ray = game->ray;
 	ray->xy.x = 0;
+	if (start.x != game->player->pos.x && start.y != game->player->pos.y)
+		look_direction(game, M_PI_2);
 	while (ray->xy.x < game->drawing_img.width)
 	{
 		ray->walldist = 0;
@@ -33,12 +35,14 @@ void	raycast_init(t_pge *game, t_vf start)
 		ray->deltadist.x = fabsf(1.f / ray->raydir.x);
 		ray->deltadist.y = fabsf(1.f / ray->raydir.y);
 		ray->hit = 0;
-		raycast_dda(game, ray, &start);
+		raycast_dda(game, ray, &start, img);
 		ray->xy.x++;
 	}
+	if (start.x != game->player->pos.x && start.y != game->player->pos.y)
+		look_direction(game, -M_PI_2);
 }
 
-void	raycast_dda(t_pge *game, t_raycast *ray, t_vf *start)
+void	raycast_dda(t_pge *game, t_raycast *ray, t_vf *start, t_xpm *img)
 {
 	if (ray->raydir.x < 0)
 	{
@@ -64,10 +68,10 @@ void	raycast_dda(t_pge *game, t_raycast *ray, t_vf *start)
 		ray->sidedist.y = ((float)ray->map.y + 1.0f - start->y)
 			* ray->deltadist.y;
 	}
-	raycast_dda_collision(game, ray);
+	raycast_dda_collision(game, ray, img);
 }
 
-void	raycast_dda_collision(t_pge *game, t_raycast *ray)
+void	raycast_dda_collision(t_pge *game, t_raycast *ray, t_xpm *img)
 {
 	while (ray->hit == 0)
 	{
@@ -85,19 +89,21 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray)
 		}
 		if (check_collision_ray(game, ray) == 1)
 			ray->hit = 1;
+		if (check_collision_ray(game, ray) == -1)
+			return ;
 	}
 	if (ray->side == 0)
 		ray->walldist = (ray->sidedist.x - ray->deltadist.x);
 	else
 		ray->walldist = (ray->sidedist.y - ray->deltadist.y);
 	if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'B')
-			raycast_portal(game, ray, ray->walldist, 'B');
-	else if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'O')
-			raycast_portal(game, ray, ray->walldist, 'O');
-	raycast_dda_setup(game, ray);
+		raycast_portal(game, ray, ray->walldist, 'B');
+	if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'O')
+		raycast_portal(game, ray, ray->walldist, 'O');
+	raycast_dda_setup(game, ray, img);
 }
 
-void	raycast_dda_setup(t_pge *game, t_raycast *ray)
+void	raycast_dda_setup(t_pge *game, t_raycast *ray, t_xpm *img)
 {
 	t_xpm	*texture;
 
@@ -123,15 +129,16 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray)
 		else
 			game->player->t = 2 * ray->step.y;
 	}
-	raycast_dda_trace(game, ray, texture);
+	raycast_dda_trace(game, ray, texture, img);
 }
 
-void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
+void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture, t_xpm *img)
 {
 	t_pxl	pxl;
 	float	dist;
 
 	ray->xy.y = 0;
+	dist = 0;
 	while (ray->xy.y < game->drawing_img.height)
 	{
 		if (ray->walldist >= game->cub->map_depth)
@@ -141,7 +148,7 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture)
 			set_pxl_for_dda(game, texture, &dist, &pxl);
 			fog_generation(&pxl, &dist, game);
 		}
-		draw_pixel(&ray->xy, game, &game->drawing_img, &pxl);
+		draw_pixel(&ray->xy, img, &pxl);
 		ray->xy.y++;
 	}
 }

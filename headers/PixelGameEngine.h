@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 18:57:18 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:09:00 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ float				vectorf_dist(t_vf const *v);
 t_pge				*game_init(t_vi *screensize, t_vi *pxlsize);
 void				game_clear(t_pge *game);
 void				game_refresh(t_pge *game);
-short int			draw_pixel(t_vi *xy, t_pge *game, t_xpm *img, t_pxl *pxl);
+short int			draw_pixel(t_vi *xy, t_xpm *img, t_pxl *pxl);
 void				draw_line(t_vi *xy, t_vi *v, t_pge *game, t_pxl *pxl);
 void				draw_circle(t_vi *xy, short int const radius, t_pge *game,
 						t_pxl *pxl);
@@ -223,7 +223,7 @@ t_xpm				**game_add_xpm(char const *path, char const *name,
 t_xpm				*add_xpm(char const *path, char const *name, t_pge *game);
 void				free_xpm(t_xpm **xpm, t_pge *game);
 short int			check_xpm(t_xpm **xpm);
-void				print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_pge *game);
+void				print_sprite(t_xpm *xpm, t_vi coor, t_vi v, t_xpm *img);
 t_xpm				**new_xpm_array(t_xpm **xpm);
 t_xpm				*find_xpm(t_xpm **array, char *name);
 size_t				ft_xpmlen(t_xpm **xpm);

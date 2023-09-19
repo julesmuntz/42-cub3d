@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/14 14:04:55 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:16:58 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	game_refresh(t_pge *game)
 		{
 			get_pixel_from_xpm(&game->drawing_img, x.x / game->pxlwidth,
 				x.y / game->pxlheight, &pxl);
-			draw_pixel(&x, game, &game->img, &pxl);
+			draw_pixel(&x, &game->img, &pxl);
 			x.y++;
 		}
 		x.x++;

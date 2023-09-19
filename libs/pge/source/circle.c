@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:02 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/04 14:28:05 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:13:43 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ void	draw_symetric(t_vi *xy, t_vi *xyp, t_pge *game, t_pxl *pxl)
 	t_vi	v;
 
 	v = set_vector(xyp->x + xy->x, xyp->y + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(xyp->y + xy->x, xyp->x + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(-xyp->x + xy->x, xyp->y + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(-xyp->y + xy->x, xyp->x + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(xyp->x + xy->x, -xyp->y + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(xyp->y + xy->x, -xyp->x + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(-xyp->x + xy->x, -xyp->y + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 	v = set_vector(-xyp->y + xy->x, -xyp->x + xy->y);
-	draw_pixel(&v, game, &game->drawing_img, pxl);
+	draw_pixel(&v, &game->drawing_img, pxl);
 }
 
 void	draw_circle(t_vi *xy, short int const radius, t_pge *game, t_pxl *pxl)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/15 19:56:52 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:23:10 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void		set_fov(float const fov, t_player *player);
 t_player	*set_player(t_vi const *pos, float const playera, float const fov);
 t_xpm		*texture_choice(t_raycast *ray, t_pge const *game);
 int			add_texture(t_pge *game);
-void		raycast_init(t_pge *game, t_vf start);
-void		raycast_dda(t_pge *game, t_raycast *ray, t_vf *start);
-void		raycast_dda_collision(t_pge *game, t_raycast *ray);
-void		raycast_dda_setup(t_pge *game, t_raycast *ray);
-void		raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture);
+void		raycast_init(t_pge *game, t_vf start, t_xpm *img);
+void		raycast_dda(t_pge *game, t_raycast *ray, t_vf *start, t_xpm *img);
+void		raycast_dda_collision(t_pge *game, t_raycast *ray, t_xpm *img);
+void		raycast_dda_setup(t_pge *game, t_raycast *ray, t_xpm *img);
+void		raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture, t_xpm *img);
 void		check_movements(t_pge *game);
 int			cub_launch(void *g);
 void		look_direction(t_pge *game, float n);
@@ -71,5 +71,7 @@ t_vf		set_portal_value(t_pge *game, t_raycast *ray, char dir);
 int			check_collision_ray(t_pge *game, t_raycast *ray);
 int			check_side(t_pge *game, t_raycast *ray, char p);
 char		get_side(t_raycast	*ray);
+void		update_portal_value(t_raycast *ray, t_vf *start, char side);
+void		update_portal_ray(t_raycast *ray, char in, char out);
 
 #endif

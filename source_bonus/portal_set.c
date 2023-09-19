@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 14:48:03 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/15 17:59:56 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:28:58 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,29 +96,23 @@ int	is_a_portal(t_pge *game, t_raycast *ray)
 
 t_vf	set_portal_value(t_pge *game, t_raycast *ray, char dir)
 {
-	char	a;
-	char	b;
+	t_vf	start;
+	char	p;
+	char	side;
 
 	if (dir == 'B')
 	{
-		a = game->player->po;
-		b = game->player->pb;
+		start = set_vectorf(game->player->portalo.x, game->player->portalo.y);
+		side = game->player->po;
+		p = game->player->pb;
 	}
 	else
 	{
-		a = game->player->pb;
-		b = game->player->po;
+		start = set_vectorf(game->player->portalb.x, game->player->portalb.y);
+		side = game->player->pb;
+		p = game->player->po;
 	}
-	if (a == b)
-		return (same_side(game, ray, dir));
-	else if ((a == 'N' && b == 'S') || (a == 'S' && b == 'N')
-		|| (a == 'W' && b == 'E') || (a == 'E' && b == 'W'))
-		return (opposite_side(game, ray, dir));
-	else if ((a == 'N' && b == 'E') || (a == 'E' && b == 'S')
-		|| (a == 'S' && b == 'W') || (a == 'W' && b == 'N'))
-		return (right_side(game, ray, dir));
-	else if ((a == 'N' && b == 'W') || (a == 'W' && b == 'S')
-		|| (a == 'S' && b == 'E') || (a == 'E' && b == 'N'))
-		return (left_side(game, ray, dir));
-	return (set_vectorf(0, 0));
+	update_portal_value(ray, &start, side);
+	update_portal_ray(ray, p, side);
+	return (start);
 }
