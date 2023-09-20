@@ -6,7 +6,7 @@
 #    By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 16:23:53 by gfranque          #+#    #+#              #
-#    Updated: 2023/09/15 15:00:27 by gfranque         ###   ########.fr        #
+#    Updated: 2023/09/20 19:28:13 by gfranque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC_BONUS =	cub3d.c				\
 			portal_set.c		\
 			portal_ray.c		\
 			portal_utilities.c	\
+			portal_ray_set.c	\
 
 INCLUDES = -I ./headers/ -I ./libs/mlx/
 

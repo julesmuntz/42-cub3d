@@ -1,0 +1,21 @@
+NO ./assets/portal_textures/wall_basic.xpm
+SO ./assets/portal_textures/wall_vertical.xpm
+WE ./assets/portal_textures/wall_horizontal.xpm
+EA ./assets/portal_textures/wall_cross.xpm
+
+F 240,248,240
+C 240,248,240
+
+111111
+100001
+100001
+100001
+110111
+100001
+100001
+100001
+11D111
+100001
+10S001
+100001
+111111

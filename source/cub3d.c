@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/11 15:14:37 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:18:31 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	cub_launch(void *g)
 	t_pge	*game;
 
 	game = (t_pge *)g;
-	raycast_init(game);
+	raycast_init(game, game->player->pos, &game->drawing_img);
 	check_movements(game);
 	game_refresh(game);
 	return (0);

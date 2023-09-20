@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/19 18:48:22 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:17:35 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	raycast_init(t_pge *game, t_vf start, t_xpm *img)
 
 	ray = game->ray;
 	ray->xy.x = 0;
-	if (start.x != game->player->pos.x && start.y != game->player->pos.y)
-		look_direction(game, M_PI_2);
 	while (ray->xy.x < game->drawing_img.width)
 	{
 		ray->walldist = 0;
@@ -38,8 +36,6 @@ void	raycast_init(t_pge *game, t_vf start, t_xpm *img)
 		raycast_dda(game, ray, &start, img);
 		ray->xy.x++;
 	}
-	if (start.x != game->player->pos.x && start.y != game->player->pos.y)
-		look_direction(game, -M_PI_2);
 }
 
 void	raycast_dda(t_pge *game, t_raycast *ray, t_vf *start, t_xpm *img)
@@ -96,10 +92,6 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray, t_xpm *img)
 		ray->walldist = (ray->sidedist.x - ray->deltadist.x);
 	else
 		ray->walldist = (ray->sidedist.y - ray->deltadist.y);
-	if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'B')
-		raycast_portal(game, ray, ray->walldist, 'B');
-	if (get_side(ray) == game->player->po && game->cub->map[ray->map.y][ray->map.x] == 'O')
-		raycast_portal(game, ray, ray->walldist, 'O');
 	raycast_dda_setup(game, ray, img);
 }
 

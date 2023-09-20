@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/19 18:09:00 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:48:34 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_raycast
 typedef struct s_player
 {
 	t_vf			pos;
+	t_vf			oldpos;
 	float			angle;
 	float			pitch;
 	t_vf			plan;
@@ -160,6 +161,7 @@ typedef struct s_player
 	char			t;
 	t_vi			portalb;
 	t_vi			portalo;
+	char			p;
 	char			pb;
 	char			po;
 }					t_player;

@@ -6,28 +6,45 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/05 16:35:14 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:26:46 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_xpm	*texture_choice(int const side, t_vi const *step, t_pge const *game)
+char	get_side(t_raycast	*ray)
 {
-	if (side == 0)
+	if (ray->side == 0)
 	{
-		if (step->x < 0)
-			return (find_xpm(game->xpm, "west"));
+		if (ray->step.x < 0)
+			return ('W');
 		else
-			return (find_xpm(game->xpm, "east"));
+			return ('E');
 	}
-	else
+	else if (ray->side == 1)
 	{
-		if (step->y < 0)
-			return (find_xpm(game->xpm, "north"));
+		if (ray->step.y < 0)
+			return ('N');
 		else
-			return (find_xpm(game->xpm, "south"));
+			return ('S');
 	}
+	return (0);
+}
+
+t_xpm	*texture_choice(t_raycast *ray, t_pge const *game)
+{
+	char c;
+
+	c = get_side(ray);
+	if (c == 'W')
+		return (find_xpm(game->xpm, "west"));
+	else if (c == 'E')
+		return (find_xpm(game->xpm, "east"));
+	else if (c == 'N')
+		return (find_xpm(game->xpm, "north"));
+	else if (c == 'S')
+		return (find_xpm(game->xpm, "south"));
+	return (NULL);
 }
 
 int	add_texture(t_pge *game)

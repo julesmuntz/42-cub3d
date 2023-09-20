@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/19 18:23:10 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:19:11 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			door_is_close(t_pge *game, int x, int y);
 void		check_door(t_pge *game, int *a, int *b);
 int			ft_is_in_charcount(char *str, char tofind);
 void		check_portal(t_pge *game);
-void		raycast_portal(t_pge *game, t_raycast *ray, int walldist, char dir);
+void		raycast_portal(t_pge *game, t_raycast *ray, float walldist, char dir);
 t_vf		same_side(t_pge *game, t_raycast *ray, char dir);
 t_vf		opposite_side(t_pge *game, t_raycast *ray, char dir);
 t_vf		right_side(t_pge *game, t_raycast *ray, char dir);
@@ -73,5 +73,8 @@ int			check_side(t_pge *game, t_raycast *ray, char p);
 char		get_side(t_raycast	*ray);
 void		update_portal_value(t_raycast *ray, t_vf *start, char side);
 void		update_portal_ray(t_raycast *ray, char in, char out);
+char		check_pos_side(t_pge *game);
+void		teleport_rotation(t_pge *game, char dir);
+char		collition_in_portal(t_pge *game);
 
 #endif

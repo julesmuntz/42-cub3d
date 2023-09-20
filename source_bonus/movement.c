@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:36:57 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/04 14:49:06 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:36:06 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	go_right(t_pge *game, float n)
 	sin = sinf(game->player->angle) * n;
 	game->player->pos.x += cos;
 	game->player->pos.y -= sin;
-	if (check_collision(game) == 1)
-	{
-		game->player->pos.x -= cos;
-		game->player->pos.y += sin;
-	}
 }
 
 void	go_left(t_pge *game, float n)
@@ -37,11 +32,6 @@ void	go_left(t_pge *game, float n)
 	sin = sinf(game->player->angle) * n;
 	game->player->pos.x -= cos;
 	game->player->pos.y += sin;
-	if (check_collision(game) == 1)
-	{
-		game->player->pos.x += cos;
-		game->player->pos.y -= sin;
-	}
 }
 
 void	go_front(t_pge *game, float n)
@@ -53,11 +43,6 @@ void	go_front(t_pge *game, float n)
 	cos = cosf(game->player->angle) * n;
 	game->player->pos.x -= sin;
 	game->player->pos.y -= cos;
-	if (check_collision(game) == 1)
-	{
-		game->player->pos.x += sin;
-		game->player->pos.y += cos;
-	}
 }
 
 void	go_back(t_pge *game, float n)
@@ -69,11 +54,6 @@ void	go_back(t_pge *game, float n)
 	cos = cosf(game->player->angle) * n;
 	game->player->pos.x += sin;
 	game->player->pos.y += cos;
-	if (check_collision(game) == 1)
-	{
-		game->player->pos.x -= sin;
-		game->player->pos.y -= cos;
-	}
 }
 
 void	check_movements(t_pge *game)
@@ -96,6 +76,7 @@ void	check_movements(t_pge *game)
 		go_left(game, speed);
 	if (game->key['d'] == 1)
 		go_right(game, speed);
+	check_collision(game);
 	if (game->key['q'] == 1)
 		look_direction(game, -look);
 	if (game->key['e'] == 1)
