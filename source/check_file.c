@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:49:45 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/11 14:38:05 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:12:59 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	check_file(t_pge *game, char *arg)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (check_texture_and_color(game, line))
+		if (check_texture_and_color(game, line) || ft_read(line) == 0)
 			return (close(fd), 1);
 		if (game->cub->north_found && game->cub->south_found
 			&& game->cub->west_found && game->cub->east_found
