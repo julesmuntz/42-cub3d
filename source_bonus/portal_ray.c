@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:51:36 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:14:26 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:11:45 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,12 @@ void	raycast_portal(t_pge *game, t_raycast *ray, float walldist, char dir)
 	}
 	*rcast = *ray;
 	start = set_portal_value(game, rcast, dir);
-	printf("===============\nplayer[%f;%f]\nwalldist[%f]\ndeltadist[%f;%f]\n", game->player->pos.x, game->player->pos.y, rcast->walldist, rcast->deltadist.x, rcast->deltadist.y);
 	rcast->deltadist.x = fabsf(1.f / rcast->raydir.x);
 	rcast->deltadist.y = fabsf(1.f / rcast->raydir.y);
 	rcast->hit = 0;
 	(void)walldist;
-	// rcast->walldist += walldist;
 	ray->map.x = start.x;
 	ray->map.y = start.y;
-	printf("===============\nstart[%f;%f]\nwalldist[%f]\ndeltadist[%f;%f]\n\n", start.x, start.y, rcast->walldist, rcast->deltadist.x, rcast->deltadist.y);
 	raycast_dda(game, rcast, &start, &game->drawing_img);
 	free(rcast);
 }

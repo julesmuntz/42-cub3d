@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:16:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:10:55 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_xpm	*texture_choice(t_raycast *ray, t_pge const *game)
 		return (find_xpm(game->xpm, "north"));
 	else if ((c == 'S' && p == 'p') || (c == 'S' && p != c))
 		return (find_xpm(game->xpm, "south"));
-	else if (c == p && game->cub->map[game->ray->map.y][game->ray->map.x] == 'B')
+	else if (c == p && game->cub->map[ray->map.y][ray->map.x] == 'B')
 		return (find_xpm(game->xpm, "portalb"));
-	else if (c == p && game->cub->map[game->ray->map.y][game->ray->map.x] == 'O')
+	else if (c == p && game->cub->map[ray->map.y][ray->map.x] == 'O')
 		return (find_xpm(game->xpm, "portalo"));
 	return (NULL);
 }
@@ -108,14 +108,12 @@ void	set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist, t_pxl *pxl)
 	t_raycast	*ray;
 
 	ray = game->ray;
-	// if (texture == NULL)
-	// 	*pxl = set_pxl_argb(0,0,0,255);
+	*dist = ray->walldist;
 	if (ray->xy.y < ray->ceiling)
 	{
 		*pxl = set_pxl_argb(game->cub->ceiling_color[R],
 				game->cub->ceiling_color[G],
 				game->cub->ceiling_color[B], 0);
-		*dist = ray->walldist;
 	}
 	else if (ray->xy.y < ray->floor)
 	{
@@ -123,7 +121,6 @@ void	set_pxl_for_dda(t_pge *game, t_xpm *texture, float *dist, t_pxl *pxl)
 			get_pixel_from_xpm(texture, (int)(ray->wallx * texture->width),
 				(int)((float)(ray->xy.y - ray->ceiling) / (float)(ray->floor
 						- ray->ceiling) * texture->height), pxl);
-		*dist = ray->walldist;
 	}
 	else
 	{

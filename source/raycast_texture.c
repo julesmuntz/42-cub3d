@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:26:46 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:56:05 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	get_side(t_raycast	*ray)
 
 t_xpm	*texture_choice(t_raycast *ray, t_pge const *game)
 {
-	char c;
+	char	c;
 
 	c = get_side(ray);
 	if (c == 'W')

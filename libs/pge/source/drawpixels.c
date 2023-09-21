@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:36:08 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/19 18:16:48 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:19:59 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_line_x(t_vi xy, t_vi *v, t_pge *game, t_pxl *pxl)
 	short int	i;
 	short int	p;
 	short int	x;
-	
+
 	(void)game;
 	x = xy.x + v->x;
 	i = 1;

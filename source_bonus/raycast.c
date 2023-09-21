@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:17:35 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:16:21 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray, t_xpm *img)
 	raycast_dda_trace(game, ray, texture, img);
 }
 
-void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture, t_xpm *img)
+void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture,
+	t_xpm *img)
 {
 	t_pxl	pxl;
 	float	dist;

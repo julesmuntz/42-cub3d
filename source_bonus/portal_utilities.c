@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 13:23:02 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 18:03:37 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:18:20 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_portal_sides(char *ref, char out)
 	int	i;
 
 	i = 0;
-	while(ref[i])
+	while (ref[i])
 	{
 		if (ref[i] == out)
 			return (i);
@@ -40,10 +40,10 @@ static int	check_portal_sides(char *ref, char out)
 
 void	update_portal_ray(t_raycast *ray, char in, char out)
 {
-	char const n[4] = "ESWN";
-	char const e[4] = "SWNE";
-	char const s[4] = "WNES";
-	char const w[4] = "NESW";
+	char const	n[4] = "ESWN";
+	char const	e[4] = "SWNE";
+	char const	s[4] = "WNES";
+	char const	w[4] = "NESW";
 	int			i;
 
 	if (in == 'N')
@@ -72,12 +72,7 @@ int	check_collision_ray(t_pge *game, t_raycast *ray)
 		walldist = ray->walldist + (ray->sidedist.y - ray->deltadist.y);
 	if (ray->map.x < 0 || ray->map.y < 0 || ray->map.x >= game->cub->map_width
 		|| ray->map.y >= game->cub->map_height)
-	{
-		printf("en dehors de la map\n");
-		printf("player[%f;%f]\n", game->player->pos.x, game->player->pos.y);
-		printf("portal blue[%d;%d]\n", game->player->portalb.x, game->player->portalb.y);
 		return (-1);
-	}
 	if (walldist >= game->cub->map_depth)
 		return (1);
 	if (game->cub->map[ray->map.y][ray->map.x] == '1')
