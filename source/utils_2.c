@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:35:48 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/21 18:16:54 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:33:35 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_read(char *str)
 
 	if (!str)
 		return (0);
+	if (ft_strlen(str) > 100)
+		return (free(str), print_error("Invalid format"), 0);
 	c = str[0];
 	if (9 <= c && c <= 13)
 		return (1);
