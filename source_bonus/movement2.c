@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:43:12 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/21 16:45:31 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:46:28 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ static int	teleport_to_blue(t_pge *game)
 	if (game->player->pb == 'S' && is_in_the_right_place(game,
 			&game->player->portalo, game->player->po) == 1)
 		game->player->pos = set_vectorf(game->player->portalb.x + 0.5f,
-				game->player->portalb.y - 0.5f);
+				game->player->portalb.y - 0.2f);
 	else if (game->player->pb == 'N' && is_in_the_right_place(game,
 			&game->player->portalo, game->player->po) == 1)
 		game->player->pos = set_vectorf(game->player->portalb.x + 0.5f,
-				game->player->portalb.y + 1.5f);
+				game->player->portalb.y + 1.2f);
 	else if (game->player->pb == 'W' && is_in_the_right_place(game,
 			&game->player->portalo, game->player->po) == 1)
-		game->player->pos = set_vectorf(game->player->portalb.x + 1.5f,
+		game->player->pos = set_vectorf(game->player->portalb.x + 1.2f,
 				game->player->portalb.y + 0.5f);
 	else if (game->player->pb == 'E' && is_in_the_right_place(game,
 			&game->player->portalo, game->player->po) == 1)
-		game->player->pos = set_vectorf(game->player->portalb.x - 0.5f,
+		game->player->pos = set_vectorf(game->player->portalb.x - 0.2f,
 				game->player->portalb.y + 0.5f);
 	else
 		game->player->pos = game->player->oldpos;
