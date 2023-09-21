@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:25:37 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/15 20:42:12 by julmuntz         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:42:06 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ static char	**rgb_split(char *line)
 	s[G] = ft_strndup(line + comma[0] + 1, comma[1] - comma[0] - 1);
 	s[B] = ft_strndup(line + comma[1] + 1, (ft_strlen(line) - 2) - comma[1]);
 	s[3] = NULL;
+	if (ft_strlen(s[R]) == 0 || ft_strlen(s[G]) == 0
+		|| ft_strlen(s[B]) == 0)
+		return (ft_free_lines(s), NULL);
 	return (s);
 }
 
@@ -60,7 +63,7 @@ static int	*get_color2(char *line, int *rgb)
 	while (line[++i])
 	{
 		s = rgb_split(line);
-		if (!s[R] || !s[G] || !s[B] || s[3]
+		if (!s || !s[R] || !s[G] || !s[B] || s[3]
 			|| ft_strnstr(line, ",,", ft_strlen(line)))
 			return (print_error("Invalid color format"), free(rgb),
 				ft_free_lines(s), NULL);
