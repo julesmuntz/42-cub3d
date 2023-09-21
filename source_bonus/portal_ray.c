@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:51:36 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/21 15:11:45 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:27:39 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,13 @@ int	check_side(t_pge *game, t_raycast *ray, char p)
 	if (p == 'B')
 	{
 		if (game->player->pb == get_side(ray))
-		{
-			printf("est sur le meme side\n");
 			return (1);
-		}
 		return (0);
 	}
 	if (p == 'O')
 	{
 		if (game->player->po == get_side(ray))
-		{
-			printf("est sur le meme side\n");
 			return (1);
-		}
 		return (0);
 	}
 	return (0);

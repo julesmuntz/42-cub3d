@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:25:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/21 15:12:49 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:44:51 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,24 @@ void	teleport_rotation(t_pge *game, char dir)
 
 char	check_pos_side(t_pge *game)
 {
-	if ((int)game->player->oldpos.x < (int)game->player->pos.x)
-		game->player->p = 'E';
-	else if ((int)game->player->oldpos.x > (int)game->player->pos.x)
-		game->player->p = 'W';
-	else if ((int)game->player->oldpos.y < (int)game->player->pos.y)
-		game->player->p = 'S';
-	else if ((int)game->player->oldpos.y > (int)game->player->pos.y)
-		game->player->p = 'N';
+	t_vf	posdif;
+
+	posdif = set_vectorf(game->player->pos.x - game->player->oldpos.x,
+			game->player->pos.y - game->player->oldpos.y);
+	if (fabs(posdif.x) > fabs(posdif.y))
+	{
+		if (posdif.x > 0)
+			game->player->p = 'E';
+		else
+			game->player->p = 'W';
+	}
+	else if (fabs(posdif.x) < fabs(posdif.y))
+	{
+		if (posdif.y > 0)
+			game->player->p = 'S';
+		else
+			game->player->p = 'N';
+	}
 	return (game->player->p);
 }
 
@@ -94,4 +104,21 @@ void	check_portal_2(t_pge *game)
 		game->portal->clicked_orange = true;
 	}
 	game->portal->portal = 0;
+}
+
+int	is_in_the_right_place(t_pge *game, t_vi *portal, char side)
+{
+	if (side == 'E' && portal->x -1 == (int)game->player->pos.x
+		&& portal->y == (int)game->player->pos.y)
+		return (1);
+	else if (side == 'W' && portal->x + 1 == (int)game->player->pos.x
+		&& portal->y == (int)game->player->pos.y)
+		return (1);
+	else if (side == 'N' && portal->x == (int)game->player->pos.x
+		&& portal->y + 1 == (int)game->player->pos.y)
+		return (1);
+	else if (side == 'S' && portal->x == (int)game->player->pos.x
+		&& portal->y - 1 == (int)game->player->pos.y)
+		return (1);
+	return (0);
 }

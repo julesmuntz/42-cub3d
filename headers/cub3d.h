@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/21 15:19:07 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:37:00 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ char		check_pos_side(t_pge *game);
 void		teleport_rotation(t_pge *game, char dir);
 char		collition_in_portal(t_pge *game);
 void		check_portal_2(t_pge *game);
+void		portal_orientation(t_pge *game, char *portal);
+int			is_in_the_right_place(t_pge *game, t_vi *portal, char side);
 
 #endif

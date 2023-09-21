@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:43:12 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/21 15:15:56 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:45:31 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,20 @@ void	look_direction(t_pge *game, float n)
 
 static int	teleport_to_orange(t_pge *game)
 {
-	if (game->player->po == 'S' && game->player->p == 'S')
+	if (game->player->po == 'S' && is_in_the_right_place(game,
+			&game->player->portalb, game->player->pb) == 1)
 		game->player->pos = set_vectorf(game->player->portalo.x + 0.5f,
 				game->player->portalo.y - 0.5f);
-	else if (game->player->po == 'N' && game->player->p == 'N')
+	else if (game->player->po == 'N' && is_in_the_right_place(game,
+			&game->player->portalb, game->player->pb) == 1)
 		game->player->pos = set_vectorf(game->player->portalo.x + 0.5f,
 				game->player->portalo.y + 1.5f);
-	else if (game->player->po == 'W' && game->player->p == 'W')
+	else if (game->player->po == 'W' && is_in_the_right_place(game,
+			&game->player->portalb, game->player->pb) == 1)
 		game->player->pos = set_vectorf(game->player->portalo.x + 1.5f,
 				game->player->portalo.y + 0.5f);
-	else if (game->player->po == 'E' && game->player->p == 'E')
+	else if (game->player->po == 'E' && is_in_the_right_place(game,
+			&game->player->portalb, game->player->pb) == 1)
 		game->player->pos = set_vectorf(game->player->portalo.x - 0.5f,
 				game->player->portalo.y + 0.5f);
 	else
@@ -43,16 +47,20 @@ static int	teleport_to_orange(t_pge *game)
 
 static int	teleport_to_blue(t_pge *game)
 {
-	if (game->player->pb == 'S' && game->player->p == 'S')
+	if (game->player->pb == 'S' && is_in_the_right_place(game,
+			&game->player->portalo, game->player->po) == 1)
 		game->player->pos = set_vectorf(game->player->portalb.x + 0.5f,
 				game->player->portalb.y - 0.5f);
-	else if (game->player->pb == 'N' && game->player->p == 'N')
+	else if (game->player->pb == 'N' && is_in_the_right_place(game,
+			&game->player->portalo, game->player->po) == 1)
 		game->player->pos = set_vectorf(game->player->portalb.x + 0.5f,
 				game->player->portalb.y + 1.5f);
-	else if (game->player->pb == 'W' && game->player->p == 'W')
+	else if (game->player->pb == 'W' && is_in_the_right_place(game,
+			&game->player->portalo, game->player->po) == 1)
 		game->player->pos = set_vectorf(game->player->portalb.x + 1.5f,
 				game->player->portalb.y + 0.5f);
-	else if (game->player->pb == 'E' && game->player->p == 'E')
+	else if (game->player->pb == 'E' && is_in_the_right_place(game,
+			&game->player->portalo, game->player->po) == 1)
 		game->player->pos = set_vectorf(game->player->portalb.x - 0.5f,
 				game->player->portalb.y + 0.5f);
 	else
