@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:25:14 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/22 11:54:04 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:05:45 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,27 @@ void	teleport_rotation(t_pge *game, char dir, char from)
 	if (dir == 'N' && from == 'N')
 		look_direction(game, M_PI);
 	else if (dir == 'N' && from == 'E')
-		look_direction(game, -M_PI_2);
-	else if (dir == 'N' && from == 'W')
 		look_direction(game, M_PI_2);
+	else if (dir == 'N' && from == 'W')
+		look_direction(game, -M_PI_2);
 	else if (dir == 'E' && from == 'E')
 		look_direction(game, M_PI);
 	else if (dir == 'E' && from == 'S')
-		look_direction(game, -M_PI_2);
-	else if (dir == 'E' && from == 'N')
 		look_direction(game, M_PI_2);
+	else if (dir == 'E' && from == 'N')
+		look_direction(game, -M_PI_2);
 	else if (dir == 'W' && from == 'W')
 		look_direction(game, M_PI);
 	else if (dir == 'W' && from == 'N')
-		look_direction(game, -M_PI_2);
-	else if (dir == 'W' && from == 'S')
 		look_direction(game, M_PI_2);
+	else if (dir == 'W' && from == 'S')
+		look_direction(game, -M_PI_2);
 	else if (dir == 'S' && from == 'S')
 		look_direction(game, M_PI);
 	else if (dir == 'S' && from == 'W')
-		look_direction(game, -M_PI_2);
-	else if (dir == 'S' && from == 'E')
 		look_direction(game, M_PI_2);
+	else if (dir == 'S' && from == 'E')
+		look_direction(game, -M_PI_2);
 }
 
 char	check_pos_side(t_pge *game)
