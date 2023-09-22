@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:27:26 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:14:19 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray, t_xpm *img)
 	raycast_dda_trace(game, ray, texture, img);
 }
 
-void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture, t_xpm *img)
+void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture,
+	t_xpm *img)
 {
 	t_pxl	pxl;
 

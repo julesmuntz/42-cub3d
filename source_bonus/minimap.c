@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:35:48 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 19:28:27 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:54:20 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void	minimap_put_wall(t_pge *game, t_xpm *sprite, int r, t_pxl *pxl)
 }
 
 /*faire le decoupage circulaire a la fin pour la transparence*/
-

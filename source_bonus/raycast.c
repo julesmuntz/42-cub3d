@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:44:42 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:17:35 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:36:31 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	raycast_init(t_pge *game, t_vf start, t_xpm *img)
 			* ray->camerax;
 		ray->raydir.y = game->player->dir.y + game->player->plan.y
 			* ray->camerax;
+		ray->crossed = 0;
 		ray->map.x = start.x;
 		ray->map.y = start.y;
 		ray->deltadist.x = fabsf(1.f / ray->raydir.x);
@@ -89,33 +90,37 @@ void	raycast_dda_collision(t_pge *game, t_raycast *ray, t_xpm *img)
 			return ;
 	}
 	if (ray->side == 0)
-		ray->walldist = (ray->sidedist.x - ray->deltadist.x);
+		ray->walldist += (ray->sidedist.x - ray->deltadist.x);
 	else
-		ray->walldist = (ray->sidedist.y - ray->deltadist.y);
+		ray->walldist += (ray->sidedist.y - ray->deltadist.y);
 	raycast_dda_setup(game, ray, img);
 }
 
 void	raycast_dda_setup(t_pge *game, t_raycast *ray, t_xpm *img)
 {
-	t_xpm	*texture;
-
 	ray->wallsize = (float)game->drawing_img.height / ray->walldist;
 	ray->ceiling = (float)(game->drawing_img.height) / 2.f - ray->wallsize / 2.f
 		+ game->player->pitch * 25;
 	ray->floor = ray->ceiling + ray->wallsize;
+	ray->end = (t_vf){game->player->pos.x + ray->walldist * ray->raydir.x, game->player->pos.y + ray->walldist * ray->raydir.y};
 	if (ray->side == 0)
-		ray->wallx = game->player->pos.y + ray->walldist * ray->raydir.y;
+		ray->wallx = ray->end.y;
 	else
-		ray->wallx = game->player->pos.x + ray->walldist * ray->raydir.x;
+		ray->wallx = ray->end.x;
+	
 	ray->wallx -= (int)(ray->wallx);
 	ray->wallx = 1.0f - ray->wallx;
-	if ((ray->side == 0 && ray->raydir.x < 0) || (ray->side == 1
-			&& ray->raydir.y > 0))
+	if ((ray->side == 0 && ray->raydir.x < 0)
+		|| (ray->side == 1 && ray->raydir.y > 0))
 		ray->wallx = 1.0f - ray->wallx;
-	texture = texture_choice(ray, game);
-	if (ray->xy.x == game->drawing_img.width / 2)
+	void *texture = texture_choice(ray, game);
+	if (game->portal->clicked_blue && game->portal->clicked_orange && ray->crossed < 4
+		&& ((ray->map.x == game->player->portalo.x && ray->map.y == game->player->portalo.y)
+		|| (ray->map.x == game->player->portalb.x && ray->map.y == game->player->portalb.y)))
+		raycast_portal(game, ray, ray->walldist, 0);
+	else if (ray->crossed == 0 && ray->xy.x == game->drawing_img.width / 2)
 	{
-		game->player->target = copy_vector(&ray->map);
+		game->player->target = ray->map;
 		if (ray->side == 0)
 			game->player->t = 1 * ray->step.x;
 		else
@@ -124,7 +129,8 @@ void	raycast_dda_setup(t_pge *game, t_raycast *ray, t_xpm *img)
 	raycast_dda_trace(game, ray, texture, img);
 }
 
-void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture, t_xpm *img)
+void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture,
+	t_xpm *img)
 {
 	t_pxl	pxl;
 	float	dist;
@@ -133,14 +139,16 @@ void	raycast_dda_trace(t_pge *game, t_raycast *ray, t_xpm *texture, t_xpm *img)
 	dist = 0;
 	while (ray->xy.y < game->drawing_img.height)
 	{
-		if (ray->walldist >= game->cub->map_depth)
+		if (ray->walldist
+			>= game->cub->map_depth)
 			pxl = set_pxl_argb(0, 0, 0, 0);
 		else
 		{
 			set_pxl_for_dda(game, texture, &dist, &pxl);
-			fog_generation(&pxl, &dist, game);
+			// fog_generation(&pxl, &dist, game);
 		}
-		draw_pixel(&ray->xy, img, &pxl);
+		if ((pxl.color & 0xFF000000) == 0)
+			draw_pixel(&ray->xy, img, &pxl);
 		ray->xy.y++;
 	}
 }

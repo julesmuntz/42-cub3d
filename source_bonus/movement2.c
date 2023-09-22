@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:43:12 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/20 20:25:15 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:20:22 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ bool	check_collision(t_pge *game)
 			- 0.1f)][(int)(game->player->pos.x + 0.1f)], game) == 0)
 		game->player->pos = game->player->oldpos;
 	check_pos_side(game);
-	printf("direction of the player [%c]\n", check_pos_side(game));
-	printf("direction of the portalo [%c]\n", game->player->po);
-	printf("direction of the portalb [%c]\n", game->player->pb);
+	// printf("direction of the player [%c]\n", check_pos_side(game));
+	// printf("direction of the portalo [%c]\n", game->player->po);
+	// printf("direction of the portalb [%c]\n", game->player->pb);
 	game->player->oldpos = game->player->pos;
 	return (1);
 }

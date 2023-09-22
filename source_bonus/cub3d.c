@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:39:30 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:06:22 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:56:18 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	main2(t_pge *game)
 	look_direction(game, game->cub->player_angle);
 	if (game_open_window(game, "Portal 3D") == 0)
 		return (cub_clear(game), game_clear(game), 2);
-	for (int i = 0; game->cub->map[i]; i++)
-		printf("[%s]\n", game->cub->map[i]);
 	game_loop(game, &cub_launch);
 	return (0);
 }

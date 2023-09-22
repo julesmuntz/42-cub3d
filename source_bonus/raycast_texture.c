@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 15:10:06 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 16:16:11 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:33:39 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_xpm	*texture_choice(t_raycast *ray, t_pge const *game)
 	char	p;
 
 	p = 'p';
-	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'D')
+	if (game->cub->map[ray->map.y][ray->map.x] == 'D')
 		return (find_xpm(game->xpm, "door"));
-	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'B')
+	else if (game->cub->map[ray->map.y][ray->map.x] == 'B')
 		p = game->player->pb;
-	if (game->cub->map[game->ray->map.y][game->ray->map.x] == 'O')
+	else if (game->cub->map[ray->map.y][ray->map.x] == 'O')
 		p = game->player->po;
 	c = get_side(ray);
 	if ((c == 'W' && p == 'p') || (c == 'W' && p != c))

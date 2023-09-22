@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PixelGameEngine.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julmuntz <julmuntz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:49 by gfranque          #+#    #+#             */
-/*   Updated: 2023/09/20 19:48:34 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:59:09 by julmuntz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,8 @@ typedef struct s_raycast
 	t_vi			xy;
 	t_vf			start;
 	t_vf			end;
-}					t_raycast;
+	unsigned int	crossed;
+} t_raycast;
 
 typedef struct s_player
 {
