@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 13:20:59 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/21 18:13:06 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:50:39 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char		get_side(t_raycast	*ray);
 void		update_portal_value(t_raycast *ray, t_vf *start, char side);
 void		update_portal_ray(t_raycast *ray, char in, char out);
 char		check_pos_side(t_pge *game);
-void		teleport_rotation(t_pge *game, char dir);
+void		teleport_rotation(t_pge *game, char dir, char from);
 char		collition_in_portal(t_pge *game);
 void		check_portal_2(t_pge *game);
 void		portal_orientation(t_pge *game, char *portal);

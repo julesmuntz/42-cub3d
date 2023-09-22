@@ -6,7 +6,7 @@
 /*   By: gfranque <gfranque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:43:12 by julmuntz          #+#    #+#             */
-/*   Updated: 2023/09/21 18:46:28 by gfranque         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:50:22 by gfranque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	teleport_to_orange(t_pge *game)
 		game->player->pos = game->player->oldpos;
 	if (game->player->pos.x != game->player->oldpos.x
 		&& game->player->pos.y != game->player->oldpos.y)
-		teleport_rotation(game, game->player->po);
+		teleport_rotation(game, game->player->po, game->player->pb);
 	return (0);
 }
 
@@ -67,7 +67,7 @@ static int	teleport_to_blue(t_pge *game)
 		game->player->pos = game->player->oldpos;
 	if (game->player->pos.x != game->player->oldpos.x
 		&& game->player->pos.y != game->player->oldpos.y)
-		teleport_rotation(game, game->player->pb);
+		teleport_rotation(game, game->player->pb, game->player->po);
 	return (0);
 }
 
